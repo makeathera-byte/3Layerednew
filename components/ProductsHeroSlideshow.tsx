@@ -1,0 +1,147 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
+
+const PRODUCT_SLIDES = [
+    {
+        id: 1,
+        image: 'https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/home%20page/WhatsApp_Image_2025-12-23_at_12.24.48_AM.webp',
+        title: 'Premium 3D Printing',
+        description: 'Transform your ideas into reality',
+        link: '#categories'
+    },
+    {
+        id: 2,
+        image: 'https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/home%20page/images.jpg',
+        title: 'Miniature Temples',
+        description: 'Museum-quality architectural replicas',
+        link: '/products/category/miniature-temples'
+    }
+];
+
+const SLIDE_INTERVAL = 5000; // 5 seconds
+
+export function ProductsHeroSlideshow() {
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const [isPaused, setIsPaused] = useState(false);
+
+    useEffect(() => {
+        if (isPaused) return;
+
+        const interval = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % PRODUCT_SLIDES.length);
+        }, SLIDE_INTERVAL);
+
+        return () => clearInterval(interval);
+    }, [isPaused]);
+
+    const nextSlide = () => {
+        setCurrentSlide((prev) => (prev + 1) % PRODUCT_SLIDES.length);
+    };
+
+    const prevSlide = () => {
+        setCurrentSlide((prev) => (prev - 1 + PRODUCT_SLIDES.length) % PRODUCT_SLIDES.length);
+    };
+
+    const goToSlide = (index: number) => {
+        setCurrentSlide(index);
+    };
+
+    return (
+        <section
+            className="relative h-[70vh] bg-gray-50 overflow-hidden"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+        >
+            {/* Slides */}
+            <AnimatePresence mode="wait">
+                <motion.div
+                    key={currentSlide}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="absolute inset-0"
+                >
+                    <div className="relative w-full h-full">
+                        <img
+                            src={PRODUCT_SLIDES[currentSlide].image}
+                            alt={PRODUCT_SLIDES[currentSlide].title}
+                            className="w-full h-full object-cover"
+                        />
+                        {/* Overlay */}
+                        <div className="absolute inset-0 bg-black/30" />
+
+                        {/* Content */}
+                        <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="text-center text-white px-4">
+                                <motion.h1
+                                    initial={{ y: 20, opacity: 0 }}
+                                    animate={{ y: 0, opacity: 1 }}
+                                    transition={{ delay: 0.2 }}
+                                    className="font-serif text-5xl md:text-7xl font-bold mb-4"
+                                >
+                                    {PRODUCT_SLIDES[currentSlide].title}
+                                </motion.h1>
+                                <motion.p
+                                    initial={{ y: 20, opacity: 0 }}
+                                    animate={{ y: 0, opacity: 1 }}
+                                    transition={{ delay: 0.3 }}
+                                    className="text-xl md:text-2xl text-gray-200"
+                                >
+                                    {PRODUCT_SLIDES[currentSlide].description}
+                                </motion.p>
+                            </div>
+                        </div>
+
+                        {/* Shop Now Button - Bottom Right */}
+                        <div className="absolute bottom-12 right-12 z-10">
+                            <Link
+                                href={PRODUCT_SLIDES[currentSlide].link}
+                                className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 text-lg font-medium hover:bg-gray-100 transition-all duration-200 shadow-lg group"
+                            >
+                                <span>Shop Now</span>
+                                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                        </div>
+                    </div>
+                </motion.div>
+            </AnimatePresence>
+
+            {/* Navigation Arrows */}
+            <button
+                onClick={prevSlide}
+                className="absolute left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/90 hover:bg-white text-black rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
+                aria-label="Previous slide"
+            >
+                <ChevronLeft className="w-6 h-6" />
+            </button>
+
+            <button
+                onClick={nextSlide}
+                className="absolute right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/90 hover:bg-white text-black rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
+                aria-label="Next slide"
+            >
+                <ChevronRight className="w-6 h-6" />
+            </button>
+
+            {/* Dots Navigation */}
+            <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-3 z-10">
+                {PRODUCT_SLIDES.map((_, index) => (
+                    <button
+                        key={index}
+                        onClick={() => goToSlide(index)}
+                        className={`transition-all duration-300 ${index === currentSlide
+                            ? 'w-8 h-2 bg-white'
+                            : 'w-2 h-2 bg-white/50 hover:bg-white/75'
+                            } rounded-full`}
+                        aria-label={`Go to slide ${index + 1}`}
+                    />
+                ))}
+            </div>
+        </section>
+    );
+}

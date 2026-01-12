@@ -1,0 +1,318 @@
+{
+    "id": "golden-temple",
+    "slug": "golden-temple",
+    "categoryId": "miniature-temples",
+    "status": "published",
+    "seo": {
+        "title": "Golden Temple Miniature | Harmandir Sahib Model | Three Layered",
+        "description": "Stunning miniature of the Golden Temple (Harmandir Sahib) with metallic finish option. Precision 3D printed Sikh architectural masterpiece. Premium home and office decor.",
+        "keywords": [
+            "Golden Temple miniature",
+            "Harmandir Sahib model",
+            "Sikh temple replica",
+            "Amritsar architecture",
+            "3D printed religious monument",
+            "Indian heritage decor"
+        ],
+        "ogImage": "/products/golden-temple/hero-1.jpg",
+        "ogType": "product"
+    },
+    "hero": {
+        "productName": "Golden Temple (Harmandir Sahib)",
+        "tagline": "Where gold meets devotion in perfect symmetry",
+        "badge": {
+            "enabled": true,
+            "text": "Premium",
+            "variant": "premium"
+        },
+        "price": {
+            "amount": 2299,
+            "currency": "INR",
+            "displayFormat": "₹{amount}"
+        },
+        "cta": {
+            "primaryLabel": "Add to Cart",
+            "primaryAction": "buy",
+            "secondaryLabel": "View Finishes"
+        },
+        "gallery": [
+            {
+                "id": "hero-1",
+                "url": "/products/golden-temple/hero-1.jpg",
+                "alt": "Golden Temple miniature with reflective pool base",
+                "order": 1,
+                "isHero": true
+            },
+            {
+                "id": "golden-finish",
+                "url": "/products/golden-temple/golden-finish.jpg",
+                "alt": "Metallic gold finish variant showing dome details",
+                "order": 2,
+                "isHero": false
+            },
+            {
+                "id": "detail-dome",
+                "url": "/products/golden-temple/detail-dome.jpg",
+                "alt": "Close-up of inverted lotus dome with intricate patterns",
+                "order": 3,
+                "isHero": false
+            },
+            {
+                "id": "lifestyle",
+                "url": "/products/golden-temple/lifestyle.jpg",
+                "alt": "Golden Temple miniature on home altar with lighting",
+                "order": 4,
+                "isHero": false
+            }
+        ]
+    },
+    "story": {
+        "enabled": true,
+        "title": "The Abode of God in Miniature",
+        "paragraphs": [
+            "The Golden Temple stands at the intersection of spirituality and architectural mastery. Built in the late 16th century, Harmandir Sahib's gilded dome rises above the sacred Amrit Sarovar (Pool of Nectar), creating one of the world's most recognizable silhouettes.",
+            "Our miniature captures the temple's defining features: the stunning gold-plated dome with its inverted lotus crown, the four entrances symbolizing openness to all, and the marble causeway that bridges the terrestrial and the divine.",
+            "Every proportion follows the original's sacred geometry—from the square sanctum to the rectangular pool, from the ornate balconies to the copper cupolas. We've even preserved the subtle asymmetries that give the structure its living, breathing character."
+        ],
+        "quote": {
+            "enabled": true,
+            "text": "In Sikh philosophy, the temple has four doors—welcoming all of humanity. This piece brings that spirit of universal welcome into your space.",
+            "attribution": "— Three Layered Design Studio"
+        },
+        "image": {
+            "id": "aerial-view",
+            "url": "/products/golden-temple/aerial-diagram.jpg",
+            "alt": "Architectural plan showing the temple's sacred geometry",
+            "order": 1,
+            "caption": "Sacred proportions & symmetry"
+        }
+    },
+    "craftsmanship": {
+        "material": {
+            "name": "Premium Photopolymer Resin",
+            "description": "High-clarity resin ideal for metallic finishes and fine detail work",
+            "properties": [
+                "Ultra-smooth surface finish",
+                "Excellent metallization adhesion",
+                "UV-stable",
+                "Food-safe certified base material"
+            ]
+        },
+        "finish": {
+            "type": "Dual-Finish System",
+            "description": "Matte white marble texture with optional metallic gold dome accent",
+            "handFinished": true
+        },
+        "process": {
+            "method": "SLA 3D Printing + Dual-Material Finishing",
+            "description": "Precision printing followed by hand-applied marble texture and optional gold metallization",
+            "steps": [
+                "High-resolution SLA printing with support structures",
+                "Careful support removal and surface preparation",
+                "Marble texture application on base and causeway",
+                "Optional gold leaf or metallic paint on dome",
+                "Transparent protective coating",
+                "Pool base polishing for reflective effect"
+            ]
+        },
+        "care": {
+            "durability": "Designed for daily display and spiritual practice",
+            "instructions": [
+                "Dust with microfiber cloth",
+                "Avoid abrasive cleaners on metallic finishes",
+                "Display in stable environment",
+                "If gold finish: minimal handling to preserve patina"
+            ]
+        }
+    },
+    "specifications": {
+        "dimensions": {
+            "height": {
+                "value": 12,
+                "unit": "cm"
+            },
+            "width": {
+                "value": 14,
+                "unit": "cm"
+            },
+            "depth": {
+                "value": 14,
+                "unit": "cm"
+            },
+            "displayUnits": "metric"
+        },
+        "weight": {
+            "value": 165,
+            "unit": "g"
+        },
+        "scale": {
+            "ratio": "1:150",
+            "description": "Architectural monument scale (including pool)"
+        },
+        "comparison": {
+            "enabled": true,
+            "text": "Fits comfortably in the palm of your hand"
+        },
+        "additionalSpecs": [
+            {
+                "label": "Dome Type",
+                "value": "Inverted lotus with gold leaf option"
+            },
+            {
+                "label": "Entrances",
+                "value": "4 (symbolizing openness to all)"
+            },
+            {
+                "label": "Pool",
+                "value": "Integrated reflective base"
+            }
+        ]
+    },
+    "customization": {
+        "enabled": true,
+        "options": [
+            {
+                "id": "finish",
+                "type": "finish",
+                "label": "Finish Selection",
+                "required": true,
+                "variants": [
+                    {
+                        "id": "white-marble",
+                        "name": "White Marble (Standard)",
+                        "priceModifier": 0,
+                        "available": true
+                    },
+                    {
+                        "id": "gold-accent",
+                        "name": "Gold Dome Accent",
+                        "priceModifier": 700,
+                        "available": true,
+                        "leadTime": "Ships in 7-10 days"
+                    },
+                    {
+                        "id": "full-gold",
+                        "name": "Full Metallic Gold",
+                        "priceModifier": 1500,
+                        "available": true,
+                        "leadTime": "Ships in 10-14 days"
+                    }
+                ]
+            },
+            {
+                "id": "size",
+                "type": "size",
+                "label": "Size Options",
+                "required": false,
+                "variants": [
+                    {
+                        "id": "standard",
+                        "name": "Standard (12cm)",
+                        "priceModifier": 0,
+                        "available": true
+                    },
+                    {
+                        "id": "large",
+                        "name": "Large (20cm)",
+                        "priceModifier": 1000,
+                        "available": true,
+                        "leadTime": "Ships in 12-15 days"
+                    }
+                ]
+            }
+        ],
+        "customRequest": {
+            "enabled": true,
+            "ctaLabel": "Commission Custom Finish",
+            "formUrl": "/contact?ref=custom-golden"
+        }
+    },
+    "useCases": {
+        "enabled": true,
+        "title": "Sacred & Personal Spaces",
+        "cases": [
+            {
+                "id": "home-altar",
+                "title": "Home Prayer Space",
+                "description": "Create a focal point for daily prayer and meditation",
+                "imageUrl": "/products/golden-temple/usecase-altar.jpg",
+                "order": 1
+            },
+            {
+                "id": "office",
+                "title": "Office Inspiration",
+                "description": "A reminder of spiritual values and cultural heritage in your workspace",
+                "imageUrl": "/products/golden-temple/usecase-office.jpg",
+                "order": 2
+            },
+            {
+                "id": "heritage-gift",
+                "title": "Meaningful Gift",
+                "description": "Perfect for weddings, housewarmings, or celebrating Punjabi heritage",
+                "imageUrl": "/products/golden-temple/usecase-gift.jpg",
+                "order": 3
+            }
+        ],
+        "displayStyle": "grid"
+    },
+    "assurance": {
+        "production": {
+            "type": "made-to-order",
+            "leadTime": {
+                "min": 6,
+                "max": 9,
+                "unit": "days",
+                "description": "Handcrafted to order in 6-9 business days"
+            }
+        },
+        "shipping": {
+            "description": "Shipped with care in custom foam packaging to protect delicate details",
+            "methods": [
+                "Standard (5-7 days)",
+                "Express (2-3 days)"
+            ],
+            "freeShippingThreshold": 5000
+        },
+        "returns": {
+            "policy": "30-day satisfaction guarantee. Every piece is blessed with quality craftsmanship.",
+            "linkUrl": "/policies/returns"
+        },
+        "guarantees": [
+            {
+                "icon": "heart",
+                "text": "Made with Devotion"
+            },
+            {
+                "icon": "shield-check",
+                "text": "Quality Guaranteed"
+            },
+            {
+                "icon": "lock",
+                "text": "Secure Payment"
+            },
+            {
+                "icon": "gift",
+                "text": "Premium Gift Packaging"
+            }
+        ]
+    },
+    "relatedProducts": {
+        "enabled": true,
+        "title": "Explore More Sacred Architecture",
+        "selectionType": "manual",
+        "products": [
+            {
+                "productId": "angkor-wat-temple",
+                "order": 1
+            },
+            {
+                "productId": "borobudur-temple",
+                "order": 2
+            }
+        ],
+        "displayLimit": 3,
+        "layout": "carousel"
+    },
+    "createdAt": "2026-01-10T14:00:00Z",
+    "updatedAt": "2026-01-10T14:30:00Z"
+}

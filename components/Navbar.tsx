@@ -1,0 +1,164 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { motion, useScroll } from "framer-motion";
+import { useScrollPosition } from "@/hooks/useScrollPosition";
+import { useSlide } from "@/contexts/SlideContext";
+import { useCart } from "@/contexts/CartContext";
+import { useAuth } from "@/contexts/AuthContext";
+import { ShoppingCart, User } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const NAV_ITEMS = [
+    { label: "Home", href: "/" },
+    { label: "Products", href: "/products" },
+    { label: "About", href: "/about" },
+    { label: "Contact", href: "/contact" },
+];
+
+export function Navbar() {
+    const { isScrolled } = useScrollPosition();
+    const [navbarOpacity, setNavbarOpacity] = useState(0);
+    const { scrollY } = useScroll();
+    const { isDarkSlide } = useSlide();
+    const { cart, openCart } = useCart();
+    const { user } = useAuth();
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const pathname = usePathname();
+    const isProductsPage = pathname === '/products';
+
+    // Sync navbar opacity with logo animation - both trigger at 50px scroll
+    useEffect(() => {
+        const unsubscribe = scrollY.on('change', (latest) => {
+            if (latest > 50) {
+                setNavbarOpacity(1);
+            } else if (latest <= 10) {
+                setNavbarOpacity(0);
+            }
+        });
+
+        return () => unsubscribe();
+    }, [scrollY]);
+
+    // Determine navbar background color
+    const getNavbarBg = () => {
+        if (isScrolled) return "bg-white shadow-md";
+        // Translucent background on products page, transparent elsewhere
+        if (isProductsPage) return "bg-black/30 backdrop-blur-sm";
+        return "bg-transparent";
+    };
+
+    // Determine text color based on navbar background for proper contrast
+    const getTextColor = () => {
+        // When scrolled, navbar is white, so use black text
+        if (isScrolled) return "text-black";
+        // On products page with translucent dark background, use white text
+        if (isProductsPage) return "text-white";
+        // On homepage, match slide darkness
+        return isDarkSlide ? "text-white" : "text-black";
+    };
+
+    const textColor = getTextColor();
+
+    return (
+        <motion.header
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${getNavbarBg()}`}
+            initial={{ height: "5rem" }}
+            animate={{
+                height: isScrolled ? "4rem" : "5rem",
+                boxShadow: isScrolled ? "0 1px 3px rgba(0,0,0,0.1)" : "none",
+            }}
+            transition={{
+                duration: 0.6,
+                ease: [0.25, 0.1, 0.25, 1]
+            }}
+        >
+            <div className="max-w-7xl mx-auto h-full px-6 flex items-center justify-between">
+                {/* Left Nav Items */}
+                <nav className="hidden md:flex items-center gap-8">
+                    {NAV_ITEMS.map((item) => (
+                        <a
+                            key={item.label}
+                            href={item.href}
+                            className="text-sm font-medium hover:opacity-60 transition-all duration-300"
+                            style={{ color: textColor }}
+                        >
+                            {item.label}
+                        </a>
+                    ))}
+                </nav>
+
+                {/* Logo space reserved - actual logo rendered by LogoController */}
+                <div className="absolute left-1/2 -translate-x-1/2 opacity-0 pointer-events-none">
+                    Logo placeholder
+                </div>
+
+                {/* Right Side - CTA & Icons */}
+                <div className="flex items-center gap-4">
+                    <a
+                        href="/custom-print"
+                        className={`hidden sm:block px-6 py-2 text-sm font-medium transition-all duration-300 ${textColor === "text-white" ? "text-white" : "text-black"
+                            }`}
+                        style={{
+                            borderColor: textColor,
+                            borderWidth: '1px',
+                            borderStyle: 'solid'
+                        }}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = textColor;
+                            e.currentTarget.style.color = textColor === "text-black" ? "white" : "black";
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = "transparent";
+                            e.currentTarget.style.color = textColor;
+                        }}
+                    >
+                        Custom Print
+                    </a>
+                    <button
+                        className="p-2 hover:opacity-60 transition-all duration-300 relative"
+                        aria-label="Shopping cart"
+                        onClick={openCart}
+                    >
+                        <ShoppingCart className="w-5 h-5" style={{ color: textColor }} />
+                        {cart.totalItems > 0 && (
+                            <span
+                                className="absolute -top-1 -right-1 bg-black text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-medium"
+                                style={{
+                                    backgroundColor: textColor === "text-white" ? "white" : "black",
+                                    color: textColor === "text-white" ? "black" : "white"
+                                }}
+                            >
+                                {cart.totalItems > 9 ? '9+' : cart.totalItems}
+                            </span>
+                        )}
+                    </button>
+                    <Link
+                        href={user ? "/account/dashboard" : "/account"}
+                        className="p-2 hover:opacity-60 transition-all duration-300 flex items-center gap-2"
+                        aria-label="Account"
+                    >
+                        {user ? (
+                            <div
+                                className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${textColor === "text-black" ? "bg-black text-white" : "bg-white text-black"
+                                    }`}
+                            >
+                                {user.email?.[0].toUpperCase()}
+                            </div>
+                        ) : (
+                            <User className="w-5 h-5" style={{ color: textColor }} />
+                        )}
+                    </Link>
+                </div>
+
+                {/* Mobile Menu Button */}
+                <button className="md:hidden p-2" aria-label="Menu">
+                    <div className="w-6 h-0.5 mb-1 transition-colors duration-300" style={{ backgroundColor: textColor }}></div>
+                    <div className="w-6 h-0.5 mb-1 transition-colors duration-300" style={{ backgroundColor: textColor }}></div>
+                    <div className="w-6 h-0.5 transition-colors duration-300" style={{ backgroundColor: textColor }}></div>
+                </button>
+            </div>
+        </motion.header>
+    );
+}

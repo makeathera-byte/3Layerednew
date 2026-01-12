@@ -1,0 +1,324 @@
+{
+    "id": "angkor-wat-temple",
+    "slug": "angkor-wat",
+    "categoryId": "miniature-temples",
+    "status": "published",
+    "seo": {
+        "title": "Angkor Wat Temple Miniature | 3D Printed Architectural Model | Three Layered",
+        "description": "Premium miniature replica of Cambodia's iconic Angkor Wat temple. Hand-finished 3D printed architectural model in matte black. Perfect for collectors and architecture enthusiasts.",
+        "keywords": [
+            "Angkor Wat miniature",
+            "3D printed temple",
+            "architectural model",
+            "Khmer architecture",
+            "luxury home decor",
+            "Cambodia temple replica"
+        ],
+        "ogImage": "/products/angkor-wat/hero-1.jpg",
+        "ogType": "product"
+    },
+    "hero": {
+        "productName": "Angkor Wat Temple",
+        "tagline": "Where 12th-century Khmer geometry meets precision engineering",
+        "badge": {
+            "enabled": true,
+            "text": "Hand Finished",
+            "variant": "hand-finished"
+        },
+        "price": {
+            "amount": 2499,
+            "currency": "INR",
+            "displayFormat": "₹{amount}"
+        },
+        "cta": {
+            "primaryLabel": "Add to Cart",
+            "primaryAction": "buy",
+            "secondaryLabel": "Customize"
+        },
+        "gallery": [
+            {
+                "id": "hero-1",
+                "url": "/products/angkor-wat/hero-1.jpg",
+                "alt": "Angkor Wat miniature temple - front view on minimalist shelf",
+                "order": 1,
+                "isHero": true
+            },
+            {
+                "id": "detail-1",
+                "url": "/products/angkor-wat/detail-1.jpg",
+                "alt": "Close-up of intricate tower details and architectural precision",
+                "order": 2,
+                "isHero": false
+            },
+            {
+                "id": "lifestyle-1",
+                "url": "/products/angkor-wat/lifestyle-1.jpg",
+                "alt": "Angkor Wat miniature on executive desk with books",
+                "order": 3,
+                "isHero": false
+            },
+            {
+                "id": "scale-1",
+                "url": "/products/angkor-wat/scale-1.jpg",
+                "alt": "Size comparison showing miniature next to hand",
+                "order": 4,
+                "isHero": false
+            }
+        ]
+    },
+    "story": {
+        "enabled": true,
+        "title": "Inspired by 12th Century Khmer Architecture",
+        "paragraphs": [
+            "Angkor Wat stands as humanity's largest religious monument—a testament to mathematical precision and spiritual devotion. Our miniature captures the temple's iconic five-tower silhouette, where each spire represents Mount Meru's sacred peaks.",
+            "Built between 1113-1150 CE, the original structure embodies perfect symmetry and astronomical alignment. Our artisans studied original blueprints and archaeological surveys to recreate every gallery, causeway, and lotus-bud tower at 1:200 scale.",
+            "From the cruciform terraces to the intricate bas-relief patterns, each element is precision-engineered using advanced SLA 3D printing, then hand-finished to achieve the stone-like texture that honors the original sandstone construction."
+        ],
+        "quote": {
+            "enabled": true,
+            "text": "Architecture is frozen music. This piece preserves an 800-year-old symphony.",
+            "attribution": "— Three Layered Design Studio"
+        },
+        "image": {
+            "id": "story-img",
+            "url": "/products/angkor-wat/story-sketch.jpg",
+            "alt": "Architectural sketch showing Angkor Wat's geometric proportions",
+            "order": 1,
+            "caption": "Original blueprint study"
+        }
+    },
+    "craftsmanship": {
+        "material": {
+            "name": "Premium Resin",
+            "description": "UV-resistant, archival-grade photopolymer resin",
+            "properties": [
+                "Fade-resistant",
+                "Impact-resistant",
+                "Museum-quality durability",
+                "Eco-friendly formulation"
+            ]
+        },
+        "finish": {
+            "type": "Matte Black Stone Texture",
+            "description": "Hand-applied finish mimicking ancient sandstone weathering",
+            "handFinished": true
+        },
+        "process": {
+            "method": "SLA 3D Printing + Artisan Hand-Finishing",
+            "description": "Printed at 25-micron resolution for architectural precision, then hand-sanded and textured by master craftspeople",
+            "steps": [
+                "High-resolution SLA printing (0.025mm layer height)",
+                "UV post-curing for structural integrity",
+                "Hand-sanding to remove layer lines",
+                "Stone-texture application",
+                "Matte black coating",
+                "Quality inspection and photography"
+            ]
+        },
+        "care": {
+            "durability": "Designed to last generations with minimal care",
+            "instructions": [
+                "Dust with soft, dry cloth",
+                "Avoid direct sunlight for extended periods",
+                "Display in climate-controlled environment",
+                "Handle by base to preserve tower details"
+            ]
+        }
+    },
+    "specifications": {
+        "dimensions": {
+            "height": {
+                "value": 15,
+                "unit": "cm"
+            },
+            "width": {
+                "value": 12,
+                "unit": "cm"
+            },
+            "depth": {
+                "value": 12,
+                "unit": "cm"
+            },
+            "displayUnits": "metric"
+        },
+        "weight": {
+            "value": 185,
+            "unit": "g"
+        },
+        "scale": {
+            "ratio": "1:200",
+            "description": "Architectural model scale"
+        },
+        "comparison": {
+            "enabled": true,
+            "text": "Roughly the size of a large coffee mug"
+        },
+        "additionalSpecs": [
+            {
+                "label": "Tower Count",
+                "value": "5 (quintuple-tower design)"
+            },
+            {
+                "label": "Base Shape",
+                "value": "Square cruciform"
+            },
+            {
+                "label": "Orientation",
+                "value": "East-facing (traditional)"
+            }
+        ]
+    },
+    "customization": {
+        "enabled": true,
+        "options": [
+            {
+                "id": "size",
+                "type": "size",
+                "label": "Size Selection",
+                "required": false,
+                "variants": [
+                    {
+                        "id": "standard",
+                        "name": "Standard (15cm)",
+                        "priceModifier": 0,
+                        "available": true
+                    },
+                    {
+                        "id": "large",
+                        "name": "Large (25cm)",
+                        "priceModifier": 1200,
+                        "available": true,
+                        "leadTime": "Ships in 10-14 days"
+                    },
+                    {
+                        "id": "premium",
+                        "name": "Premium (35cm)",
+                        "priceModifier": 2800,
+                        "available": true,
+                        "leadTime": "Ships in 14-21 days"
+                    }
+                ]
+            },
+            {
+                "id": "finish",
+                "type": "finish",
+                "label": "Finish Options",
+                "required": false,
+                "variants": [
+                    {
+                        "id": "matte-black",
+                        "name": "Matte Black (Standard)",
+                        "priceModifier": 0,
+                        "available": true
+                    },
+                    {
+                        "id": "sandstone",
+                        "name": "Sandstone Texture",
+                        "priceModifier": 400,
+                        "available": true
+                    },
+                    {
+                        "id": "white-marble",
+                        "name": "White Marble Effect",
+                        "priceModifier": 600,
+                        "available": true,
+                        "leadTime": "Ships in 7-10 days"
+                    }
+                ]
+            }
+        ],
+        "customRequest": {
+            "enabled": true,
+            "ctaLabel": "Request Fully Custom Design",
+            "formUrl": "/contact?ref=custom-angkor"
+        }
+    },
+    "useCases": {
+        "enabled": true,
+        "title": "Where It Lives",
+        "cases": [
+            {
+                "id": "desk",
+                "title": "Executive Desk Centerpiece",
+                "description": "A conversation starter that reflects refined taste and appreciation for world heritage",
+                "imageUrl": "/products/angkor-wat/usecase-desk.jpg",
+                "order": 1
+            },
+            {
+                "id": "shelf",
+                "title": "Minimalist Shelf Accent",
+                "description": "Pairs beautifully with books on architecture, travel, and cultural history",
+                "imageUrl": "/products/angkor-wat/usecase-shelf.jpg",
+                "order": 2
+            },
+            {
+                "id": "gift",
+                "title": "Unforgettable Gift",
+                "description": "For architecture enthusiasts, travelers, or anyone who values craftsmanship",
+                "imageUrl": "/products/angkor-wat/usecase-gift.jpg",
+                "order": 3
+            }
+        ],
+        "displayStyle": "grid"
+    },
+    "assurance": {
+        "production": {
+            "type": "made-to-order",
+            "leadTime": {
+                "min": 7,
+                "max": 10,
+                "unit": "days",
+                "description": "Crafted to order in 7-10 business days"
+            }
+        },
+        "shipping": {
+            "description": "Ships worldwide with museum-quality protective packaging",
+            "methods": [
+                "Standard (5-7 days)",
+                "Express (2-3 days)"
+            ],
+            "freeShippingThreshold": 5000
+        },
+        "returns": {
+            "policy": "30-day satisfaction guarantee. Damaged in transit? We'll replace it free, no questions asked.",
+            "linkUrl": "/policies/returns"
+        },
+        "guarantees": [
+            {
+                "icon": "shield-check",
+                "text": "Quality Guaranteed"
+            },
+            {
+                "icon": "lock",
+                "text": "Secure Payment"
+            },
+            {
+                "icon": "package",
+                "text": "Premium Packaging"
+            },
+            {
+                "icon": "refresh-cw",
+                "text": "Easy Returns"
+            }
+        ]
+    },
+    "relatedProducts": {
+        "enabled": true,
+        "title": "More from the Temple Collection",
+        "selectionType": "manual",
+        "products": [
+            {
+                "productId": "borobudur-temple",
+                "order": 1
+            },
+            {
+                "productId": "golden-temple",
+                "order": 2
+            }
+        ],
+        "displayLimit": 3,
+        "layout": "carousel"
+    },
+    "createdAt": "2026-01-10T14:00:00Z",
+    "updatedAt": "2026-01-10T14:30:00Z"
+}

@@ -44,8 +44,7 @@ export function Navbar() {
     // Determine navbar background color
     const getNavbarBg = () => {
         if (isScrolled) return "bg-white shadow-md";
-        // Translucent background on products page, transparent elsewhere
-        if (isProductsPage) return "bg-black/30 backdrop-blur-sm";
+        // Transparent background on all pages when not scrolled
         return "bg-transparent";
     };
 
@@ -53,9 +52,8 @@ export function Navbar() {
     const getTextColor = () => {
         // When scrolled, navbar is white, so use black text
         if (isScrolled) return "text-black";
-        // On products page with translucent dark background, use white text
+        // On all pages with transparent navbar, match slide darkness (or default to white for products page)
         if (isProductsPage) return "text-white";
-        // On homepage, match slide darkness
         return isDarkSlide ? "text-white" : "text-black";
     };
 
@@ -82,7 +80,7 @@ export function Navbar() {
                             key={item.label}
                             href={item.href}
                             className="text-sm font-medium hover:opacity-60 transition-all duration-300"
-                            style={{ color: textColor }}
+                            style={{ color: textColor === "text-white" ? "white" : "black" }}
                         >
                             {item.label}
                         </a>
@@ -101,17 +99,17 @@ export function Navbar() {
                         className={`hidden sm:block px-6 py-2 text-sm font-medium transition-all duration-300 ${textColor === "text-white" ? "text-white" : "text-black"
                             }`}
                         style={{
-                            borderColor: textColor,
+                            borderColor: textColor === "text-white" ? "white" : "black",
                             borderWidth: '1px',
                             borderStyle: 'solid'
                         }}
                         onMouseEnter={(e) => {
-                            e.currentTarget.style.backgroundColor = textColor;
+                            e.currentTarget.style.backgroundColor = textColor === "text-white" ? "white" : "black";
                             e.currentTarget.style.color = textColor === "text-black" ? "white" : "black";
                         }}
                         onMouseLeave={(e) => {
                             e.currentTarget.style.backgroundColor = "transparent";
-                            e.currentTarget.style.color = textColor;
+                            e.currentTarget.style.color = textColor === "text-white" ? "white" : "black";
                         }}
                     >
                         Custom Print
@@ -121,7 +119,7 @@ export function Navbar() {
                         aria-label="Shopping cart"
                         onClick={openCart}
                     >
-                        <ShoppingCart className="w-5 h-5" style={{ color: textColor }} />
+                        <ShoppingCart className="w-5 h-5" style={{ color: textColor === "text-white" ? "white" : "black" }} />
                         {cart.totalItems > 0 && (
                             <span
                                 className="absolute -top-1 -right-1 bg-black text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-medium"
@@ -147,16 +145,16 @@ export function Navbar() {
                                 {user.email?.[0].toUpperCase()}
                             </div>
                         ) : (
-                            <User className="w-5 h-5" style={{ color: textColor }} />
+                            <User className="w-5 h-5" style={{ color: textColor === "text-white" ? "white" : "black" }} />
                         )}
                     </Link>
                 </div>
 
                 {/* Mobile Menu Button */}
                 <button className="md:hidden p-2" aria-label="Menu">
-                    <div className="w-6 h-0.5 mb-1 transition-colors duration-300" style={{ backgroundColor: textColor }}></div>
-                    <div className="w-6 h-0.5 mb-1 transition-colors duration-300" style={{ backgroundColor: textColor }}></div>
-                    <div className="w-6 h-0.5 transition-colors duration-300" style={{ backgroundColor: textColor }}></div>
+                    <div className="w-6 h-0.5 mb-1 transition-colors duration-300" style={{ backgroundColor: textColor === "text-white" ? "white" : "black" }}></div>
+                    <div className="w-6 h-0.5 mb-1 transition-colors duration-300" style={{ backgroundColor: textColor === "text-white" ? "white" : "black" }}></div>
+                    <div className="w-6 h-0.5 transition-colors duration-300" style={{ backgroundColor: textColor === "text-white" ? "white" : "black" }}></div>
                 </button>
             </div>
         </motion.header>

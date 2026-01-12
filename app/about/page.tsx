@@ -102,16 +102,16 @@ export default function AboutPage() {
                 <section className="py-24 bg-gray-50">
                     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                            {/* Image Placeholder */}
+                            {/* Founder Image */}
                             <div className="order-2 lg:order-1">
                                 <div className="aspect-[4/5] bg-gray-200 relative overflow-hidden">
-                                    {/* Placeholder for founder image */}
-                                    <div className="absolute inset-0 flex items-center justify-center text-gray-400">
-                                        <div className="text-center">
-                                            <div className="text-6xl mb-4">⚡</div>
-                                            <p className="text-sm">Founder Portrait</p>
-                                        </div>
-                                    </div>
+                                    <Image
+                                        src="https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/ceo/jay%20founder.JPG"
+                                        alt="Jay Gehlot - Founder of 3 Layered"
+                                        fill
+                                        className="object-cover"
+                                        priority
+                                    />
                                 </div>
                             </div>
 

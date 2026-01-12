@@ -5,6 +5,7 @@ import { SlideProvider } from '@/contexts/SlideContext';
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export default function AboutPage() {
     return (
@@ -149,34 +150,159 @@ export default function AboutPage() {
                     </div>
                 </section>
 
-                {/* What We Do */}
-                <section className="py-24 bg-white">
-                    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <h2 className="font-serif text-5xl md:text-6xl font-bold mb-16 text-center">
+                {/* What We Create - Expanded Premium Version */}
+                <section className="py-32 bg-white">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <motion.h2
+                            className="font-serif text-6xl md:text-7xl lg:text-8xl font-bold mb-24 text-center"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{ duration: 0.8 }}
+                        >
                             What We Create
-                        </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            {/* Service 1 */}
-                            <div className="border-2 border-gray-200 p-8 hover:border-black transition-colors duration-300">
-                                <h3 className="font-serif text-2xl font-bold mb-4">Architectural Miniatures</h3>
-                                <p className="text-gray-600 leading-relaxed mb-4">
-                                    Museum-quality replicas of world heritage temples and structures, engineered with precision and finished by hand.
-                                </p>
-                                <Link href="/products/category/miniature-temples" className="inline-flex items-center gap-2 text-sm font-medium hover:underline">
-                                    Explore Collection <ArrowRight className="w-4 h-4" />
-                                </Link>
-                            </div>
+                        </motion.h2>
 
-                            {/* Service 2 */}
-                            <div className="border-2 border-gray-200 p-8 hover:border-black transition-colors duration-300">
-                                <h3 className="font-serif text-2xl font-bold mb-4">Rapid Prototyping</h3>
-                                <p className="text-gray-600 leading-relaxed mb-4">
-                                    Fast-turnaround prototypes for product development, maintaining the balance between speed and quality.
-                                </p>
-                                <Link href="/products/category/prototypes" className="inline-flex items-center gap-2 text-sm font-medium hover:underline">
-                                    Get Started <ArrowRight className="w-4 h-4" />
-                                </Link>
-                            </div>
+                        <div className="space-y-32">
+                            {/* Category 1: Architectural Miniatures */}
+                            <motion.div
+                                className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+                                initial={{ opacity: 0, y: 50 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{ duration: 0.8, delay: 0.2 }}
+                            >
+                                <div className="order-2 lg:order-1">
+                                    <div className="aspect-[4/3] relative overflow-hidden bg-gray-100">
+                                        <Image
+                                            src="/miniature_temples_showcase_1768254332054.png"
+                                            alt="Museum-quality miniature temple replicas"
+                                            fill
+                                            className="object-cover"
+                                        />
+                                    </div>
+                                </div>
+                                <motion.div
+                                    className="order-1 lg:order-2"
+                                    initial={{ opacity: 0, x: 50 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true, margin: "-100px" }}
+                                    transition={{ duration: 0.8, delay: 0.4 }}
+                                >
+                                    <div className="space-y-6">
+                                        <p className="text-sm uppercase tracking-widest text-gray-500">Category 01</p>
+                                        <h3 className="font-serif text-5xl md:text-6xl font-bold leading-tight">
+                                            Architectural Miniatures
+                                        </h3>
+                                        <div className="w-24 h-1 bg-black"></div>
+                                        <p className="text-xl text-gray-700 leading-relaxed">
+                                            Museum-quality replicas of world heritage temples and sacred structures. Each piece is meticulously engineered with precision and finished by hand, capturing centuries of architectural wisdom in miniature form.
+                                        </p>
+                                        <p className="text-lg text-gray-600 leading-relaxed">
+                                            From the golden spires of Asian pagodas to the intricate carvings of ancient temples, we transform architectural heritage into tangible art. Every detail is preserved, every proportion honored.
+                                        </p>
+                                        <Link
+                                            href="/products/category/miniature-temples"
+                                            className="inline-flex items-center gap-3 text-lg font-medium border-b-2 border-black pb-1 hover:opacity-60 transition-opacity mt-8"
+                                        >
+                                            Explore Collection <ArrowRight className="w-5 h-5" />
+                                        </Link>
+                                    </div>
+                                </motion.div>
+                            </motion.div>
+
+                            {/* Category 2: Custom Print */}
+                            <motion.div
+                                className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+                                initial={{ opacity: 0, y: 50 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{ duration: 0.8, delay: 0.2 }}
+                            >
+                                <motion.div
+                                    initial={{ opacity: 0, x: -50 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true, margin: "-100px" }}
+                                    transition={{ duration: 0.8, delay: 0.4 }}
+                                >
+                                    <div className="space-y-6">
+                                        <p className="text-sm uppercase tracking-widest text-gray-500">Category 02</p>
+                                        <h3 className="font-serif text-5xl md:text-6xl font-bold leading-tight">
+                                            Custom Print
+                                        </h3>
+                                        <div className="w-24 h-1 bg-black"></div>
+                                        <p className="text-xl text-gray-700 leading-relaxed">
+                                            Transform your ideas into reality with our custom 3D printing service. From concept to finished product, we bring your unique designs to life with precision and care.
+                                        </p>
+                                        <p className="text-lg text-gray-600 leading-relaxed">
+                                            Whether you need a one-off prototype, replacement parts, or custom gifts, our team works with you through every step. Upload your design or work with us to create it, and we'll handle the rest with professional-grade materials and finishes.
+                                        </p>
+                                        <Link
+                                            href="/custom-print"
+                                            className="inline-flex items-center gap-3 text-lg font-medium border-b-2 border-black pb-1 hover:opacity-60 transition-opacity mt-8"
+                                        >
+                                            Get Started <ArrowRight className="w-5 h-5" />
+                                        </Link>
+                                    </div>
+                                </motion.div>
+                                <div>
+                                    <div className="aspect-[4/3] relative overflow-hidden bg-gray-100">
+                                        <Image
+                                            src="/custom_parts_showcase_1768254367741.png"
+                                            alt="Custom 3D printing service"
+                                            fill
+                                            className="object-cover"
+                                        />
+                                    </div>
+                                </div>
+                            </motion.div>
+
+                            {/* Category 3: Custom Parts */}
+                            <motion.div
+                                className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+                                initial={{ opacity: 0, y: 50 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{ duration: 0.8, delay: 0.2 }}
+                            >
+                                <div className="order-2 lg:order-1">
+                                    <div className="aspect-[4/3] relative overflow-hidden bg-gray-100">
+                                        <Image
+                                            src="/custom_parts_showcase_1768254367741.png"
+                                            alt="Bespoke custom-manufactured parts"
+                                            fill
+                                            className="object-cover"
+                                        />
+                                    </div>
+                                </div>
+                                <motion.div
+                                    className="order-1 lg:order-2"
+                                    initial={{ opacity: 0, x: 50 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true, margin: "-100px" }}
+                                    transition={{ duration: 0.8, delay: 0.4 }}
+                                >
+                                    <div className="space-y-6">
+                                        <p className="text-sm uppercase tracking-widest text-gray-500">Category 03</p>
+                                        <h3 className="font-serif text-5xl md:text-6xl font-bold leading-tight">
+                                            Custom Parts
+                                        </h3>
+                                        <div className="w-24 h-1 bg-black"></div>
+                                        <p className="text-xl text-gray-700 leading-relaxed">
+                                            Bespoke manufacturing solutions for specialized components. From unique brackets and housings to one-of-a-kind mechanical assemblies, we bring impossible-to-source parts into existence.
+                                        </p>
+                                        <p className="text-lg text-gray-600 leading-relaxed">
+                                            When off-the-shelf won't work, we engineer custom. Every part is manufactured to your exact specifications, with material selection and finishing options to match your application requirements.
+                                        </p>
+                                        <Link
+                                            href="/products/category/custom-parts"
+                                            className="inline-flex items-center gap-3 text-lg font-medium border-b-2 border-black pb-1 hover:opacity-60 transition-opacity mt-8"
+                                        >
+                                            Request Custom Parts <ArrowRight className="w-5 h-5" />
+                                        </Link>
+                                    </div>
+                                </motion.div>
+                            </motion.div>
                         </div>
                     </div>
                 </section>

@@ -303,6 +303,7 @@ export interface ProductCategory {
   name: string;
   slug: string;
   description: string;
+  extendedDescription?: string; // Optional extended description for expanded displays
   imageUrl: string;
   productIds: string[];
 

@@ -1,56 +1,86 @@
 "use client";
 
+import { motion } from "framer-motion";
+
 const REELS = [
     {
         id: 1,
-        thumbnail: "/reels/reel1.jpg",
-        title: "Precision Layer Demonstration",
+        url: "https://www.instagram.com/reel/DS7A7OgCXho/",
+        embedUrl: "https://www.instagram.com/reel/DS7A7OgCXho/embed",
     },
     {
         id: 2,
-        thumbnail: "/reels/reel2.jpg",
-        title: "Custom Part Assembly",
+        url: "https://www.instagram.com/reel/DSxqPF7jGma/",
+        embedUrl: "https://www.instagram.com/reel/DSxqPF7jGma/embed",
     },
     {
         id: 3,
-        thumbnail: "/reels/reel3.jpg",
-        title: "3D Printing Time-lapse",
+        url: "https://www.instagram.com/reel/DSuiW2ZjG9o/",
+        embedUrl: "https://www.instagram.com/reel/DSuiW2ZjG9o/embed",
     },
     {
         id: 4,
-        thumbnail: "/reels/reel4.jpg",
-        title: "Quality Control Process",
+        url: "https://www.instagram.com/reel/DRRQR-YCdFu/",
+        embedUrl: "https://www.instagram.com/reel/DRRQR-YCdFu/embed",
     },
 ];
 
 export function InstagramReels() {
     return (
-        <section className="py-24 px-6 bg-gray-50">
+        <section className="py-32 px-6 bg-gray-50">
             <div className="max-w-7xl mx-auto">
-                <h2 className="font-serif text-4xl md:text-5xl font-bold text-center mb-4">
+                <motion.h2
+                    className="font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-center mb-6"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.8 }}
+                >
                     Our Work in Action
-                </h2>
-                <p className="text-center text-gray-600 mb-16">
+                </motion.h2>
+                <motion.p
+                    className="text-center text-gray-600 mb-20 text-lg"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                >
                     Follow our journey on{" "}
-                    <a href="https://www.instagram.com/3layered.global?igsh=MTZ5bjR0MXBidXNyZQ==" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">
+                    <a href="https://www.instagram.com/3layered.global?igsh=MTZ5bjR0MXBidXNyZQ==" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline font-medium">
                         Instagram
                     </a>
-                </p>
+                </motion.p>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    {REELS.map((reel) => (
-                        <div
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    {REELS.map((reel, index) => (
+                        <motion.div
                             key={reel.id}
-                            className="aspect-[9/16] bg-gray-200 hover:opacity-80 transition-opacity cursor-pointer overflow-hidden group"
+                            className="aspect-[9/16] bg-white border border-gray-200 hover:border-black transition-all cursor-pointer overflow-hidden group rounded-lg shadow-sm"
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{
+                                duration: 0.6,
+                                delay: 0.3 + (index * 0.1),
+                                ease: [0.25, 0.1, 0.25, 1]
+                            }}
                         >
-                            {/* Placeholder for Instagram embed */}
-                            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-300 to-gray-200">
-                                <div className="text-center p-4">
-                                    <div className="w-12 h-12 mx-auto mb-2 bg-gray-400 rounded-full" />
-                                    <p className="text-sm text-gray-600 font-medium">{reel.title}</p>
-                                </div>
-                            </div>
-                        </div>
+                            <a
+                                href={reel.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block w-full h-full"
+                            >
+                                <iframe
+                                    src={reel.embedUrl}
+                                    className="w-full h-full"
+                                    frameBorder="0"
+                                    scrolling="no"
+                                    allowTransparency={true}
+                                    allow="encrypted-media"
+                                />
+                            </a>
+                        </motion.div>
                     ))}
                 </div>
             </div>

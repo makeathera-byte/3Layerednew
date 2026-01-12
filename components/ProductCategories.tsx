@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { getHomepageCategories } from "@/data/categories";
 
 /**
@@ -20,34 +22,82 @@ export function ProductCategories() {
     const categories = getHomepageCategories();
 
     return (
-        <section id="products" className="py-24 px-6 bg-gray-50">
+        <section id="products" className="py-32 px-6 bg-white">
             <div className="max-w-7xl mx-auto">
-                <h2 className="font-serif text-4xl md:text-5xl font-bold text-center mb-16">
+                <motion.h2
+                    className="font-serif text-6xl md:text-7xl lg:text-8xl font-bold text-center mb-24"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.8 }}
+                >
                     What We Create
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {categories.map((category) => (
-                        <Link
-                            key={category.id}
-                            href={category.slug === 'custom-print' ? '/custom-print' : `/products/category/${category.slug}`}
-                            className="group bg-white border border-gray-200 hover:border-black transition-all duration-300 overflow-hidden cursor-pointer"
-                        >
-                            <div className="relative h-64 w-full overflow-hidden bg-gray-100">
-                                <Image
-                                    src={category.imageUrl}
-                                    alt={category.name}
-                                    fill
-                                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                                />
-                            </div>
-                            <div className="p-6">
-                                <h3 className="font-serif text-2xl font-bold mb-3 group-hover:underline transition-all">
-                                    {category.name}
-                                </h3>
-                                <p className="text-gray-600">{category.description}</p>
-                            </div>
-                        </Link>
-                    ))}
+                </motion.h2>
+
+                <div className="space-y-32">
+                    {categories.map((category, index) => {
+                        const isEven = index % 2 === 0;
+
+                        return (
+                            <motion.div
+                                key={category.id}
+                                className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+                                initial={{ opacity: 0, y: 50 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{ duration: 0.8, delay: 0.2 }}
+                            >
+                                <div className={isEven ? "order-2 lg:order-1" : "order-2"}>
+                                    <Link
+                                        href={category.slug === 'custom-print' ? '/custom-print' : `/products/category/${category.slug}`}
+                                        className="block group"
+                                    >
+                                        <div className="aspect-[4/3] relative overflow-hidden bg-gray-100">
+                                            <Image
+                                                src={category.imageUrl}
+                                                alt={category.name}
+                                                fill
+                                                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                            />
+                                        </div>
+                                    </Link>
+                                </div>
+
+                                <motion.div
+                                    className={isEven ? "order-1 lg:order-2" : "order-1"}
+                                    initial={{ opacity: 0, x: isEven ? 50 : -50 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true, margin: "-100px" }}
+                                    transition={{ duration: 0.8, delay: 0.4 }}
+                                >
+                                    <div className="space-y-6">
+                                        <p className="text-sm uppercase tracking-widest text-gray-500">
+                                            Category {String(index + 1).padStart(2, '0')}
+                                        </p>
+                                        <h3 className="font-serif text-5xl md:text-6xl font-bold leading-tight">
+                                            {category.name}
+                                        </h3>
+                                        <div className="w-24 h-1 bg-black"></div>
+                                        <p className="text-xl text-gray-700 leading-relaxed">
+                                            {category.description}
+                                        </p>
+                                        {category.extendedDescription && (
+                                            <p className="text-lg text-gray-600 leading-relaxed">
+                                                {category.extendedDescription}
+                                            </p>
+                                        )}
+                                        <Link
+                                            href={category.slug === 'custom-print' ? '/custom-print' : `/products/category/${category.slug}`}
+                                            className="inline-flex items-center gap-3 text-lg font-medium border-b-2 border-black pb-1 hover:opacity-60 transition-opacity mt-8"
+                                        >
+                                            {category.slug === 'custom-print' ? 'Get Started' : 'Explore Collection'}
+                                            <ArrowRight className="w-5 h-5" />
+                                        </Link>
+                                    </div>
+                                </motion.div>
+                            </motion.div>
+                        );
+                    })}
                 </div>
             </div>
         </section>

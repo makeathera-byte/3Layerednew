@@ -302,6 +302,105 @@
             }
         ]
     },
+    "reviews": {
+        "enabled": true,
+        "averageRating": 4.8,
+        "totalReviews": 5,
+        "reviews": [
+            {
+                "id": "review-1",
+                "author": "Rajesh Kumar",
+                "rating": 5,
+                "date": "2026-01-08T00:00:00Z",
+                "title": "Absolutely Stunning Craftsmanship",
+                "comment": "I ordered this as a gift for my architecture professor and he was blown away! The level of detail is incredible - you can see every tower, every gallery. The matte black finish gives it a very premium look. Shipping was fast and it arrived perfectly packaged. Worth every rupee!",
+                "verifiedPurchase": true,
+                "helpfulCount": 12
+            },
+            {
+                "id": "review-2",
+                "author": "Priya Sharma",
+                "rating": 5,
+                "date": "2026-01-05T00:00:00Z",
+                "title": "Perfect Desk Centerpiece",
+                "comment": "I've been to Angkor Wat in person, and this miniature captures its essence beautifully. It sits on my desk and never fails to spark conversations with clients. The quality is museum-level. I'm already planning to order the Borobudur next!",
+                "verifiedPurchase": true,
+                "helpfulCount": 8
+            },
+            {
+                "id": "review-3",
+                "author": "Amit Patel",
+                "rating": 4,
+                "date": "2026-01-02T00:00:00Z",
+                "title": "Great Quality, Slightly Smaller Than Expected",
+                "comment": "The craftsmanship is excellent and the finish is really nice. My only note is that 15cm is a bit smaller than I imagined - I should have paid more attention to the dimensions. Still very happy with the purchase though, and it looks amazing on my bookshelf.",
+                "verifiedPurchase": true,
+                "helpfulCount": 5
+            },
+            {
+                "id": "review-4",
+                "author": "Meera Iyer",
+                "rating": 5,
+                "date": "2025-12-28T00:00:00Z",
+                "title": "Exceeded My Expectations",
+                "comment": "I was hesitant about ordering online, but Three Layered delivered beyond expectations. The attention to architectural accuracy is impressive. The hand-finished texture makes it feel authentic. Highly recommend for anyone who appreciates fine craftsmanship.",
+                "verifiedPurchase": true,
+                "helpfulCount": 7
+            },
+            {
+                "id": "review-5",
+                "author": "Vikram Singh",
+                "rating": 5,
+                "date": "2025-12-20T00:00:00Z",
+                "title": "Unique and Thoughtful Gift",
+                "comment": "Bought this for my father who loves world architecture. He loved it! The quality is outstanding and the packaging was premium. This is not just a decorative piece, it's a work of art. Will definitely be ordering more from Three Layered.",
+                "verifiedPurchase": true,
+                "helpfulCount": 6
+            }
+        ]
+    },
+    "faqs": {
+        "enabled": true,
+        "title": "Frequently Asked Questions",
+        "items": [
+            {
+                "id": "faq-1",
+                "question": "How long does production and delivery take?",
+                "answer": "Each Angkor Wat miniature is made to order with our artisan hand-finishing process. Production takes 7-10 business days, followed by 5-7 days for standard shipping (or 2-3 days for express). We'll send you updates at every stage!",
+                "order": 1
+            },
+            {
+                "id": "faq-2",
+                "question": "What material is this made from?",
+                "answer": "We use premium UV-resistant photopolymer resin printed with high-precision SLA 3D printing technology. After printing, each piece is hand-finished by our craftspeople with a matte black stone texture coating that mimics the original sandstone of Angkor Wat.",
+                "order": 2
+            },
+            {
+                "id": "faq-3",
+                "question": "Can I customize the size or finish?",
+                "answer": "Yes! We offer three sizes: Standard (15cm), Large (25cm), and Premium (35cm). You can also choose from Matte Black (standard), Sandstone Texture, or White Marble Effect finishes. For fully custom designs, use the 'Request Custom Design' option on the product page.",
+                "order": 3
+            },
+            {
+                "id": "faq-4",
+                "question": "How do I care for and clean the miniature?",
+                "answer": "Simply dust with a soft, dry cloth when needed. Avoid direct sunlight for extended periods to prevent any potential fading. Handle by the base to preserve the delicate tower details. With minimal care, your miniature is designed to last generations.",
+                "order": 4
+            },
+            {
+                "id": "faq-5",
+                "question": "Is this suitable as a gift?",
+                "answer": "Absolutely! Many customers purchase our temple miniatures as gifts for architecture enthusiasts, travelers, professors, or anyone who appreciates fine craftsmanship. Each piece comes in premium protective packaging perfect for gifting.",
+                "order": 5
+            },
+            {
+                "id": "faq-6",
+                "question": "What is your return policy?",
+                "answer": "We offer a 30-day satisfaction guarantee. If you're not completely satisfied, you can return it for a full refund. If your miniature arrives damaged in transit, we'll replace it free of charge, no questions asked.",
+                "order": 6
+            }
+        ]
+    },
     "relatedProducts": {
         "enabled": true,
         "title": "More from the Temple Collection",

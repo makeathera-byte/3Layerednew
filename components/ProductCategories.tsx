@@ -22,10 +22,10 @@ export function ProductCategories() {
     const categories = getHomepageCategories();
 
     return (
-        <section id="products" className="py-32 px-6 bg-white">
+        <section id="products" className="py-16 md:py-32 px-6 bg-white">
             <div className="max-w-7xl mx-auto">
                 <motion.h2
-                    className="font-serif text-6xl md:text-7xl lg:text-8xl font-bold text-center mb-24"
+                    className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-center mb-12 md:mb-24"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
@@ -34,14 +34,14 @@ export function ProductCategories() {
                     What We Create
                 </motion.h2>
 
-                <div className="space-y-32">
+                <div className="space-y-16 md:space-y-32">
                     {categories.map((category, index) => {
                         const isEven = index % 2 === 0;
 
                         return (
                             <motion.div
                                 key={category.id}
-                                className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+                                className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center"
                                 initial={{ opacity: 0, y: 50 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: "-100px" }}
@@ -52,7 +52,7 @@ export function ProductCategories() {
                                         href={category.slug === 'custom-print' ? '/custom-print' : `/products/category/${category.slug}`}
                                         className="block group"
                                     >
-                                        <div className="aspect-[4/3] relative overflow-hidden bg-gray-100">
+                                        <div className="aspect-[4/3] relative overflow-hidden bg-gray-100 rounded-lg">
                                             <Image
                                                 src={category.imageUrl}
                                                 alt={category.name}
@@ -70,19 +70,19 @@ export function ProductCategories() {
                                     viewport={{ once: true, margin: "-100px" }}
                                     transition={{ duration: 0.8, delay: 0.4 }}
                                 >
-                                    <div className="space-y-6">
-                                        <p className="text-sm uppercase tracking-widest text-gray-500">
+                                    <div className="space-y-4 md:space-y-6">
+                                        <p className="text-xs sm:text-sm uppercase tracking-widest text-gray-500">
                                             Category {String(index + 1).padStart(2, '0')}
                                         </p>
-                                        <h3 className="font-serif text-5xl md:text-6xl font-bold leading-tight">
+                                        <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
                                             {category.name}
                                         </h3>
-                                        <div className="w-24 h-1 bg-black"></div>
-                                        <p className="text-xl text-gray-700 leading-relaxed">
+                                        <div className="w-16 md:w-24 h-1 bg-black"></div>
+                                        <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed">
                                             {category.description}
                                         </p>
                                         {category.extendedDescription && (
-                                            <p className="text-lg text-gray-600 leading-relaxed">
+                                            <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed">
                                                 {category.extendedDescription}
                                             </p>
                                         )}

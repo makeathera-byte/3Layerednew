@@ -289,6 +289,95 @@
             }
         ]
     },
+    "reviews": {
+        "enabled": true,
+        "averageRating": 4.9,
+        "totalReviews": 4,
+        "reviews": [
+            {
+                "id": "review-1",
+                "author": "Kavya Menon",
+                "rating": 5,
+                "date": "2026-01-09T00:00:00Z",
+                "title": "Breathtaking Detail and Precision",
+                "comment": "As someone who studied Buddhist architecture, I'm amazed at how accurately this captures Borobudur's mandala structure. Each stupa is perfectly rendered. It's not just a model - it's a meditation piece. The craftsmanship is truly exceptional.",
+                "verifiedPurchase": true,
+                "helpfulCount": 15
+            },
+            {
+                "id": "review-2",
+                "author": "Arjun Reddy",
+                "rating": 5,
+                "date": "2026-01-04T00:00:00Z",
+                "title": "Museum-Quality Craftsmanship",
+                "comment": "I've purchased several architectural models over the years, and this is by far the best. The tiered mandala design is perfectly proportioned. The hand-finishing is impeccable. It arrived in beautiful packaging and now has pride of place in my home office.",
+                "verifiedPurchase": true,
+                "helpfulCount": 11
+            },
+            {
+                "id": "review-3",
+                "author": "Deepa Nair",
+                "rating": 5,
+                "date": "2025-12-30T00:00:00Z",
+                "title": "Perfect Gift for Architecture Lovers",
+                "comment": "Bought this for my husband who is fascinated by Buddhist temples. He absolutely loves it! The quality exceeded our expectations. Each level is so detailed. Worth every penny. Thank you Three Layered!",
+                "verifiedPurchase": true,
+                "helpfulCount": 9
+            },
+            {
+                "id": "review-4",
+                "author": "Suresh Krishnan",
+                "rating": 4,
+                "date": "2025-12-22T00:00:00Z",
+                "title": "Stunning Piece, Fast Shipping",
+                "comment": "Beautiful miniature with incredible attention to detail. The mandala structure is mesmerizing. Shipping was faster than expected. My only small critique is I wish the contrast between the levels was slightly more pronounced, but that's being very picky. Overall, highly recommend!",
+                "verifiedPurchase": true,
+                "helpfulCount": 4
+            }
+        ]
+    },
+    "faqs": {
+        "enabled": true,
+        "title": "Frequently Asked Questions",
+        "items": [
+            {
+                "id": "faq-1",
+                "question": "What makes Borobudur's design unique?",
+                "answer": "Borobudur is the world's largest Buddhist temple and features a unique three-dimensional mandala design with nine stacked platforms - six square and three circular, topped with a central dome. Our miniature faithfully recreates this sacred geometry at 1:200 scale with all 72 stupas precisely positioned.",
+                "order": 1
+            },
+            {
+                "id": "faq-2",
+                "question": "How long will it take to receive my order?",
+                "answer": "Production takes 7-10 business days as each piece is made to order with hand-finishing. After production, standard shipping takes 5-7 days (express 2-3 days). We provide tracking information and updates throughout the process.",
+                "order": 2
+            },
+            {
+                "id": "faq-3",
+                "question": "Can I choose different sizes or finishes?",
+                "answer": "Yes! We offer Standard (15cm), Large (25cm), and Premium (35cm) sizes. Finish options include Matte Black (standard), Sandstone Texture, and White Marble Effect. Custom requests are also welcome - just contact us!",
+                "order": 3
+            },
+            {
+                "id": "faq-4",
+                "question": "Is this made from eco-friendly materials?",
+                "answer": "Absolutely. We use eco-friendly UV-resistant photopolymer resin that's safe for indoor display. Our production process minimizes waste, and all materials are carefully selected for both quality and environmental responsibility.",
+                "order": 4
+            },
+            {
+                "id": "faq-5",
+                "question": "How should I display and care for this miniature?",
+                "answer": "Display on a stable surface away from direct sunlight. To clean, simply dust with a soft, dry cloth. Handle by the base to protect the delicate stupas. With minimal care, your Borobudur miniature will last for generations.",
+                "order": 5
+            },
+            {
+                "id": "faq-6",
+                "question": "Do you ship internationally?",
+                "answer": "Yes! We ship worldwide with premium protective packaging to ensure your miniature arrives safely. Shipping costs and times vary by location. Free shipping is available on orders over ₹5,000 within India.",
+                "order": 6
+            }
+        ]
+    },
     "relatedProducts": {
         "enabled": true,
         "title": "Complete Your Temple Collection",

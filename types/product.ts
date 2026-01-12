@@ -249,7 +249,46 @@ export interface AssuranceSection {
 }
 
 // ============================================
-// Section 8: Related Products
+// Section 8: Customer Reviews
+// ============================================
+
+export interface Review {
+  id: string;
+  author: string;
+  rating: 1 | 2 | 3 | 4 | 5; // Star rating
+  date: string; // ISO date string
+  title: string;
+  comment: string;
+  verifiedPurchase: boolean;
+  helpfulCount: number;
+}
+
+export interface ReviewsSection {
+  enabled: boolean;
+  averageRating: number; // Calculated from reviews
+  totalReviews: number;
+  reviews: Review[];
+}
+
+// ============================================
+// Section 9: Frequently Asked Questions
+// ============================================
+
+export interface FAQItem {
+  id: string;
+  question: string;
+  answer: string;
+  order: number;
+}
+
+export interface FAQSection {
+  enabled: boolean;
+  title?: string;
+  items: FAQItem[];
+}
+
+// ============================================
+// Section 10: Related Products
 // ============================================
 
 export interface RelatedProduct {
@@ -279,7 +318,7 @@ export interface ProductPage {
   // SEO
   seo: SEOMetadata;
 
-  // All 8 Sections
+  // All Sections
   hero: HeroSection;
   story: StorySection | null;
   craftsmanship: CraftsmanshipSection;
@@ -287,6 +326,8 @@ export interface ProductPage {
   customization: CustomizationSection | null;
   useCases: UseCasesSection | null;
   assurance: AssuranceSection;
+  reviews: ReviewsSection | null;
+  faqs: FAQSection | null;
   relatedProducts: RelatedProductsSection;
 
   // Metadata

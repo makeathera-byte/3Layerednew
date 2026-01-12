@@ -296,6 +296,105 @@
             }
         ]
     },
+    "reviews": {
+        "enabled": true,
+        "averageRating": 4.7,
+        "totalReviews": 5,
+        "reviews": [
+            {
+                "id": "review-1",
+                "author": "Simran Kaur",
+                "rating": 5,
+                "date": "2026-01-07T00:00:00Z",
+                "title": "A Piece of Home on My Desk",
+                "comment": "As a Sikh living abroad, this miniature of the Golden Temple means the world to me. The attention to detail is remarkable - you can see the reflection pool, the causeway, everything! It's beautifully crafted and brings me peace every time I look at it. Thank you Three Layered!",
+                "verifiedPurchase": true,
+                "helpfulCount": 18
+            },
+            {
+                "id": "review-2",
+                "author": "Amandeep Singh",
+                "rating": 5,
+                "date": "2026-01-03T00:00:00Z",
+                "title": "Exquisite Craftsmanship",
+                "comment": "The level of detail is absolutely stunning. The gold finish looks premium and the proportions are perfect. I've visited Harmandir Sahib many times and this captures its essence beautifully. Highly recommend for anyone who loves Sikh heritage or architectural models.",
+                "verifiedPurchase": true,
+                "helpfulCount": 14
+            },
+            {
+                "id": "review-3",
+                "author": "Neha Gupta",
+                "rating": 4,
+                "date": "2025-12-29T00:00:00Z",
+                "title": "Beautiful Gift for Parents",
+                "comment": "Bought this as a gift for my parents and they absolutely loved it! The quality is excellent and it came in beautiful packaging. My only wish is that the gold was slightly more vibrant, but that's just personal preference. Overall, very happy with the purchase.",
+                "verifiedPurchase": true,
+                "helpfulCount": 9
+            },
+            {
+                "id": "review-4",
+                "author": "Ranjit Singh",
+                "rating": 5,
+                "date": "2025-12-25T00:00:00Z",
+                "title": "Museum Quality Miniature",
+                "comment": "I collect architectural miniatures and this is one of the finest pieces in my collection. The reflection pool detail, the dome, the intricate architecture - everything is perfectly executed. Worth every penny. Will be ordering more from Three Layered.",
+                "verifiedPurchase": true,
+                "helpfulCount": 11
+            },
+            {
+                "id": "review-5",
+                "author": "Preet Brar",
+                "rating": 4,
+                "date": "2025-12-18T00:00:00Z",
+                "title": "Great Quality, Fast Delivery",
+                "comment": "Very impressed with the craftsmanship and attention to detail. The miniature is beautiful and looks exactly like the photos. Delivery was faster than expected. Only suggestion would be to offer a larger size option. Overall, excellent product!",
+                "verifiedPurchase": true,
+                "helpfulCount": 7
+            }
+        ]
+    },
+    "faqs": {
+        "enabled": true,
+        "title": "Frequently Asked Questions",
+        "items": [
+            {
+                "id": "faq-1",
+                "question": "What is the significance of the Golden Temple?",
+                "answer": "The Golden Temple (Harmandir Sahib) in Amritsar is the holiest Gurdwara of Sikhism. Built in the 16th century, it stands in the middle of a sacred pool (Amrit Sarovar) and represents equality, with doors open in all four directions welcoming people of all faiths. Our miniature captures this iconic structure with architectural precision.",
+                "order": 1
+            },
+            {
+                "id": "faq-2",
+                "question": "What finish options are available?",
+                "answer": "We offer three premium finishes: Classic Gold (standard - inspired by the original gilded copper), Antique Bronze, and Polished Silver. Each finish is hand-applied to create an authentic, lustrous appearance. You can also request custom finishes through our contact page.",
+                "order": 2
+            },
+            {
+                "id": "faq-3",
+                "question": "How long does production and shipping take?",
+                "answer": "Each Golden Temple miniature is crafted to order in 7-10 business days. Standard shipping takes an additional 5-7 days, while express shipping takes 2-3 days. We provide tracking information and updates throughout the entire process.",
+                "order": 3
+            },
+            {
+                "id": "faq-4",
+                "question": "Is the reflection pool included?",
+                "answer": "Yes! The miniature includes the surrounding Amrit Sarovar (reflection pool) and the marble causeway leading to the temple. The entire composition captures the complete architectural ensemble that makes the Golden Temple so iconic.",
+                "order": 4
+            },
+            {
+                "id": "faq-5",
+                "question": "Can this be used for religious purposes?",
+                "answer": "While our miniatures are architectural models created with deep respect for the sacred significance of these structures, they are designed primarily as decorative art pieces and collectibles. Many customers use them as inspirational focal points in their homes or offices.",
+                "order": 5
+            },
+            {
+                "id": "faq-6",
+                "question": "What if I need a custom size?",
+                "answer": "We love custom commissions! While we offer Standard (15cm) and Large (25cm) sizes, we can create larger or smaller versions based on your needs. Contact us through the 'Request Custom Design' button or email us directly to discuss your requirements.",
+                "order": 6
+            }
+        ]
+    },
     "relatedProducts": {
         "enabled": true,
         "title": "Explore More Sacred Architecture",

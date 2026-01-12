@@ -45,11 +45,6 @@ export function HeroSection() {
         return () => unsubscribe();
     }, [scrollY, isTaglineVisible, mounted]);
 
-    // Determine tagline color based on slide brightness
-    const getTaglineColor = () => {
-        return isDarkSlide ? "#ffffff" : "#000000";
-    };
-
     return (
         <section
             id="home"
@@ -58,19 +53,29 @@ export function HeroSection() {
             {/* Hero Image Container */}
             <div className="relative h-full overflow-hidden">
                 <div className="absolute inset-0 flex items-center justify-center bg-white">
+                    {/* Ambient Background - Blurred version of the image (mobile only) */}
+                    <div className="absolute inset-0 md:hidden">
+                        <img
+                            src={SLIDES[0].image}
+                            alt=""
+                            className="w-full h-full object-cover blur-3xl scale-110 opacity-60"
+                            aria-hidden="true"
+                        />
+                    </div>
+
                     {/* Hero Image */}
-                    <div className="relative w-full h-full">
+                    <div className="relative w-full h-full z-10">
                         <img
                             src={SLIDES[0].image}
                             alt={SLIDES[0].caption}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-contain md:object-cover object-center"
                         />
-                        {/* Optional overlay for better text contrast */}
-                        <div className="absolute inset-0 bg-black/10" />
+                        {/* Gradient overlay for better text contrast on mobile */}
+                        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 md:bg-black/10" />
                     </div>
                 </div>
 
-                {/* Bottom Left Tagline with Summary */}
+                {/* Desktop Tagline - Bottom Left */}
                 {mounted && (
                     <motion.div
                         initial={{ opacity: 1 }}
@@ -79,14 +84,7 @@ export function HeroSection() {
                             duration: 0.4,
                             ease: [0.25, 0.1, 0.25, 1]
                         }}
-                        style={{
-                            position: "fixed",
-                            left: "2rem",
-                            bottom: "5rem",
-                            zIndex: 90,
-                            maxWidth: "450px"
-                        }}
-                        className="pointer-events-none"
+                        className="hidden md:block fixed left-8 bottom-20 z-80 max-w-md pointer-events-none"
                     >
                         {/* Background with blur for contrast */}
                         <div
@@ -129,16 +127,62 @@ export function HeroSection() {
                     </motion.div>
                 )}
 
+                {/* Mobile Tagline - Bottom Center, Compact */}
+                {mounted && (
+                    <motion.div
+                        initial={{ opacity: 1 }}
+                        animate={{ opacity: isTaglineVisible ? 1 : 0 }}
+                        transition={{
+                            duration: 0.4,
+                            ease: [0.25, 0.1, 0.25, 1]
+                        }}
+                        className="md:hidden fixed bottom-24 left-4 right-4 z-80 pointer-events-none"
+                    >
+                        <div
+                            style={{
+                                backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                                backdropFilter: 'blur(10px)',
+                                WebkitBackdropFilter: 'blur(10px)',
+                                padding: '1rem',
+                                borderRadius: '8px',
+                                textAlign: 'center'
+                            }}
+                        >
+                            <h3
+                                className="text-lg font-serif italic mb-1.5 text-white"
+                                style={{
+                                    fontFamily: "'Playfair Display', 'Georgia', 'Times New Roman', serif",
+                                    fontWeight: 400,
+                                    letterSpacing: '0.02em',
+                                    textShadow: '0 2px 8px rgba(0,0,0,0.5)'
+                                }}
+                            >
+                                You Dream it, We 3D it
+                            </h3>
+                            <p
+                                className="text-xs leading-relaxed text-white/90"
+                                style={{
+                                    fontFamily: "'Inter', sans-serif",
+                                    fontWeight: 300,
+                                    lineHeight: '1.5'
+                                }}
+                            >
+                                Premium 3D printed temple models & custom designs
+                            </p>
+                        </div>
+                    </motion.div>
+                )}
+
                 {/* Logo rendered by LogoController component */}
 
-                {/* Shop Now Button - Bottom Right */}
-                <div className="absolute bottom-12 right-12 z-10">
+                {/* Shop Now Button - Responsive positioning */}
+                <div className="absolute bottom-6 right-4 md:bottom-12 md:right-12 z-10">
                     <a
                         href="#products"
-                        className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 text-lg font-medium hover:bg-gray-100 transition-all duration-200 shadow-lg group"
+                        className="inline-flex items-center gap-2 md:gap-3 bg-white text-black px-5 py-3 md:px-8 md:py-4 text-base md:text-lg font-medium hover:bg-gray-100 transition-all duration-200 shadow-lg group"
                     >
                         <span>Shop Now</span>
-                        <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
                     </a>

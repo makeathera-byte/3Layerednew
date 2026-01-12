@@ -151,12 +151,66 @@ export function Navbar() {
                 </div>
 
                 {/* Mobile Menu Button */}
-                <button className="md:hidden p-2" aria-label="Menu">
-                    <div className="w-6 h-0.5 mb-1 transition-colors duration-300" style={{ backgroundColor: textColor === "text-white" ? "white" : "black" }}></div>
-                    <div className="w-6 h-0.5 mb-1 transition-colors duration-300" style={{ backgroundColor: textColor === "text-white" ? "white" : "black" }}></div>
-                    <div className="w-6 h-0.5 transition-colors duration-300" style={{ backgroundColor: textColor === "text-white" ? "white" : "black" }}></div>
+                <button
+                    className="md:hidden p-2"
+                    aria-label="Menu"
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                >
+                    <div className="w-6 h-0.5 mb-1 transition-all duration-300" style={{
+                        backgroundColor: textColor === "text-white" ? "white" : "black",
+                        transform: isMenuOpen ? 'rotate(45deg) translateY(6px)' : 'none'
+                    }}></div>
+                    <div className="w-6 h-0.5 mb-1 transition-all duration-300" style={{
+                        backgroundColor: textColor === "text-white" ? "white" : "black",
+                        opacity: isMenuOpen ? 0 : 1
+                    }}></div>
+                    <div className="w-6 h-0.5 transition-all duration-300" style={{
+                        backgroundColor: textColor === "text-white" ? "white" : "black",
+                        transform: isMenuOpen ? 'rotate(-45deg) translateY(-6px)' : 'none'
+                    }}></div>
                 </button>
             </div>
+
+            {/* Mobile Menu Panel */}
+            {isMenuOpen && (
+                <>
+                    {/* Overlay */}
+                    <div
+                        className="fixed inset-0 bg-black/50 z-[95] md:hidden"
+                        onClick={() => setIsMenuOpen(false)}
+                    />
+
+                    {/* Menu Panel */}
+                    <motion.div
+                        className="fixed top-20 right-0 bottom-0 w-64 bg-white shadow-xl z-[100] md:hidden"
+                        initial={{ x: '100%' }}
+                        animate={{ x: 0 }}
+                        exit={{ x: '100%' }}
+                        transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                    >
+                        <nav className="flex flex-col p-6 gap-4">
+                            {NAV_ITEMS.map((item) => (
+                                <a
+                                    key={item.label}
+                                    href={item.href}
+                                    className="text-lg font-medium text-black hover:opacity-60 transition-all py-2"
+                                    onClick={() => setIsMenuOpen(false)}
+                                >
+                                    {item.label}
+                                </a>
+                            ))}
+                            <hr className="my-2" />
+                            <a
+                                href="/custom-print"
+                                className="text-lg font-medium text-black hover:opacity-60 transition-all py-2"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                Custom Print
+                            </a>
+                        </nav>
+                    </motion.div>
+                </>
+            )}
         </motion.header>
     );
 }

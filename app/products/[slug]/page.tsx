@@ -9,6 +9,8 @@ import { SpecificationsSection } from '@/components/product/SpecificationsSectio
 import { CustomizationSection } from '@/components/product/CustomizationSection';
 import { UseCasesSection } from '@/components/product/UseCasesSection';
 import { AssuranceSection } from '@/components/product/AssuranceSection';
+import { ReviewsSection } from '@/components/product/ReviewsSection';
+import { FAQSection } from '@/components/product/FAQSection';
 import { RelatedProductsSection } from '@/components/product/RelatedProductsSection';
 import { SlideProvider } from '@/contexts/SlideContext';
 
@@ -111,6 +113,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
                 {/* Assurance Section - Always visible */}
                 <AssuranceSection data={product.assurance} />
+
+                {/* Reviews Section - Conditional */}
+                <ReviewsSection data={product.reviews} />
+
+                {/* FAQ Section - Conditional */}
+                <FAQSection data={product.faqs} />
 
                 {/* Related Products Section - Conditional */}
                 <RelatedProductsSection

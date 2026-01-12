@@ -32,20 +32,6 @@ export const categories: ProductCategory[] = [
         status: 'active',
         createdAt: '2026-01-10T00:00:00Z',
         updatedAt: '2026-01-11T12:34:00Z'
-    },
-    {
-        id: 'custom-print',
-        name: 'Custom Print',
-        slug: 'custom-print',
-        description: 'Transform your ideas into reality with our custom 3D printing service. From concept to finished product, we bring your unique designs to life with precision and care.',
-        extendedDescription: 'Whether you need a one-off prototype, replacement parts, or custom gifts, our team works with you through every step. Upload your design or work with us to create it, and we\'ll handle the rest with professional-grade materials and finishes.',
-        imageUrl: '/custom-parts.png',
-        productIds: [],
-        displayOnHomepage: true,
-        displayOrder: 2,
-        status: 'active',
-        createdAt: '2026-01-10T00:00:00Z',
-        updatedAt: '2026-01-10T00:00:00Z'
     }
 ];
 

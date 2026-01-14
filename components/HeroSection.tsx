@@ -12,20 +12,36 @@ const SLIDES = [
         caption: "3D Printing Services",
         isDark: true, // Dark background image
     },
+    {
+        id: 2,
+        image: "https://jwgtjfmwlnttjdvycuqj.supabase.co/storage/v1/object/public/displlay/slide/Gemini_Generated_Image_ljfv8mljfv8mljfv.jpg",
+        caption: "Premium 3D Prints",
+        isDark: true, // Dark background image
+    },
 ];
 
 export function HeroSection() {
     const [mounted, setMounted] = useState(false);
     const [isTaglineVisible, setIsTaglineVisible] = useState(true);
+    const [currentSlide, setCurrentSlide] = useState(0);
     const { isScrolled } = useScrollPosition();
     const { setIsDarkSlide, isDarkSlide } = useSlide();
     const { scrollY } = useScroll();
 
     useEffect(() => {
         setMounted(true);
-        // Set dark slide for the single image
-        setIsDarkSlide(SLIDES[0].isDark);
-    }, [setIsDarkSlide]);
+        // Set dark slide for the current slide
+        setIsDarkSlide(SLIDES[currentSlide].isDark);
+    }, [setIsDarkSlide, currentSlide]);
+
+    // Auto-rotate slides every 5 seconds
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % SLIDES.length);
+        }, 5000);
+
+        return () => clearInterval(interval);
+    }, []);
 
     // Listen for scroll to hide tagline
     useEffect(() => {
@@ -52,28 +68,37 @@ export function HeroSection() {
         >
             {/* Hero Image Container */}
             <div className="relative h-full overflow-hidden">
-                <div className="absolute inset-0 flex items-center justify-center bg-white">
-                    {/* Ambient Background - Blurred version of the image (mobile only) */}
-                    <div className="absolute inset-0 md:hidden">
-                        <img
-                            src={SLIDES[0].image}
-                            alt=""
-                            className="w-full h-full object-cover blur-3xl scale-110 opacity-60"
-                            aria-hidden="true"
-                        />
-                    </div>
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={currentSlide}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.7 }}
+                        className="absolute inset-0 flex items-center justify-center bg-white"
+                    >
+                        {/* Ambient Background - Blurred version of the image (mobile only) */}
+                        <div className="absolute inset-0 md:hidden">
+                            <img
+                                src={SLIDES[currentSlide].image}
+                                alt=""
+                                className="w-full h-full object-cover blur-3xl scale-110 opacity-60"
+                                aria-hidden="true"
+                            />
+                        </div>
 
-                    {/* Hero Image */}
-                    <div className="relative w-full h-full z-10">
-                        <img
-                            src={SLIDES[0].image}
-                            alt={SLIDES[0].caption}
-                            className="w-full h-full object-contain md:object-cover object-center"
-                        />
-                        {/* Gradient overlay for better text contrast on mobile */}
-                        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 md:bg-black/10" />
-                    </div>
-                </div>
+                        {/* Hero Image */}
+                        <div className="relative w-full h-full z-10">
+                            <img
+                                src={SLIDES[currentSlide].image}
+                                alt={SLIDES[currentSlide].caption}
+                                className="w-full h-full object-contain md:object-cover object-center"
+                            />
+                            {/* Gradient overlay for better text contrast on mobile */}
+                            <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 md:bg-black/10" />
+                        </div>
+                    </motion.div>
+                </AnimatePresence>
 
                 {/* Desktop Tagline - Bottom Left */}
                 {mounted && (

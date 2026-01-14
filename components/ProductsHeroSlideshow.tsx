@@ -19,6 +19,13 @@ const PRODUCT_SLIDES = [
         title: 'Miniature Temples',
         description: 'Museum-quality architectural replicas',
         link: '/products/category/miniature-temples'
+    },
+    {
+        id: 3,
+        image: 'https://jwgtjfmwlnttjdvycuqj.supabase.co/storage/v1/object/public/displlay/slide/Gemini_Generated_Image_ljfv8mljfv8mljfv.jpg',
+        title: 'Custom 3D Designs',
+        description: 'Bringing your vision to life',
+        link: '#categories'
     }
 ];
 

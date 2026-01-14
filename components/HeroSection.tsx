@@ -136,41 +136,6 @@ export function HeroSection() {
                     </motion.div>
                 )}
 
-                {/* Mobile Tagline - Bottom Center, Compact */}
-                {mounted && (
-                    <motion.div
-                        initial={{ opacity: 1 }}
-                        animate={{ opacity: isTaglineVisible ? 1 : 0 }}
-                        transition={{
-                            duration: 0.4,
-                            ease: [0.25, 0.1, 0.25, 1]
-                        }}
-                        className="md:hidden absolute bottom-16 left-4 right-4 z-80 pointer-events-none"
-                    >
-                        <div
-                            style={{
-                                backgroundColor: 'rgba(0, 0, 0, 0.6)',
-                                backdropFilter: 'blur(10px)',
-                                WebkitBackdropFilter: 'blur(10px)',
-                                padding: '1rem',
-                                borderRadius: '8px',
-                                textAlign: 'center'
-                            }}
-                        >
-                            <p
-                                className="text-xs leading-relaxed text-white/90"
-                                style={{
-                                    fontFamily: "'Inter', sans-serif",
-                                    fontWeight: 300,
-                                    lineHeight: '1.5'
-                                }}
-                            >
-                                Premium 3D printed temple models & custom designs
-                            </p>
-                        </div>
-                    </motion.div>
-                )}
-
                 {/* Logo rendered by LogoController component */}
 
                 {/* Shop Now Button - Responsive positioning */}

@@ -14,7 +14,7 @@
             "home pooja mandir",
             "traditional temple decor"
         ],
-        "ogImage": "https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/Miniature%20temples/ma/ma1.jpeg",
+        "ogImage": "https://jwgtjfmwlnttjdvycuqj.supabase.co/storage/v1/object/public/displlay/products/Miniature%20Temples/ma/ma1.jpeg",
         "ogType": "product"
     },
     "hero": {
@@ -39,21 +39,21 @@
         "gallery": [
             {
                 "id": "hero-1",
-                "url": "https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/Miniature%20temples/ma/ma1.jpeg",
+                "url": "https://jwgtjfmwlnttjdvycuqj.supabase.co/storage/v1/object/public/displlay/products/Miniature%20Temples/ma/ma1.jpeg",
                 "alt": "South Indian Design Table Top Temple - front view with LED light",
                 "order": 1,
                 "isHero": true
             },
             {
                 "id": "detail-1",
-                "url": "https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/Miniature%20temples/ma/ma2.jpeg",
+                "url": "https://jwgtjfmwlnttjdvycuqj.supabase.co/storage/v1/object/public/displlay/products/Miniature%20Temples/ma/ma2.jpeg",
                 "alt": "South Indian temple with intricate carvings and pillars",
                 "order": 2,
                 "isHero": false
             },
             {
                 "id": "detail-2",
-                "url": "https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/Miniature%20temples/ma/ma3.jpeg",
+                "url": "https://jwgtjfmwlnttjdvycuqj.supabase.co/storage/v1/object/public/displlay/products/Miniature%20Temples/ma/ma3.jpeg",
                 "alt": "Close-up of Ganesha idol and temple details",
                 "order": 3,
                 "isHero": false

@@ -14,7 +14,7 @@
             "spiritual home decor",
             "LED pooja temple"
         ],
-        "ogImage": "https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/Miniature%20temples/mc/mc1.jpg",
+        "ogImage": "https://jwgtjfmwlnttjdvycuqj.supabase.co/storage/v1/object/public/displlay/products/Miniature%20Temples/mc/mc1.jpg",
         "ogType": "product"
     },
     "hero": {
@@ -39,21 +39,21 @@
         "gallery": [
             {
                 "id": "hero-1",
-                "url": "https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/Miniature%20temples/mc/mc1.jpg",
+                "url": "https://jwgtjfmwlnttjdvycuqj.supabase.co/storage/v1/object/public/displlay/products/Miniature%20Temples/mc/mc1.jpg",
                 "alt": "Traditional Indian Temple Table Top - front view with LED",
                 "order": 1,
                 "isHero": true
             },
             {
                 "id": "detail-1",
-                "url": "https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/Miniature%20temples/mc/mc2.jpeg",
+                "url": "https://jwgtjfmwlnttjdvycuqj.supabase.co/storage/v1/object/public/displlay/products/Miniature%20Temples/mc/mc2.jpeg",
                 "alt": "Traditional temple with intricate details and Ganesha idol",
                 "order": 2,
                 "isHero": false
             },
             {
                 "id": "detail-2",
-                "url": "https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/Miniature%20temples/mc/mc3.jpeg",
+                "url": "https://jwgtjfmwlnttjdvycuqj.supabase.co/storage/v1/object/public/displlay/products/Miniature%20Temples/mc/mc3.jpeg",
                 "alt": "Close-up showing traditional craftsmanship and LED glow",
                 "order": 3,
                 "isHero": false

@@ -14,7 +14,7 @@
             "compact pooja mandir",
             "LED temple"
         ],
-        "ogImage": "https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/Miniature%20temples/mb/mb3.jpeg",
+        "ogImage": "https://jwgtjfmwlnttjdvycuqj.supabase.co/storage/v1/object/public/displlay/products/Miniature%20Temples/mb/mb3.jpeg",
         "ogType": "product"
     },
     "hero": {
@@ -39,21 +39,21 @@
         "gallery": [
             {
                 "id": "hero-1",
-                "url": "https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/Miniature%20temples/mb/mb3.jpeg",
+                "url": "https://jwgtjfmwlnttjdvycuqj.supabase.co/storage/v1/object/public/displlay/products/Miniature%20Temples/mb/mb3.jpeg",
                 "alt": "Mini Ganesha Mandir with golden kalashas - front view",
                 "order": 1,
                 "isHero": true
             },
             {
                 "id": "detail-1",
-                "url": "https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/Miniature%20temples/mb/mb1.jpeg",
+                "url": "https://jwgtjfmwlnttjdvycuqj.supabase.co/storage/v1/object/public/displlay/products/Miniature%20Temples/mb/mb1.jpeg",
                 "alt": "Close-up of mini ganesha temple with LED light",
                 "order": 2,
                 "isHero": false
             },
             {
                 "id": "detail-2",
-                "url": "https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/Miniature%20temples/mb/mb2.jpeg",
+                "url": "https://jwgtjfmwlnttjdvycuqj.supabase.co/storage/v1/object/public/displlay/products/Miniature%20Temples/mb/mb2.jpeg",
                 "alt": "Side view showing golden kalashas and details",
                 "order": 3,
                 "isHero": false

@@ -58,10 +58,10 @@ export function HeroSection() {
     return (
         <section
             id="home"
-            className="relative h-screen bg-gray-50"
+            className="relative h-auto md:h-screen bg-gray-50"
         >
             {/* Hero Image Container */}
-            <div className="relative h-full overflow-hidden">
+            <div className="relative h-auto md:h-full overflow-hidden">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentSlide}
@@ -69,24 +69,14 @@ export function HeroSection() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.7 }}
-                        className="absolute inset-0 flex items-center justify-center bg-white"
+                        className="relative w-full h-full"
                     >
-                        {/* Ambient Background - Blurred version of the image (mobile only) */}
-                        <div className="absolute inset-0 md:hidden">
-                            <img
-                                src={SLIDES[currentSlide].image}
-                                alt=""
-                                className="w-full h-full object-cover blur-3xl scale-110 opacity-60"
-                                aria-hidden="true"
-                            />
-                        </div>
-
                         {/* Hero Image */}
-                        <div className="relative w-full h-full z-10">
+                        <div className="relative w-full aspect-[16/9] md:aspect-auto md:h-full">
                             <img
                                 src={SLIDES[currentSlide].image}
                                 alt={SLIDES[currentSlide].caption}
-                                className="w-full h-full object-contain md:object-cover object-center"
+                                className="w-full h-full object-cover object-top md:object-center"
                             />
                             {/* Gradient overlay for better text contrast on mobile */}
                             <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 md:bg-black/10" />
@@ -103,7 +93,7 @@ export function HeroSection() {
                             duration: 0.4,
                             ease: [0.25, 0.1, 0.25, 1]
                         }}
-                        className="hidden md:block fixed left-8 bottom-20 z-80 max-w-md pointer-events-none"
+                        className="hidden md:block absolute left-8 bottom-20 z-80 max-w-md pointer-events-none"
                     >
                         {/* Background with blur for contrast */}
                         <div
@@ -155,7 +145,7 @@ export function HeroSection() {
                             duration: 0.4,
                             ease: [0.25, 0.1, 0.25, 1]
                         }}
-                        className="md:hidden fixed bottom-24 left-4 right-4 z-80 pointer-events-none"
+                        className="md:hidden absolute bottom-16 left-4 right-4 z-80 pointer-events-none"
                     >
                         <div
                             style={{

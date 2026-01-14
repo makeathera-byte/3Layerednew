@@ -76,7 +76,7 @@ export function LogoController() {
     };
 
     // Animation variants for smooth transition (only on homepage)
-    // On mobile: less travel distance, stops in middle of slide
+    // On mobile: less travel distance from initial position
     // On desktop: original animation
     const logoVariantsMobile = {
         initial: {
@@ -85,7 +85,7 @@ export function LogoController() {
         },
         docked: {
             scale: 0.85,
-            y: 50, // Increased from 8 to stop more in middle of slide (mobile)
+            y: 8, // Same as desktop - proper navbar position
         }
     };
 

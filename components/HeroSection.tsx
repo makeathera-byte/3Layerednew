@@ -157,17 +157,6 @@ export function HeroSection() {
                                 textAlign: 'center'
                             }}
                         >
-                            <h3
-                                className="text-lg font-serif italic mb-1.5 text-white"
-                                style={{
-                                    fontFamily: "'Playfair Display', 'Georgia', 'Times New Roman', serif",
-                                    fontWeight: 400,
-                                    letterSpacing: '0.02em',
-                                    textShadow: '0 2px 8px rgba(0,0,0,0.5)'
-                                }}
-                            >
-                                You Dream it, We 3D it
-                            </h3>
                             <p
                                 className="text-xs leading-relaxed text-white/90"
                                 style={{

@@ -176,13 +176,13 @@ export function Navbar() {
                 <>
                     {/* Overlay */}
                     <div
-                        className="fixed inset-0 bg-black/50 z-[95] md:hidden"
+                        className="fixed inset-0 bg-black/50 z-[105] md:hidden"
                         onClick={() => setIsMenuOpen(false)}
                     />
 
                     {/* Menu Panel */}
                     <motion.div
-                        className="fixed top-20 right-0 bottom-0 w-64 bg-white shadow-xl z-[100] md:hidden"
+                        className="fixed top-20 right-0 bottom-0 w-64 bg-white shadow-xl z-[110] md:hidden"
                         initial={{ x: '100%' }}
                         animate={{ x: 0 }}
                         exit={{ x: '100%' }}

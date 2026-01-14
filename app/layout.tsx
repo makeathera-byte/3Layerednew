@@ -7,6 +7,7 @@ import { SlideProvider } from "@/contexts/SlideContext";
 import { LogoController } from "@/components/LogoController";
 import { CartDrawer } from "@/components/CartDrawer";
 import { Footer } from "@/components/Footer";
+import { Analytics } from "@vercel/analytics/react";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -46,6 +47,7 @@ export default function RootLayout({
             <Footer />
           </SlideProvider>
         </AuthProvider>
+        <Analytics />
       </body>
     </html>
   );

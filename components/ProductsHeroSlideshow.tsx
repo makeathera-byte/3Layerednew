@@ -8,23 +8,9 @@ import Link from 'next/link';
 const PRODUCT_SLIDES = [
     {
         id: 1,
-        image: 'https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/home%20page/WhatsApp_Image_2025-12-23_at_12.24.48_AM.webp',
+        image: 'https://jwgtjfmwlnttjdvycuqj.supabase.co/storage/v1/object/public/displlay/slide/Gemini_Generated_Image_ljfv8mljfv8mljfv.jpg',
         title: 'Premium 3D Printing',
         description: 'Transform your ideas into reality',
-        link: '#categories'
-    },
-    {
-        id: 2,
-        image: 'https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/home%20page/images.jpg',
-        title: 'Miniature Temples',
-        description: 'Museum-quality architectural replicas',
-        link: '/products/category/miniature-temples'
-    },
-    {
-        id: 3,
-        image: 'https://jwgtjfmwlnttjdvycuqj.supabase.co/storage/v1/object/public/displlay/slide/Gemini_Generated_Image_ljfv8mljfv8mljfv.jpg',
-        title: 'Custom 3D Designs',
-        description: 'Bringing your vision to life',
         link: '#categories'
     }
 ];

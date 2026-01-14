@@ -8,15 +8,9 @@ import { useSlide } from "@/contexts/SlideContext";
 const SLIDES = [
     {
         id: 1,
-        image: "https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/home%20page/WhatsApp_Image_2025-12-23_at_12.24.48_AM.webp",
-        caption: "3D Printing Services",
-        isDark: true, // Dark background image
-    },
-    {
-        id: 2,
         image: "https://jwgtjfmwlnttjdvycuqj.supabase.co/storage/v1/object/public/displlay/slide/Gemini_Generated_Image_ljfv8mljfv8mljfv.jpg",
         caption: "Premium 3D Prints",
-        isDark: true, // Dark background image
+        isDark: true,
     },
 ];
 

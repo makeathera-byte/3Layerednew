@@ -208,12 +208,22 @@ export function HeroSection({ data, productId, productSlug }: HeroSectionProps) 
 
             {/* Mobile Sticky CTA */}
             <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 z-50">
-                <button
-                    onClick={handleAddToCart}
-                    className="w-full bg-black text-white py-3 px-6 text-base font-light tracking-wide"
-                >
-                    {data.cta.primaryLabel}
-                </button>
+                <div className="space-y-3">
+                    <button
+                        onClick={handleAddToCart}
+                        className="w-full bg-black text-white py-3 px-6 text-base font-light tracking-wide hover:bg-gray-900 transition-colors duration-200"
+                    >
+                        {data.cta.primaryLabel}
+                    </button>
+                    {data.cta.secondaryLabel && (
+                        <button
+                            onClick={handleBuyNow}
+                            className="w-full border border-black text-black py-3 px-6 text-base font-light tracking-wide hover:bg-gray-50 transition-colors duration-200"
+                        >
+                            {data.cta.secondaryLabel}
+                        </button>
+                    )}
+                </div>
             </div>
         </section>
     );

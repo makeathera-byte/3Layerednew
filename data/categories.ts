@@ -23,15 +23,29 @@ export const categories: ProductCategory[] = [
         extendedDescription: 'From the golden spires of Asian pagodas to the intricate carvings of ancient temples, we transform architectural heritage into tangible art. Every detail is preserved, every proportion honored.',
         imageUrl: '/temples.png',
         productIds: [
-            'angkor-wat-temple',
-            'borobudur-temple',
-            'golden-temple'
+            'south-indian-temple',
+            'mini-ganesha-mandir',
+            'traditional-indian-temple'
         ],
         displayOnHomepage: true,
         displayOrder: 1,
         status: 'active',
         createdAt: '2026-01-10T00:00:00Z',
-        updatedAt: '2026-01-11T12:34:00Z'
+        updatedAt: '2026-01-14T21:00:00Z'
+    },
+    {
+        id: 'architect-models',
+        name: 'Architect Models',
+        slug: 'architect-models',
+        description: 'Contemporary interpretations of Asian architectural heritage. Miniature models of temples, forts, and monuments reimagined with modern aesthetics.',
+        extendedDescription: 'Where tradition meets innovation. Each model blends the timeless beauty of Asian architecture with contemporary design sensibilities, creating pieces that honor the past while embracing the future.',
+        imageUrl: '/architectures.png',
+        productIds: [],
+        displayOnHomepage: true,
+        displayOrder: 2,
+        status: 'active',
+        createdAt: '2026-01-14T00:00:00Z',
+        updatedAt: '2026-01-14T00:00:00Z'
     }
 ];
 

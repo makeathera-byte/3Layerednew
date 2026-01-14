@@ -196,7 +196,7 @@ export default function CartPage() {
                                         </div>
                                         <div className="flex items-center gap-2">
                                             <span>✓</span>
-                                            <span>Free shipping over ₹5,000</span>
+                                            <span>Free shipping on all orders</span>
                                         </div>
                                         <div className="flex items-center gap-2">
                                             <span>✓</span>

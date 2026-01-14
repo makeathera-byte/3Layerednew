@@ -24,6 +24,7 @@ export interface GalleryImage extends Image {
 
 export interface Price {
   amount: number;
+  compareAtPrice?: number; // Original price before discount
   currency: 'USD' | 'INR' | 'EUR' | 'GBP';
   displayFormat: string; // e.g., "₹{amount}" or "${amount}"
 }

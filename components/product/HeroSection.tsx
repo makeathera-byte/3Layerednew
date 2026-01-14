@@ -41,6 +41,23 @@ export function HeroSection({ data, productId, productSlug }: HeroSectionProps) 
         });
     };
 
+    const handleBuyNow = () => {
+        // Add to cart first
+        addToCart({
+            productId,
+            productSlug,
+            productName: data.productName,
+            productImage: sortedGallery[0].url,
+            basePrice: data.price.amount,
+            quantity: 1,
+            customizations: {},
+            currency: data.price.currency,
+            displayFormat: data.price.displayFormat,
+        });
+        // Then navigate to cart/checkout
+        window.location.href = '/cart';
+    };
+
     return (
         <section className="min-h-screen bg-white pt-24 pb-16">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -130,11 +147,21 @@ export function HeroSection({ data, productId, productSlug }: HeroSectionProps) 
 
                         {/* Price */}
                         <div className="border-t border-b border-gray-200 py-6">
-                            <div className="text-3xl font-light">
-                                {data.price.displayFormat.replace(
-                                    '{amount}',
-                                    data.price.amount.toLocaleString()
+                            <div className="flex items-center gap-3">
+                                {data.price.compareAtPrice && (
+                                    <div className="text-xl text-gray-400 line-through font-light">
+                                        {data.price.displayFormat.replace(
+                                            '{amount}',
+                                            data.price.compareAtPrice.toLocaleString()
+                                        )}
+                                    </div>
                                 )}
+                                <div className="text-3xl font-light">
+                                    {data.price.displayFormat.replace(
+                                        '{amount}',
+                                        data.price.amount.toLocaleString()
+                                    )}
+                                </div>
                             </div>
                             <p className="text-sm text-gray-500 mt-1">
                                 Made to order • Ships in 7-10 days
@@ -151,7 +178,10 @@ export function HeroSection({ data, productId, productSlug }: HeroSectionProps) 
                             </button>
 
                             {data.cta.secondaryLabel && (
-                                <button className="w-full border border-black text-black py-4 px-8 text-lg font-light tracking-wide hover:bg-gray-50 transition-colors duration-200">
+                                <button
+                                    onClick={handleBuyNow}
+                                    className="w-full border border-black text-black py-4 px-8 text-lg font-light tracking-wide hover:bg-gray-50 transition-colors duration-200"
+                                >
                                     {data.cta.secondaryLabel}
                                 </button>
                             )}

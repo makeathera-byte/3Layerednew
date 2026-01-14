@@ -1,0 +1,265 @@
+{
+    "id": "south-indian-temple",
+    "slug": "south-indian-temple",
+    "categoryId": "miniature-temples",
+    "status": "published",
+    "seo": {
+        "title": "South Indian Design Table Top Temple with LED Light | Traditional Ganesha Mandir",
+        "description": "Beautiful south indian design table top temple with intricate Dravidian architecture, LED lighting, and Lord Ganesha idol. Perfect for home decor and spiritual rituals.",
+        "keywords": [
+            "south indian temple",
+            "table top temple",
+            "ganesha mandir",
+            "LED temple",
+            "home pooja mandir",
+            "traditional temple decor"
+        ],
+        "ogImage": "https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/Miniature%20temples/ma/ma1.jpeg",
+        "ogType": "product"
+    },
+    "hero": {
+        "productName": "South Indian Design Table Top Temple with LED Light",
+        "tagline": "Traditional Ganesha Mandir for Home Decor",
+        "badge": {
+            "enabled": true,
+            "text": "LED Illuminated",
+            "variant": "led"
+        },
+        "price": {
+            "amount": 1899,
+            "compareAtPrice": 2234,
+            "currency": "INR",
+            "displayFormat": "₹{amount}"
+        },
+        "cta": {
+            "primaryLabel": "Add to Cart",
+            "primaryAction": "buy",
+            "secondaryLabel": "Buy Now"
+        },
+        "gallery": [
+            {
+                "id": "hero-1",
+                "url": "https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/Miniature%20temples/ma/ma1.jpeg",
+                "alt": "South Indian Design Table Top Temple - front view with LED light",
+                "order": 1,
+                "isHero": true
+            },
+            {
+                "id": "detail-1",
+                "url": "https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/Miniature%20temples/ma/ma2.jpeg",
+                "alt": "South Indian temple with intricate carvings and pillars",
+                "order": 2,
+                "isHero": false
+            },
+            {
+                "id": "detail-2",
+                "url": "https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/Miniature%20temples/ma/ma3.jpeg",
+                "alt": "Close-up of Ganesha idol and temple details",
+                "order": 3,
+                "isHero": false
+            }
+        ]
+    },
+    "story": {
+        "enabled": true,
+        "title": "Inspired by Traditional Dravidian Temple Architecture",
+        "paragraphs": [
+            "Bring divine elegance and spiritual calm into your space with this beautifully crafted south indian design table top temple inspired by traditional Dravidian temple architecture. Designed with intricate detailing and sacred proportions, this south indian design table top temple reflects timeless heritage blended with modern craftsmanship.",
+            "This south indian design table top temple features layered domes, ornamental carvings, and finely sculpted pillars that resemble classic South Indian mandirs. At the heart of the sanctum sits a serene Lord Ganesha idol, making this south indian design table top temple ideal for daily pooja, meditation, and spiritual rituals.",
+            "The soft LED illumination enhances the sacred aura of the south indian design table top temple, creating a warm and peaceful atmosphere. Perfect for modern homes and compact spaces, the south indian design table top temple fits beautifully on tables, shelves, office desks, and pooja corners."
+        ],
+        "quote": {
+            "enabled": true,
+            "text": "Where tradition meets modern living - bringing sacred geometry into your daily life.",
+            "attribution": "— Three Layered Design Studio"
+        }
+    },
+    "craftsmanship": {
+        "material": {
+            "name": "Premium 3D Printed Resin",
+            "description": "High-quality photopolymer resin with LED integration",
+            "properties": [
+                "Durable construction",
+                "LED-safe materials",
+                "Detailed finish",
+                "Long-lasting"
+            ]
+        },
+        "finish": {
+            "type": "Traditional Temple Finish",
+            "description": "Detailed finish with gold accents and traditional colors",
+            "handFinished": true
+        },
+        "process": {
+            "method": "3D Printing + LED Integration",
+            "description": "Precision 3D printed with integrated LED lighting system",
+            "steps": [
+                "High-resolution 3D printing",
+                "LED light installation",
+                "Hand-painting and finishing",
+                "Quality inspection"
+            ]
+        },
+        "care": {
+            "durability": "Designed for everyday spiritual use",
+            "instructions": [
+                "Wipe with soft, dry cloth",
+                "Keep away from water",
+                "LED bulb replaceable if needed",
+                "Handle gently to preserve details"
+            ]
+        }
+    },
+    "specifications": {
+        "dimensions": {
+            "height": {
+                "value": 18,
+                "unit": "cm"
+            },
+            "width": {
+                "value": 14,
+                "unit": "cm"
+            },
+            "depth": {
+                "value": 14,
+                "unit": "cm"
+            },
+            "displayUnits": "metric"
+        },
+        "weight": {
+            "value": 250,
+            "unit": "g"
+        },
+        "comparison": {
+            "enabled": true,
+            "text": "Perfect size for table tops and pooja corners"
+        },
+        "additionalSpecs": [
+            {
+                "label": "LED Type",
+                "value": "Warm white LED (included)"
+            },
+            {
+                "label": "Power",
+                "value": "Battery operated"
+            },
+            {
+                "label": "Style",
+                "value": "Traditional South Indian Dravidian"
+            }
+        ]
+    },
+    "customization": {
+        "enabled": false,
+        "options": [],
+        "customRequest": {
+            "enabled": false,
+            "ctaLabel": "",
+            "formUrl": ""
+        }
+    },
+    "useCases": {
+        "enabled": true,
+        "title": "Where It Lives",
+        "cases": [
+            {
+                "id": "pooja-room",
+                "title": "Pooja Room Centerpiece",
+                "description": "Creates a sacred space for daily worship and meditation",
+                "imageUrl": "",
+                "order": 1
+            },
+            {
+                "id": "desk",
+                "title": "Office Desk Spirituality",
+                "description": "Brings peace and positivity to your workspace",
+                "imageUrl": "",
+                "order": 2
+            },
+            {
+                "id": "gift",
+                "title": "Meaningful Gift",
+                "description": "Perfect for Diwali, housewarming, and festive occasions",
+                "imageUrl": "",
+                "order": 3
+            }
+        ],
+        "displayStyle": "grid"
+    },
+    "assurance": {
+        "production": {
+            "type": "ready-to-ship",
+            "leadTime": {
+                "min": 3,
+                "max": 5,
+                "unit": "days",
+                "description": "Ships within 3-5 business days"
+            }
+        },
+        "shipping": {
+            "description": "Free shipping on all orders",
+            "methods": [
+                "Standard (5-7 days)",
+                "Express (2-3 days)"
+            ]
+        },
+        "returns": {
+            "policy": "30-day satisfaction guarantee. Damaged in transit? We'll replace it free.",
+            "linkUrl": "/policies/returns"
+        },
+        "guarantees": [
+            {
+                "icon": "shield-check",
+                "text": "Quality Guaranteed"
+            },
+            {
+                "icon": "lock",
+                "text": "Secure Payment"
+            },
+            {
+                "icon": "package",
+                "text": "Premium Packaging"
+            }
+        ]
+    },
+    "reviews": {
+        "enabled": false,
+        "averageRating": 0,
+        "totalReviews": 0,
+        "reviews": []
+    },
+    "faqs": {
+        "enabled": true,
+        "title": "Frequently Asked Questions",
+        "items": [
+            {
+                "id": "faq-1",
+                "question": "Does this come with LED lights?",
+                "answer": "Yes! This temple comes with integrated warm white LED lighting that creates a peaceful and spiritual atmosphere. The LED is battery operated for easy placement anywhere.",
+                "order": 1
+            },
+            {
+                "id": "faq-2",
+                "question": "What is the size of this temple?",
+                "answer": "The temple measures approximately 18cm in height, making it perfect for table tops, shelves, and pooja corners without taking up too much space.",
+                "order": 2
+            },
+            {
+                "id": "faq-3",
+                "question": "Is the Ganesha idol included?",
+                "answer": "Yes, the Lord Ganesha idol is permanently placed at the center of the temple as part of the complete design.",
+                "order": 3
+            }
+        ]
+    },
+    "relatedProducts": {
+        "enabled": true,
+        "title": "More Temple Designs",
+        "selectionType": "category",
+        "products": [],
+        "displayLimit": 3,
+        "layout": "carousel"
+    },
+    "createdAt": "2026-01-14T00:00:00Z",
+    "updatedAt": "2026-01-14T00:00:00Z"
+}

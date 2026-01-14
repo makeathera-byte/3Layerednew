@@ -1,0 +1,265 @@
+{
+    "id": "mini-ganesha-mandir",
+    "slug": "mini-ganesha-mandir",
+    "categoryId": "miniature-temples",
+    "status": "published",
+    "seo": {
+        "title": "Mini Ganesha Mandir for Home Office & Spiritual Decor | Small Table Top Temple with Golden Kalashas",
+        "description": "Elegant mini table top temple with Lord Ganesha, LED light, and golden kalashas. Perfect for home, office worship and meditation. Compact and beautifully crafted.",
+        "keywords": [
+            "mini ganesha mandir",
+            "small table top temple",
+            "office temple",
+            "golden kalashas temple",
+            "compact pooja mandir",
+            "LED temple"
+        ],
+        "ogImage": "https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/Miniature%20temples/mb/mb3.jpeg",
+        "ogType": "product"
+    },
+    "hero": {
+        "productName": "Mini Ganesha Mandir with Golden Kalashas",
+        "tagline": "Small Table Top Temple for Home, Office & Spiritual Decor",
+        "badge": {
+            "enabled": true,
+            "text": "LED Illuminated",
+            "variant": "led"
+        },
+        "price": {
+            "amount": 1699,
+            "compareAtPrice": 1999,
+            "currency": "INR",
+            "displayFormat": "₹{amount}"
+        },
+        "cta": {
+            "primaryLabel": "Add to Cart",
+            "primaryAction": "buy",
+            "secondaryLabel": "Buy Now"
+        },
+        "gallery": [
+            {
+                "id": "hero-1",
+                "url": "https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/Miniature%20temples/mb/mb3.jpeg",
+                "alt": "Mini Ganesha Mandir with golden kalashas - front view",
+                "order": 1,
+                "isHero": true
+            },
+            {
+                "id": "detail-1",
+                "url": "https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/Miniature%20temples/mb/mb1.jpeg",
+                "alt": "Close-up of mini ganesha temple with LED light",
+                "order": 2,
+                "isHero": false
+            },
+            {
+                "id": "detail-2",
+                "url": "https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/Miniature%20temples/mb/mb2.jpeg",
+                "alt": "Side view showing golden kalashas and details",
+                "order": 3,
+                "isHero": false
+            }
+        ]
+    },
+    "story": {
+        "enabled": true,
+        "title": "Elegance Meets Devotion in Compact Design",
+        "paragraphs": [
+            "Bring peace, positivity, and devotion into your space with this beautifully crafted small table top temple with LED light, designed especially for modern homes. This elegant mini table top temple for home combines traditional Indian temple aesthetics with a compact, space-saving design.",
+            "At the center of this sacred setup sits a serene Lord Ganesha idol, making it a perfect small ganesha temple table top for daily worship and meditation. The soft warm illumination enhances the spiritual atmosphere, transforming it into a calming table top pooja temple ideal for morning prayers and evening rituals.",
+            "Designed for apartments, offices, and study areas, this compact table top mandir fits effortlessly on desks, shelves, bedside tables, and pooja corners. The gentle LED glow makes this mini pooja mandir with light suitable for both day and night use, creating a peaceful and soothing environment."
+        ],
+        "quote": {
+            "enabled": true,
+            "text": "Small in size, infinite in grace - bringing spirituality to modern living spaces.",
+            "attribution": "— Three Layered Design Studio"
+        }
+    },
+    "craftsmanship": {
+        "material": {
+            "name": "Premium 3D Printed Resin",
+            "description": "High-quality materials with golden kalasha accents",
+            "properties": [
+                "Durable construction",
+                "Golden finish accents",
+                "LED-safe materials",
+                "Long-lasting quality"
+            ]
+        },
+        "finish": {
+            "type": "Elegant Temple Finish with Golden Accents",
+            "description": "Beautifully finished with golden kalashas and traditional details",
+            "handFinished": true
+        },
+        "process": {
+            "method": "3D Printing + LED Integration + Golden Accents",
+            "description": "Precision crafted with integrated LED and golden kalasha details",
+            "steps": [
+                "High-resolution 3D printing",
+                "Golden kalasha installation",
+                "LED light integration",
+                "Hand-finishing and quality check"
+            ]
+        },
+        "care": {
+            "durability": "Built for everyday devotional use",
+            "instructions": [
+                "Clean with soft, dry cloth",
+                "Avoid moisture exposure",
+                "LED replaceable if needed",
+                "Handle with care"
+            ]
+        }
+    },
+    "specifications": {
+        "dimensions": {
+            "height": {
+                "value": 16,
+                "unit": "cm"
+            },
+            "width": {
+                "value": 12,
+                "unit": "cm"
+            },
+            "depth": {
+                "value": 12,
+                "unit": "cm"
+            },
+            "displayUnits": "metric"
+        },
+        "weight": {
+            "value": 220,
+            "unit": "g"
+        },
+        "comparison": {
+            "enabled": true,
+            "text": "Compact size perfect for any table or shelf"
+        },
+        "additionalSpecs": [
+            {
+                "label": "LED Type",
+                "value": "Warm white LED (included)"
+            },
+            {
+                "label": "Special Feature",
+                "value": "Golden Kalashas"
+            },
+            {
+                "label": "Power",
+                "value": "Battery operated"
+            }
+        ]
+    },
+    "customization": {
+        "enabled": false,
+        "options": [],
+        "customRequest": {
+            "enabled": false,
+            "ctaLabel": "",
+            "formUrl": ""
+        }
+    },
+    "useCases": {
+        "enabled": true,
+        "title": "Where It Lives",
+        "cases": [
+            {
+                "id": "office",
+                "title": "Office Desk Spirituality",
+                "description": "Perfect for bringing calm and positivity to your workspace",
+                "imageUrl": "",
+                "order": 1
+            },
+            {
+                "id": "home",
+                "title": "Home Decor & Worship",
+                "description": "Fits beautifully in apartments and compact living spaces",
+                "imageUrl": "",
+                "order": 2
+            },
+            {
+                "id": "gift",
+                "title": "Thoughtful Gift",
+                "description": "Ideal for housewarming, Diwali, and festive occasions",
+                "imageUrl": "",
+                "order": 3
+            }
+        ],
+        "displayStyle": "grid"
+    },
+    "assurance": {
+        "production": {
+            "type": "ready-to-ship",
+            "leadTime": {
+                "min": 3,
+                "max": 5,
+                "unit": "days",
+                "description": "Ships within 3-5 business days"
+            }
+        },
+        "shipping": {
+            "description": "Free shipping on all orders",
+            "methods": [
+                "Standard (5-7 days)",
+                "Express (2-3 days)"
+            ]
+        },
+        "returns": {
+            "policy": "30-day satisfaction guarantee. Damaged in transit? We'll replace it free.",
+            "linkUrl": "/policies/returns"
+        },
+        "guarantees": [
+            {
+                "icon": "shield-check",
+                "text": "Quality Guaranteed"
+            },
+            {
+                "icon": "lock",
+                "text": "Secure Payment"
+            },
+            {
+                "icon": "package",
+                "text": "Premium Packaging"
+            }
+        ]
+    },
+    "reviews": {
+        "enabled": false,
+        "averageRating": 0,
+        "totalReviews": 0,
+        "reviews": []
+    },
+    "faqs": {
+        "enabled": true,
+        "title": "Frequently Asked Questions",
+        "items": [
+            {
+                "id": "faq-1",
+                "question": "What are golden kalashas?",
+                "answer": "Golden kalashas are traditional sacred pots typically placed atop temple domes. Our mini temple features beautifully crafted golden kalashas that add an authentic and elegant touch to the design.",
+                "order": 1
+            },
+            {
+                "id": "faq-2",
+                "question": "Is this suitable for office use?",
+                "answer": "Absolutely! This compact temple is designed specifically for modern spaces including office desks, study areas, and small apartments. The LED light creates a peaceful atmosphere perfect for focus and meditation.",
+                "order": 2
+            },
+            {
+                "id": "faq-3",
+                "question": "How does the LED light work?",
+                "answer": "The temple comes with an integrated warm white LED light that runs on batteries. This makes it easy to place anywhere without needing a power outlet. The gentle glow is perfect for day and night use.",
+                "order": 3
+            }
+        ]
+    },
+    "relatedProducts": {
+        "enabled": true,
+        "title": "More Temple Designs",
+        "selectionType": "category",
+        "products": [],
+        "displayLimit": 3,
+        "layout": "carousel"
+    },
+    "createdAt": "2026-01-14T00:00:00Z",
+    "updatedAt": "2026-01-14T00:00:00Z"
+}

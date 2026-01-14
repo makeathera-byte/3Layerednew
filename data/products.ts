@@ -1,48 +1,48 @@
 import { Product } from '@/types/product';
-import angkorWatData from './products/angkor-wat.json';
-import borobudurData from './products/borobudur.json';
-import goldenTempleData from './products/golden-temple.json';
+import southIndianTempleData from './products/south-indian-temple.json';
+import miniGaneshaMandir from './products/mini-ganesha-mandir.json';
+import traditionalIndianTempleData from './products/traditional-indian-temple.json';
 
 // Convert JSON data to Product type with simplified structure for the list page
 export const products: Product[] = [
     {
-        id: angkorWatData.id,
-        slug: angkorWatData.slug,
-        name: angkorWatData.hero.productName,
-        shortDescription: angkorWatData.hero.tagline,
-        price: angkorWatData.hero.price.amount,
-        compareAtPrice: undefined,
-        images: angkorWatData.hero.gallery.map(img => img.url),
-        categoryId: angkorWatData.categoryId,
+        id: southIndianTempleData.id,
+        slug: southIndianTempleData.slug,
+        name: southIndianTempleData.hero.productName,
+        shortDescription: southIndianTempleData.hero.tagline,
+        price: southIndianTempleData.hero.price.amount,
+        compareAtPrice: southIndianTempleData.hero.price.compareAtPrice,
+        images: southIndianTempleData.hero.gallery.map(img => img.url),
+        categoryId: southIndianTempleData.categoryId,
         isFeatured: true,
         inStock: true,
-        status: angkorWatData.status as 'draft' | 'published' | 'archived'
+        status: southIndianTempleData.status as 'draft' | 'published' | 'archived'
     },
     {
-        id: borobudurData.id,
-        slug: borobudurData.slug,
-        name: borobudurData.hero.productName,
-        shortDescription: borobudurData.hero.tagline,
-        price: borobudurData.hero.price.amount,
-        compareAtPrice: undefined,
-        images: borobudurData.hero.gallery.map(img => img.url),
-        categoryId: borobudurData.categoryId,
+        id: miniGaneshaMandir.id,
+        slug: miniGaneshaMandir.slug,
+        name: miniGaneshaMandir.hero.productName,
+        shortDescription: miniGaneshaMandir.hero.tagline,
+        price: miniGaneshaMandir.hero.price.amount,
+        compareAtPrice: miniGaneshaMandir.hero.price.compareAtPrice,
+        images: miniGaneshaMandir.hero.gallery.map(img => img.url),
+        categoryId: miniGaneshaMandir.categoryId,
         isFeatured: true,
         inStock: true,
-        status: borobudurData.status as 'draft' | 'published' | 'archived'
+        status: miniGaneshaMandir.status as 'draft' | 'published' | 'archived'
     },
     {
-        id: goldenTempleData.id,
-        slug: goldenTempleData.slug,
-        name: goldenTempleData.hero.productName,
-        shortDescription: goldenTempleData.hero.tagline,
-        price: goldenTempleData.hero.price.amount,
-        compareAtPrice: undefined,
-        images: goldenTempleData.hero.gallery.map(img => img.url),
-        categoryId: goldenTempleData.categoryId,
-        isFeatured: false,
+        id: traditionalIndianTempleData.id,
+        slug: traditionalIndianTempleData.slug,
+        name: traditionalIndianTempleData.hero.productName,
+        shortDescription: traditionalIndianTempleData.hero.tagline,
+        price: traditionalIndianTempleData.hero.price.amount,
+        compareAtPrice: traditionalIndianTempleData.hero.price.compareAtPrice,
+        images: traditionalIndianTempleData.hero.gallery.map(img => img.url),
+        categoryId: traditionalIndianTempleData.categoryId,
+        isFeatured: true,
         inStock: true,
-        status: goldenTempleData.status as 'draft' | 'published' | 'archived'
+        status: traditionalIndianTempleData.status as 'draft' | 'published' | 'archived'
     }
 ];
 

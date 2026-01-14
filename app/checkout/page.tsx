@@ -16,7 +16,7 @@ export default function CheckoutPage() {
     const [formData, setFormData] = useState({
         // Contact Information
         email: '',
-        phone: '',
+        phone: '', // Will store only 10 digits without +91
 
         // Shipping Address
         firstName: '',
@@ -28,18 +28,23 @@ export default function CheckoutPage() {
         pincode: '',
         country: 'India',
 
-        // Payment
-        cardNumber: '',
-        cardName: '',
-        expiryDate: '',
-        cvv: '',
+        // Payment Method
+        paymentMethod: 'cod', // Default to COD
 
         // Order Notes
         orderNotes: '',
     });
 
+    const COD_CHARGE = 25;
+
     const formatPrice = (price: number) => {
         return `₹${price.toLocaleString()}`;
+    };
+
+    const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        // Only allow digits and limit to 10
+        const value = e.target.value.replace(/\D/g, '').slice(0, 10);
+        setFormData({ ...formData, phone: value });
     };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -49,14 +54,54 @@ export default function CheckoutPage() {
         });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Here you would integrate with a payment gateway
-        // For now, we'll simulate a successful order
-        alert('Order placed successfully! (This is a demo)');
-        clearCart();
-        router.push('/');
+        // Validate phone number
+        if (formData.phone.length !== 10) {
+            alert('Please enter a valid 10-digit mobile number');
+            return;
+        }
+
+        const codCharge = formData.paymentMethod === 'cod' ? COD_CHARGE : 0;
+        const finalTotal = cart.subtotal + codCharge;
+
+        try {
+            const response = await fetch('/api/orders', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    customerName: `${formData.firstName} ${formData.lastName}`,
+                    customerEmail: formData.email,
+                    customerPhone: `+91${formData.phone}`, // Add +91 prefix when saving
+                    customerAddress: {
+                        address: formData.address,
+                        apartment: formData.apartment,
+                        city: formData.city,
+                        state: formData.state,
+                        pincode: formData.pincode,
+                        country: formData.country
+                    },
+                    items: cart.items,
+                    subtotal: cart.subtotal,
+                    total: finalTotal,
+                    notes: formData.orderNotes,
+                    paymentMethod: formData.paymentMethod
+                })
+            });
+
+            const data = await response.json();
+
+            if (response.ok && data.success) {
+                clearCart();
+                router.push(`/order-success?orderNumber=${data.orderNumber}`);
+            } else {
+                alert('Failed to place order. Please try again.');
+            }
+        } catch (error) {
+            console.error('Order error:', error);
+            alert('Failed to place order. Please try again.');
+        }
     };
 
     if (cart.items.length === 0) {
@@ -129,18 +174,30 @@ export default function CheckoutPage() {
 
                                         <div>
                                             <label htmlFor="phone" className="block text-sm font-medium mb-2">
-                                                Phone Number *
+                                                Mobile Number * (10 digits)
                                             </label>
-                                            <input
-                                                type="tel"
-                                                id="phone"
-                                                name="phone"
-                                                required
-                                                value={formData.phone}
-                                                onChange={handleInputChange}
-                                                className="w-full border-2 border-gray-200 px-4 py-3 focus:border-black focus:outline-none transition-colors"
-                                                placeholder="+91 1234567890"
-                                            />
+                                            <div className="flex">
+                                                <span className="inline-flex items-center px-4 py-3 border-2 border-r-0 border-gray-200 bg-gray-50 text-gray-700 font-medium">
+                                                    +91
+                                                </span>
+                                                <input
+                                                    type="tel"
+                                                    id="phone"
+                                                    name="phone"
+                                                    required
+                                                    value={formData.phone}
+                                                    onChange={handlePhoneChange}
+                                                    className="flex-1 border-2 border-gray-200 px-4 py-3 focus:border-black focus:outline-none transition-colors"
+                                                    placeholder="9876543210"
+                                                    maxLength={10}
+                                                    pattern="[0-9]{10}"
+                                                />
+                                            </div>
+                                            {formData.phone.length > 0 && formData.phone.length < 10 && (
+                                                <p className="text-red-600 text-sm mt-1">
+                                                    Please enter 10 digits ({formData.phone.length}/10)
+                                                </p>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
@@ -295,86 +352,38 @@ export default function CheckoutPage() {
                                             3
                                         </div>
                                         <h2 className="font-serif text-2xl font-bold">Payment Method</h2>
-                                        <Lock className="w-5 h-5 text-gray-400 ml-auto" />
-                                    </div>
-
-                                    <div className="mb-6 p-4 bg-gray-50 border border-gray-200 text-sm text-gray-600">
-                                        <p className="flex items-center gap-2">
-                                            <Lock className="w-4 h-4" />
-                                            All transactions are secure and encrypted
-                                        </p>
                                     </div>
 
                                     <div className="space-y-4">
-                                        <div>
-                                            <label htmlFor="cardNumber" className="block text-sm font-medium mb-2">
-                                                Card Number *
-                                            </label>
-                                            <div className="relative">
+                                        <div className="border-2 border-gray-200 p-4 rounded">
+                                            <label className="flex items-center cursor-pointer">
                                                 <input
-                                                    type="text"
-                                                    id="cardNumber"
-                                                    name="cardNumber"
-                                                    required
-                                                    value={formData.cardNumber}
+                                                    type="radio"
+                                                    name="paymentMethod"
+                                                    value="cod"
+                                                    checked={formData.paymentMethod === 'cod'}
                                                     onChange={handleInputChange}
-                                                    className="w-full border-2 border-gray-200 px-4 py-3 pr-12 focus:border-black focus:outline-none transition-colors"
-                                                    placeholder="1234 5678 9012 3456"
-                                                    maxLength={19}
+                                                    className="w-5 h-5 mr-3"
+                                                    required
                                                 />
-                                                <CreditCard className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                                            </div>
+                                                <div className="flex-1">
+                                                    <div className="font-bold">Cash on Delivery (COD)</div>
+                                                    <div className="text-sm text-gray-600">Pay when you receive your order (₹25 extra charge)</div>
+                                                </div>
+                                            </label>
                                         </div>
 
-                                        <div>
-                                            <label htmlFor="cardName" className="block text-sm font-medium mb-2">
-                                                Cardholder Name *
-                                            </label>
-                                            <input
-                                                type="text"
-                                                id="cardName"
-                                                name="cardName"
-                                                required
-                                                value={formData.cardName}
-                                                onChange={handleInputChange}
-                                                className="w-full border-2 border-gray-200 px-4 py-3 focus:border-black focus:outline-none transition-colors"
-                                                placeholder="Name on card"
-                                            />
-                                        </div>
-
-                                        <div className="grid grid-cols-2 gap-4">
-                                            <div>
-                                                <label htmlFor="expiryDate" className="block text-sm font-medium mb-2">
-                                                    Expiry Date *
-                                                </label>
+                                        <div className="border-2 border-gray-200 p-4 rounded bg-gray-50">
+                                            <div className="flex items-center">
                                                 <input
-                                                    type="text"
-                                                    id="expiryDate"
-                                                    name="expiryDate"
-                                                    required
-                                                    value={formData.expiryDate}
-                                                    onChange={handleInputChange}
-                                                    className="w-full border-2 border-gray-200 px-4 py-3 focus:border-black focus:outline-none transition-colors"
-                                                    placeholder="MM/YY"
-                                                    maxLength={5}
+                                                    type="radio"
+                                                    disabled
+                                                    className="w-5 h-5 mr-3 opacity-50"
                                                 />
-                                            </div>
-
-                                            <div>
-                                                <label htmlFor="cvv" className="block text-sm font-medium mb-2">
-                                                    CVV *
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    id="cvv"
-                                                    name="cvv"
-                                                    required
-                                                    value={formData.cvv}
-                                                    onChange={handleInputChange}
-                                                    className="w-full border-2 border-gray-200 px-4 py-3 focus:border-black focus:outline-none transition-colors"
-                                                    placeholder="123"
-                                                    maxLength={4}
-                                                />
+                                                <div className="flex-1">
+                                                    <div className="font-bold text-gray-400">Online Payment</div>
+                                                    <div className="text-sm text-gray-400">Coming Soon!</div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -456,17 +465,19 @@ export default function CheckoutPage() {
                                         <span className="text-gray-600">Shipping</span>
                                         <span className="text-green-600">Free</span>
                                     </div>
-                                    <div className="flex justify-between text-sm">
-                                        <span className="text-gray-600">Tax (18% GST)</span>
-                                        <span>{formatPrice(Math.round(cart.subtotal * 0.18))}</span>
-                                    </div>
+                                    {formData.paymentMethod === 'cod' && (
+                                        <div className="flex justify-between text-sm">
+                                            <span className="text-gray-600">COD Charges</span>
+                                            <span>{formatPrice(COD_CHARGE)}</span>
+                                        </div>
+                                    )}
                                 </div>
 
                                 {/* Total */}
                                 <div className="flex justify-between items-baseline mb-6">
                                     <span className="text-lg font-medium">Total</span>
                                     <span className="font-serif text-3xl font-bold">
-                                        {formatPrice(Math.round(cart.subtotal * 1.18))}
+                                        {formatPrice(cart.subtotal + (formData.paymentMethod === 'cod' ? COD_CHARGE : 0))}
                                     </span>
                                 </div>
 

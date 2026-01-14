@@ -1,0 +1,276 @@
+{
+    "id": "traditional-indian-temple",
+    "slug": "traditional-indian-temple",
+    "categoryId": "miniature-temples",
+    "status": "published",
+    "seo": {
+        "title": "Traditional Indian Temple Table Top with LED Light | Handcrafted Ganesha Mandir",
+        "description": "Vastu-compliant table top temple with Lord Ganesha, LED lighting, and traditional Indian architecture. Perfect for home meditation, pooja, and spiritual decor.",
+        "keywords": [
+            "traditional indian temple",
+            "vastu temple",
+            "meditation temple",
+            "ganesha mandir",
+            "spiritual home decor",
+            "LED pooja temple"
+        ],
+        "ogImage": "https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/Miniature%20temples/mc/mc1.jpg",
+        "ogType": "product"
+    },
+    "hero": {
+        "productName": "Traditional Indian Temple Table Top with LED Light",
+        "tagline": "Handcrafted Ganesha Mandir for Home & Office Decor",
+        "badge": {
+            "enabled": true,
+            "text": "Vastu Compliant",
+            "variant": "vastu"
+        },
+        "price": {
+            "amount": 2099,
+            "compareAtPrice": 2469,
+            "currency": "INR",
+            "displayFormat": "₹{amount}"
+        },
+        "cta": {
+            "primaryLabel": "Add to Cart",
+            "primaryAction": "buy",
+            "secondaryLabel": "Buy Now"
+        },
+        "gallery": [
+            {
+                "id": "hero-1",
+                "url": "https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/Miniature%20temples/mc/mc1.jpg",
+                "alt": "Traditional Indian Temple Table Top - front view with LED",
+                "order": 1,
+                "isHero": true
+            },
+            {
+                "id": "detail-1",
+                "url": "https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/Miniature%20temples/mc/mc2.jpeg",
+                "alt": "Traditional temple with intricate details and Ganesha idol",
+                "order": 2,
+                "isHero": false
+            },
+            {
+                "id": "detail-2",
+                "url": "https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/Miniature%20temples/mc/mc3.jpeg",
+                "alt": "Close-up showing traditional craftsmanship and LED glow",
+                "order": 3,
+                "isHero": false
+            }
+        ]
+    },
+    "story": {
+        "enabled": true,
+        "title": "Where Tradition Meets Modern Living",
+        "paragraphs": [
+            "Create a sacred and calming space in your home with this beautifully designed vastu temple for home table top, crafted to bring positivity, devotion, and balance into everyday living. Inspired by traditional Indian temple architecture, this piece is perfect for those seeking both spiritual depth and aesthetic elegance.",
+            "This spiritual table decor temple features a finely detailed structure with a serene Lord Ganesha placed at the center, making it an ideal ganesha idol with temple model for daily worship and mindful moments. The soft illumination enhances the sanctum, transforming it into a pooja mandir with warm light that soothes the mind and uplifts the soul.",
+            "Designed especially for compact spaces, this temple works beautifully as a meditation temple decor for home, helping create a peaceful corner for prayer, meditation, or quiet reflection. Its calming glow and traditional form promote focus and inner peace, making it a perfect choice for peaceful home mandir decor."
+        ],
+        "quote": {
+            "enabled": true,
+            "text": "Divine grace meets architectural beauty - creating sacred spaces in modern homes.",
+            "attribution": "— Three Layered Design Studio"
+        }
+    },
+    "craftsmanship": {
+        "material": {
+            "name": "Premium 3D Printed Resin",
+            "description": "High-quality materials with traditional temple finish",
+            "properties": [
+                "Vastu-compliant design",
+                "Durable construction",
+                "LED-safe materials",
+                "Traditional aesthetics"
+            ]
+        },
+        "finish": {
+            "type": "Traditional Temple Finish",
+            "description": "Handcrafted finish with attention to traditional details",
+            "handFinished": true
+        },
+        "process": {
+            "method": "3D Printing + Traditional Finishing + LED Integration",
+            "description": "Combining modern technology with traditional craftsmanship",
+            "steps": [
+                "High-resolution 3D printing",
+                "Traditional finish application",
+                "LED light integration",
+                "Ganesha idol placement",
+                "Quality inspection"
+            ]
+        },
+        "care": {
+            "durability": "Built for daily spiritual practice",
+            "instructions": [
+                "Clean with soft, dry cloth",
+                "Keep in dry environment",
+                "LED replaceable if needed",
+                "Handle with devotion and care"
+            ]
+        }
+    },
+    "specifications": {
+        "dimensions": {
+            "height": {
+                "value": 20,
+                "unit": "cm"
+            },
+            "width": {
+                "value": 15,
+                "unit": "cm"
+            },
+            "depth": {
+                "value": 15,
+                "unit": "cm"
+            },
+            "displayUnits": "metric"
+        },
+        "weight": {
+            "value": 280,
+            "unit": "g"
+        },
+        "comparison": {
+            "enabled": true,
+            "text": "Perfect size for meditation corners and pooja rooms"
+        },
+        "additionalSpecs": [
+            {
+                "label": "LED Type",
+                "value": "Warm white LED (included)"
+            },
+            {
+                "label": "Design Style",
+                "value": "Traditional Indian Vastu"
+            },
+            {
+                "label": "Power",
+                "value": "Battery operated"
+            },
+            {
+                "label": "Special Feature",
+                "value": "Vastu-compliant design"
+            }
+        ]
+    },
+    "customization": {
+        "enabled": false,
+        "options": [],
+        "customRequest": {
+            "enabled": false,
+            "ctaLabel": "",
+            "formUrl": ""
+        }
+    },
+    "useCases": {
+        "enabled": true,
+        "title": "Where It Lives",
+        "cases": [
+            {
+                "id": "meditation",
+                "title": "Meditation Corner",
+                "description": "Creates a peaceful space for prayer and quiet reflection",
+                "imageUrl": "",
+                "order": 1
+            },
+            {
+                "id": "pooja",
+                "title": "Daily Pooja Rituals",
+                "description": "Perfect for morning and evening worship rituals",
+                "imageUrl": "",
+                "order": 2
+            },
+            {
+                "id": "gift",
+                "title": "Spiritual Gift",
+                "description": "Ideal for housewarming, weddings, and festive celebrations",
+                "imageUrl": "",
+                "order": 3
+            }
+        ],
+        "displayStyle": "grid"
+    },
+    "assurance": {
+        "production": {
+            "type": "ready-to-ship",
+            "leadTime": {
+                "min": 3,
+                "max": 5,
+                "unit": "days",
+                "description": "Ships within 3-5 business days"
+            }
+        },
+        "shipping": {
+            "description": "Free shipping on all orders",
+            "methods": [
+                "Standard (5-7 days)",
+                "Express (2-3 days)"
+            ]
+        },
+        "returns": {
+            "policy": "30-day satisfaction guarantee. Damaged in transit? We'll replace it free.",
+            "linkUrl": "/policies/returns"
+        },
+        "guarantees": [
+            {
+                "icon": "shield-check",
+                "text": "Quality Guaranteed"
+            },
+            {
+                "icon": "lock",
+                "text": "Secure Payment"
+            },
+            {
+                "icon": "package",
+                "text": "Premium Packaging"
+            }
+        ]
+    },
+    "reviews": {
+        "enabled": false,
+        "averageRating": 0,
+        "totalReviews": 0,
+        "reviews": []
+    },
+    "faqs": {
+        "enabled": true,
+        "title": "Frequently Asked Questions",
+        "items": [
+            {
+                "id": "faq-1",
+                "question": "What does Vastu-compliant mean?",
+                "answer": "Vastu-compliant means the temple is designed according to traditional Vastu Shastra principles, which promote positive energy flow and spiritual balance in your home. The proportions, orientation, and design elements follow sacred geometry.",
+                "order": 1
+            },
+            {
+                "id": "faq-2",
+                "question": "Is this suitable for meditation practice?",
+                "answer": "Yes! This temple is specifically designed to create a peaceful meditation corner. The warm LED glow and traditional architecture help establish a calm, focused environment perfect for meditation and spiritual practice.",
+                "order": 2
+            },
+            {
+                "id": "faq-3",
+                "question": "Can I use this in a small apartment?",
+                "answer": "Absolutely! This compact design (20cm height) is perfect for modern homes and apartments. It fits beautifully on tables, shelves, and small pooja corners while maintaining its sacred presence.",
+                "order": 3
+            },
+            {
+                "id": "faq-4",
+                "question": "Is it suitable as a wedding gift?",
+                "answer": "Yes! This traditional temple makes a meaningful and auspicious gift for weddings, housewarming ceremonies, anniversaries, and other festive occasions. It symbolizes blessings, prosperity, and spiritual positivity.",
+                "order": 4
+            }
+        ]
+    },
+    "relatedProducts": {
+        "enabled": true,
+        "title": "More Temple Designs",
+        "selectionType": "category",
+        "products": [],
+        "displayLimit": 3,
+        "layout": "carousel"
+    },
+    "createdAt": "2026-01-14T00:00:00Z",
+    "updatedAt": "2026-01-14T00:00:00Z"
+}

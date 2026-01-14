@@ -3,6 +3,14 @@
 import { MapPin, Clock } from "lucide-react";
 
 export function MapSection() {
+    // Google Maps Embed API configuration
+    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+    const plusCode = "MQ62+V6 Pimpri-Chinchwad, Maharashtra";
+    const encodedLocation = encodeURIComponent(plusCode);
+
+    // Construct the Google Maps Embed URL
+    const mapUrl = `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodedLocation}&zoom=15`;
+
     return (
         <section className="py-24 px-6 bg-white">
             <div className="max-w-7xl mx-auto">
@@ -19,7 +27,8 @@ export function MapSection() {
                                 <div>
                                     <h3 className="font-bold mb-1">Location</h3>
                                     <p className="text-gray-600">
-                                        Pune<br />
+                                        MQ62+V6<br />
+                                        Pimpri-Chinchwad<br />
                                         Maharashtra, India
                                     </p>
                                 </div>
@@ -41,16 +50,28 @@ export function MapSection() {
 
                     {/* Right side - Map */}
                     <div className="h-96 bg-gray-200 rounded-lg overflow-hidden border border-gray-300">
-                        {/* Placeholder for Google Maps embed */}
-                        <div className="w-full h-full flex items-center justify-center">
-                            <div className="text-center">
-                                <MapPin className="w-16 h-16 mx-auto mb-4 text-gray-400" />
-                                <p className="text-gray-600">Google Maps Embed</p>
-                                <p className="text-sm text-gray-500 mt-2">
-                                    (Add API key for production)
-                                </p>
+                        {apiKey ? (
+                            <iframe
+                                src={mapUrl}
+                                width="100%"
+                                height="100%"
+                                style={{ border: 0 }}
+                                allowFullScreen
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                                title="Workshop Location Map"
+                            />
+                        ) : (
+                            <div className="w-full h-full flex items-center justify-center">
+                                <div className="text-center">
+                                    <MapPin className="w-16 h-16 mx-auto mb-4 text-gray-400" />
+                                    <p className="text-gray-600">Google Maps Embed</p>
+                                    <p className="text-sm text-gray-500 mt-2">
+                                        API key required
+                                    </p>
+                                </div>
                             </div>
-                        </div>
+                        )}
                     </div>
                 </div>
             </div>

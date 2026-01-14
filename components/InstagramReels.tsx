@@ -87,7 +87,6 @@ function ReelCard({ reel, index }: { reel: typeof REELS[0], index: number }) {
                     className="w-full h-full"
                     frameBorder="0"
                     scrolling="no"
-                    allowTransparency={true}
                     allow="autoplay; encrypted-media"
                 />
             </a>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Image from 'next/image';
 import { HeroSection as HeroSectionType } from '@/types/product';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -16,6 +16,8 @@ export function HeroSection({ data, productId, productSlug }: HeroSectionProps) 
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const sortedGallery = [...data.gallery].sort((a, b) => a.order - b.order);
     const { addToCart } = useCart();
+    const touchStartX = useRef<number | null>(null);
+    const touchEndX = useRef<number | null>(null);
 
     const nextImage = () => {
         setCurrentImageIndex((prev) => (prev + 1) % sortedGallery.length);
@@ -25,6 +27,32 @@ export function HeroSection({ data, productId, productSlug }: HeroSectionProps) 
         setCurrentImageIndex(
             (prev) => (prev - 1 + sortedGallery.length) % sortedGallery.length
         );
+    };
+
+    // Swipe handlers for mobile
+    const minSwipeDistance = 50;
+
+    const onTouchStart = (e: React.TouchEvent) => {
+        touchEndX.current = null;
+        touchStartX.current = e.targetTouches[0].clientX;
+    };
+
+    const onTouchMove = (e: React.TouchEvent) => {
+        touchEndX.current = e.targetTouches[0].clientX;
+    };
+
+    const onTouchEnd = () => {
+        if (!touchStartX.current || !touchEndX.current) return;
+        const distance = touchStartX.current - touchEndX.current;
+        const isLeftSwipe = distance > minSwipeDistance;
+        const isRightSwipe = distance < -minSwipeDistance;
+
+        if (isLeftSwipe && sortedGallery.length > 1) {
+            nextImage();
+        }
+        if (isRightSwipe && sortedGallery.length > 1) {
+            prevImage();
+        }
     };
 
     const handleAddToCart = () => {
@@ -65,13 +93,19 @@ export function HeroSection({ data, productId, productSlug }: HeroSectionProps) 
                     {/* Image Gallery */}
                     <div className="space-y-4">
                         {/* Main Image */}
-                        <div className="relative aspect-square bg-gray-50 overflow-hidden group">
+                        <div 
+                            className="relative aspect-square bg-gray-50 overflow-hidden group touch-pan-y"
+                            onTouchStart={onTouchStart}
+                            onTouchMove={onTouchMove}
+                            onTouchEnd={onTouchEnd}
+                        >
                             <Image
                                 src={sortedGallery[currentImageIndex].url}
                                 alt={sortedGallery[currentImageIndex].alt}
                                 fill
-                                className="object-cover"
+                                className="object-cover select-none"
                                 priority
+                                draggable={false}
                             />
 
                             {/* Navigation Arrows */}

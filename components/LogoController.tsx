@@ -83,7 +83,7 @@ export function LogoController() {
                 left: "50%",
                 x: "-50%",
                 top: 0,
-                zIndex: 100,
+                zIndex: 90,
                 color: getLogoColor(),
                 transition: "color 0.3s ease",
             }}

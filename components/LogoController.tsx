@@ -19,12 +19,23 @@ import { usePathname } from "next/navigation";
 export function LogoController() {
     const [mounted, setMounted] = useState(false);
     const [isAnimating, setIsAnimating] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
     const shouldReduceMotion = useReducedMotion();
     const { isDarkSlide } = useSlide();
     const pathname = usePathname();
     const isHomePage = pathname === '/';
 
     const { scrollY } = useScroll();
+
+    // Detect mobile screen size
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     useEffect(() => {
         setMounted(true);
@@ -65,7 +76,20 @@ export function LogoController() {
     };
 
     // Animation variants for smooth transition (only on homepage)
-    const logoVariants = {
+    // On mobile: less travel distance, stops in middle of slide
+    // On desktop: original animation
+    const logoVariantsMobile = {
+        initial: {
+            scale: 2.5,
+            y: 80, // Reduced from 150 for less travel on mobile
+        },
+        docked: {
+            scale: 0.85,
+            y: 50, // Increased from 8 to stop more in middle of slide (mobile)
+        }
+    };
+
+    const logoVariantsDesktop = {
         initial: {
             scale: 2.5,
             y: 150,
@@ -75,6 +99,9 @@ export function LogoController() {
             y: 8,
         }
     };
+
+    // Use mobile variants on mobile, desktop variants on desktop
+    const logoVariants = isMobile ? logoVariantsMobile : logoVariantsDesktop;
 
     return (
         <motion.div

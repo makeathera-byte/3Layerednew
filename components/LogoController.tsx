@@ -110,7 +110,7 @@ export function LogoController() {
                 left: "50%",
                 x: "-50%",
                 top: 0,
-                zIndex: 40, // Lower than navbar (z-50) and menu (z-110) to ensure menu is always on top
+                zIndex: 60, // Higher than navbar (z-50) but lower than menu (z-110)
                 color: getLogoColor(),
                 transition: "color 0.3s ease",
             }}

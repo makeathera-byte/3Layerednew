@@ -61,7 +61,7 @@ export function Navbar() {
 
     return (
         <motion.header
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${getNavbarBg()}`}
+            className={`fixed top-0 left-0 right-0 transition-all duration-300 ${isMenuOpen ? 'z-[100]' : 'z-50'} ${getNavbarBg()}`}
             initial={{ height: "5rem" }}
             animate={{
                 height: isScrolled ? "4rem" : "5rem",

@@ -1,6 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Production optimizations
+  compress: true,
+  poweredByHeader: false,
+  reactStrictMode: true,
+
   images: {
     remotePatterns: [
       {
@@ -14,6 +19,10 @@ const nextConfig: NextConfig = {
         pathname: '/storage/v1/object/public/**',
       },
     ],
+    // Increase timeout for slow Supabase storage responses
+    minimumCacheTTL: 60,
+    // Add unoptimized for development if timeouts persist
+    // unoptimized: process.env.NODE_ENV === 'development',
   },
 };
 

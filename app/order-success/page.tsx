@@ -10,6 +10,7 @@ import { CheckCircle, Mail, Package } from 'lucide-react';
 function OrderSuccessContent() {
     const searchParams = useSearchParams();
     const orderNumber = searchParams.get('orderNumber');
+    const paymentMethod = searchParams.get('paymentMethod') || 'cod';
 
     return (
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
@@ -34,12 +35,21 @@ function OrderSuccessContent() {
                 </p>
             </div>
 
-            <div className="bg-yellow-50 border border-yellow-200 p-6 mb-8 text-left">
-                <p className="font-bold text-yellow-900 mb-2">💳 Payment Method</p>
-                <p className="text-yellow-800">
-                    Cash on Delivery (COD) - Please keep exact cash ready when receiving your order.
-                </p>
-            </div>
+            {paymentMethod === 'online' ? (
+                <div className="bg-green-50 border border-green-200 p-6 mb-8 text-left">
+                    <p className="font-bold text-green-900 mb-2">💳 Payment Successful</p>
+                    <p className="text-green-800">
+                        Your payment has been successfully processed. Thank you for choosing online payment!
+                    </p>
+                </div>
+            ) : (
+                <div className="bg-yellow-50 border border-yellow-200 p-6 mb-8 text-left">
+                    <p className="font-bold text-yellow-900 mb-2">💳 Payment Method</p>
+                    <p className="text-yellow-800">
+                        Cash on Delivery (COD) - Please keep exact cash ready when receiving your order.
+                    </p>
+                </div>
+            )}
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div className="bg-white border border-gray-200 p-6">

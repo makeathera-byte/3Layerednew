@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useCart } from '@/contexts/CartContext';
 import { Navbar } from '@/components/Navbar';
 import { SlideProvider } from '@/contexts/SlideContext';
@@ -9,10 +9,13 @@ import Link from 'next/link';
 import { ArrowLeft, Lock, CreditCard, Truck, Package } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
+
 export default function CheckoutPage() {
     const { cart, clearCart } = useCart();
     const router = useRouter();
     const [step, setStep] = useState<'information' | 'shipping' | 'payment'>('information');
+    const [isProcessing, setIsProcessing] = useState(false);
+    const [razorpayLoaded, setRazorpayLoaded] = useState(false);
     const [formData, setFormData] = useState({
         // Contact Information
         email: '',
@@ -29,13 +32,26 @@ export default function CheckoutPage() {
         country: 'India',
 
         // Payment Method
-        paymentMethod: 'cod', // Default to COD
+        paymentMethod: 'online', // Default to online payment
 
         // Order Notes
         orderNotes: '',
     });
 
     const COD_CHARGE = 25;
+
+    // Load Razorpay script
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+        script.async = true;
+        script.onload = () => setRazorpayLoaded(true);
+        document.body.appendChild(script);
+
+        return () => {
+            document.body.removeChild(script);
+        };
+    }, []);
 
     const formatPrice = (price: number) => {
         return `₹${price.toLocaleString()}`;
@@ -54,6 +70,131 @@ export default function CheckoutPage() {
         });
     };
 
+    const handleRazorpayPayment = async () => {
+        if (!razorpayLoaded) {
+            alert('Payment system is loading. Please wait...');
+            return;
+        }
+
+        setIsProcessing(true);
+        const finalTotal = cart.subtotal;
+
+        try {
+            // Create Razorpay order
+            const orderResponse = await fetch('/api/razorpay/create-order', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    amount: finalTotal,
+                    currency: 'INR',
+                    receipt: `receipt_${Date.now()}`,
+                    notes: {
+                        customerName: `${formData.firstName} ${formData.lastName}`,
+                        customerEmail: formData.email,
+                    },
+                }),
+            });
+
+            const orderData = await orderResponse.json();
+
+            if (!orderData.success) {
+                throw new Error('Failed to create payment order');
+            }
+
+            // Initialize Razorpay checkout
+            const options = {
+                key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!,
+                amount: orderData.amount,
+                currency: orderData.currency,
+                name: '3Layered',
+                description: 'Order Payment',
+                order_id: orderData.orderId,
+                handler: async (response: any) => {
+                    try {
+                        // Verify payment
+                        const verifyResponse = await fetch('/api/razorpay/verify-payment', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                razorpay_order_id: response.razorpay_order_id,
+                                razorpay_payment_id: response.razorpay_payment_id,
+                                razorpay_signature: response.razorpay_signature,
+                            }),
+                        });
+
+                        const verifyData = await verifyResponse.json();
+
+                        if (verifyData.success) {
+                            // Create order in database
+                            const createOrderResponse = await fetch('/api/orders', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    customerName: `${formData.firstName} ${formData.lastName}`,
+                                    customerEmail: formData.email,
+                                    customerPhone: `+91${formData.phone}`,
+                                    customerAddress: {
+                                        address: formData.address,
+                                        apartment: formData.apartment,
+                                        city: formData.city,
+                                        state: formData.state,
+                                        pincode: formData.pincode,
+                                        country: formData.country,
+                                    },
+                                    items: cart.items,
+                                    subtotal: cart.subtotal,
+                                    total: finalTotal,
+                                    notes: formData.orderNotes,
+                                    paymentMethod: 'online',
+                                    razorpayOrderId: response.razorpay_order_id,
+                                    razorpayPaymentId: response.razorpay_payment_id,
+                                    razorpaySignature: response.razorpay_signature,
+                                }),
+                            });
+
+                            const orderResult = await createOrderResponse.json();
+
+                            if (orderResult.success) {
+                                clearCart();
+                                router.push(`/order-success?orderNumber=${orderResult.orderNumber}&paymentMethod=online`);
+                            } else {
+                                alert('Payment successful but order creation failed. Please contact support.');
+                            }
+                        } else {
+                            alert('Payment verification failed. Please contact support.');
+                        }
+                    } catch (error) {
+                        console.error('Payment verification error:', error);
+                        alert('Payment verification failed. Please contact support.');
+                    } finally {
+                        setIsProcessing(false);
+                    }
+                },
+                prefill: {
+                    name: `${formData.firstName} ${formData.lastName}`,
+                    email: formData.email,
+                    contact: formData.phone,
+                },
+                theme: {
+                    color: '#000000',
+                },
+                modal: {
+                    ondismiss: () => {
+                        setIsProcessing(false);
+                        alert('Payment cancelled. Your order has not been placed.');
+                    },
+                },
+            };
+
+            const razorpay = new window.Razorpay(options);
+            razorpay.open();
+        } catch (error) {
+            console.error('Payment error:', error);
+            alert('Failed to initiate payment. Please try again.');
+            setIsProcessing(false);
+        }
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -63,44 +204,53 @@ export default function CheckoutPage() {
             return;
         }
 
-        const codCharge = formData.paymentMethod === 'cod' ? COD_CHARGE : 0;
-        const finalTotal = cart.subtotal + codCharge;
+        // Route to appropriate payment flow
+        if (formData.paymentMethod === 'online') {
+            await handleRazorpayPayment();
+        } else {
+            // COD flow
+            setIsProcessing(true);
+            const codCharge = COD_CHARGE;
+            const finalTotal = cart.subtotal + codCharge;
 
-        try {
-            const response = await fetch('/api/orders', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    customerName: `${formData.firstName} ${formData.lastName}`,
-                    customerEmail: formData.email,
-                    customerPhone: `+91${formData.phone}`, // Add +91 prefix when saving
-                    customerAddress: {
-                        address: formData.address,
-                        apartment: formData.apartment,
-                        city: formData.city,
-                        state: formData.state,
-                        pincode: formData.pincode,
-                        country: formData.country
-                    },
-                    items: cart.items,
-                    subtotal: cart.subtotal,
-                    total: finalTotal,
-                    notes: formData.orderNotes,
-                    paymentMethod: formData.paymentMethod
-                })
-            });
+            try {
+                const response = await fetch('/api/orders', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        customerName: `${formData.firstName} ${formData.lastName}`,
+                        customerEmail: formData.email,
+                        customerPhone: `+91${formData.phone}`,
+                        customerAddress: {
+                            address: formData.address,
+                            apartment: formData.apartment,
+                            city: formData.city,
+                            state: formData.state,
+                            pincode: formData.pincode,
+                            country: formData.country,
+                        },
+                        items: cart.items,
+                        subtotal: cart.subtotal,
+                        total: finalTotal,
+                        notes: formData.orderNotes,
+                        paymentMethod: 'cod',
+                    }),
+                });
 
-            const data = await response.json();
+                const data = await response.json();
 
-            if (response.ok && data.success) {
-                clearCart();
-                router.push(`/order-success?orderNumber=${data.orderNumber}`);
-            } else {
+                if (response.ok && data.success) {
+                    clearCart();
+                    router.push(`/order-success?orderNumber=${data.orderNumber}&paymentMethod=cod`);
+                } else {
+                    alert('Failed to place order. Please try again.');
+                }
+            } catch (error) {
+                console.error('Order error:', error);
                 alert('Failed to place order. Please try again.');
+            } finally {
+                setIsProcessing(false);
             }
-        } catch (error) {
-            console.error('Order error:', error);
-            alert('Failed to place order. Please try again.');
         }
     };
 
@@ -355,7 +505,34 @@ export default function CheckoutPage() {
                                     </div>
 
                                     <div className="space-y-4">
-                                        <div className="border-2 border-gray-200 p-4 rounded">
+                                        <div className={`border-2 p-4 rounded transition-colors ${formData.paymentMethod === 'online'
+                                            ? 'border-black bg-gray-50'
+                                            : 'border-gray-200'
+                                            }`}>
+                                            <label className="flex items-center cursor-pointer">
+                                                <input
+                                                    type="radio"
+                                                    name="paymentMethod"
+                                                    value="online"
+                                                    checked={formData.paymentMethod === 'online'}
+                                                    onChange={handleInputChange}
+                                                    className="w-5 h-5 mr-3"
+                                                    required
+                                                />
+                                                <div className="flex-1">
+                                                    <div className="font-bold flex items-center gap-2">
+                                                        <CreditCard className="w-5 h-5" />
+                                                        Online Payment
+                                                    </div>
+                                                    <div className="text-sm text-gray-600">Pay securely with cards, UPI, wallets & more</div>
+                                                </div>
+                                            </label>
+                                        </div>
+
+                                        <div className={`border-2 p-4 rounded transition-colors ${formData.paymentMethod === 'cod'
+                                            ? 'border-black bg-gray-50'
+                                            : 'border-gray-200'
+                                            }`}>
                                             <label className="flex items-center cursor-pointer">
                                                 <input
                                                     type="radio"
@@ -364,27 +541,12 @@ export default function CheckoutPage() {
                                                     checked={formData.paymentMethod === 'cod'}
                                                     onChange={handleInputChange}
                                                     className="w-5 h-5 mr-3"
-                                                    required
                                                 />
                                                 <div className="flex-1">
                                                     <div className="font-bold">Cash on Delivery (COD)</div>
                                                     <div className="text-sm text-gray-600">Pay when you receive your order (₹25 extra charge)</div>
                                                 </div>
                                             </label>
-                                        </div>
-
-                                        <div className="border-2 border-gray-200 p-4 rounded bg-gray-50">
-                                            <div className="flex items-center">
-                                                <input
-                                                    type="radio"
-                                                    disabled
-                                                    className="w-5 h-5 mr-3 opacity-50"
-                                                />
-                                                <div className="flex-1">
-                                                    <div className="font-bold text-gray-400">Online Payment</div>
-                                                    <div className="text-sm text-gray-400">Coming Soon!</div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -406,9 +568,19 @@ export default function CheckoutPage() {
                                 {/* Submit Button */}
                                 <button
                                     type="submit"
-                                    className="w-full bg-black text-white py-4 px-6 text-lg font-light tracking-wide hover:bg-gray-900 transition-colors duration-200"
+                                    disabled={isProcessing || (formData.paymentMethod === 'online' && !razorpayLoaded)}
+                                    className="w-full bg-black text-white py-4 px-6 text-lg font-light tracking-wide hover:bg-gray-900 transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed"
                                 >
-                                    Complete Order
+                                    {isProcessing ? (
+                                        <span className="flex items-center justify-center gap-2">
+                                            <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                                            Processing...
+                                        </span>
+                                    ) : formData.paymentMethod === 'online' ? (
+                                        razorpayLoaded ? 'Proceed to Payment' : 'Loading Payment Gateway...'
+                                    ) : (
+                                        'Complete Order'
+                                    )}
                                 </button>
 
                                 <p className="text-xs text-center text-gray-500">

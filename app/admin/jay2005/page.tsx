@@ -10,9 +10,14 @@ interface Order {
     customer_name: string;
     customer_email: string;
     customer_phone: string | null;
+    customer_address?: any;
     items: any[];
     total: number;
     status: string;
+    payment_method?: string;
+    payment_status?: string;
+    razorpay_order_id?: string | null;
+    razorpay_payment_id?: string | null;
     created_at: string;
 }
 
@@ -377,6 +382,33 @@ export default function AdminPanel() {
                                                         <div className="text-sm">{new Date(order.created_at).toLocaleDateString()}</div>
                                                     </div>
                                                 </div>
+
+                                                {/* Shipping Address */}
+                                                {order.customer_address && (
+                                                    <div className="mt-4 pt-4 border-t border-gray-200">
+                                                        <div className="text-sm text-gray-500 mb-2 flex items-center gap-2">
+                                                            Shipping Address:
+                                                            <button
+                                                                onClick={() => {
+                                                                    const fullAddress = `${order.customer_address.address}${order.customer_address.apartment ? ', ' + order.customer_address.apartment : ''}, ${order.customer_address.city}, ${order.customer_address.state} ${order.customer_address.pincode}, ${order.customer_address.country}`;
+                                                                    copyToClipboard(fullAddress);
+                                                                }}
+                                                                className="text-blue-600 hover:text-blue-800"
+                                                                title="Copy address"
+                                                            >
+                                                                📋
+                                                            </button>
+                                                        </div>
+                                                        <div className="text-sm">
+                                                            {order.customer_address.address}
+                                                            {order.customer_address.apartment && `, ${order.customer_address.apartment}`}
+                                                            <br />
+                                                            {order.customer_address.city}, {order.customer_address.state} {order.customer_address.pincode}
+                                                            <br />
+                                                            {order.customer_address.country}
+                                                        </div>
+                                                    </div>
+                                                )}
                                                 <div className="mt-4 pt-4 border-t border-gray-200">
                                                     <div className="text-sm text-gray-500 mb-2">Items:</div>
                                                     {order.items.map((item: any, index: number) => (
@@ -385,6 +417,46 @@ export default function AdminPanel() {
                                                         </div>
                                                     ))}
                                                 </div>
+
+                                                {/* Payment Information */}
+                                                {order.payment_method && (
+                                                    <div className="mt-4 pt-4 border-t border-gray-200">
+                                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                                            <div>
+                                                                <div className="text-sm text-gray-500">Payment Method</div>
+                                                                <div className="font-medium capitalize">
+                                                                    {order.payment_method === 'cod' ? 'Cash on Delivery' : 'Online Payment'}
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div className="text-sm text-gray-500">Payment Status</div>
+                                                                <div className="font-medium">
+                                                                    <span className={`px-2 py-1 text-xs rounded ${order.payment_status === 'completed' ? 'bg-green-100 text-green-800' :
+                                                                        order.payment_status === 'failed' ? 'bg-red-100 text-red-800' :
+                                                                            'bg-yellow-100 text-yellow-800'
+                                                                        }`}>
+                                                                        {order.payment_status || 'pending'}
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            {order.razorpay_payment_id && (
+                                                                <div>
+                                                                    <div className="text-sm text-gray-500">Razorpay Payment ID</div>
+                                                                    <div className="text-sm font-mono flex items-center gap-2">
+                                                                        {order.razorpay_payment_id}
+                                                                        <button
+                                                                            onClick={() => copyToClipboard(order.razorpay_payment_id || '')}
+                                                                            className="text-blue-600 hover:text-blue-800"
+                                                                            title="Copy payment ID"
+                                                                        >
+                                                                            📋
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                )}
                                                 <div className="mt-4 flex items-center justify-between gap-4">
                                                     <div className="flex items-center gap-4">
                                                         <label className="text-sm text-gray-600">Status:</label>

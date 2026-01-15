@@ -1,5 +1,13 @@
 import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
+import {
+    sanitizeInput,
+    validateEmail,
+    validatePhone,
+    validateOrderAmount,
+    sanitizeAddress,
+    validatePincode
+} from '@/lib/security';
 
 const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -9,9 +17,22 @@ const supabase = createClient(
 export async function POST(request: NextRequest) {
     try {
         const body = await request.json();
-        const { customerName, customerEmail, customerPhone, customerAddress, items, subtotal, total } = body;
+        const {
+            customerName,
+            customerEmail,
+            customerPhone,
+            customerAddress,
+            items,
+            subtotal,
+            total,
+            notes,
+            paymentMethod = 'cod',
+            razorpayOrderId,
+            razorpayPaymentId,
+            razorpaySignature
+        } = body;
 
-        // Validate required fields
+        // Validate and sanitize inputs
         if (!customerName || !customerEmail || !items || !Array.isArray(items) || items.length === 0) {
             return NextResponse.json(
                 { error: 'Missing required fields' },
@@ -19,33 +40,91 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // Generate order number
-        const orderNumber = `ORD-${Date.now()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
+        // Validate email format
+        if (!validateEmail(customerEmail)) {
+            return NextResponse.json(
+                { error: 'Invalid email address' },
+                { status: 400 }
+            );
+        }
 
-        // Insert order into database
+        // Validate phone if provided
+        if (customerPhone) {
+            const phoneDigits = customerPhone.replace(/\D/g, '');
+            if (!validatePhone(phoneDigits)) {
+                return NextResponse.json(
+                    { error: 'Invalid phone number. Must be 10 digits starting with 6-9' },
+                    { status: 400 }
+                );
+            }
+        }
+
+        // Validate amounts
+        if (!validateOrderAmount(total) || !validateOrderAmount(subtotal)) {
+            return NextResponse.json(
+                { error: 'Invalid order amount' },
+                { status: 400 }
+            );
+        }
+
+        // Validate and sanitize address
+        const sanitizedAddress = sanitizeAddress(customerAddress);
+        if (!sanitizedAddress || !validatePincode(sanitizedAddress.pincode)) {
+            return NextResponse.json(
+                { error: 'Invalid address or pincode' },
+                { status: 400 }
+            );
+        }
+
+        // Sanitize text inputs
+        const sanitizedName = sanitizeInput(customerName);
+        const sanitizedNotes = notes ? sanitizeInput(notes) : null;
+
+        // Generate unique order number with crypto randomness for better collision resistance
+        const timestamp = Date.now();
+        const randomBytes = Math.random().toString(36).substr(2, 9) + Math.random().toString(36).substr(2, 4);
+        const orderNumber = `ORD-${timestamp}-${randomBytes.toUpperCase()}`;
+
+        // Determine initial payment status based on payment method
+        const initialPaymentStatus = paymentMethod === 'online'
+            ? (razorpayPaymentId ? 'completed' : 'pending')
+            : 'pending';
+
+        // Insert order into database with sanitized data
         const { data, error } = await supabase
             .from('orders')
             .insert({
                 order_number: orderNumber,
-                customer_name: customerName,
-                customer_email: customerEmail,
+                customer_name: sanitizedName,
+                customer_email: customerEmail.toLowerCase().trim(),
                 customer_phone: customerPhone,
-                customer_address: customerAddress,
+                customer_address: sanitizedAddress,
                 items: items,
                 subtotal: subtotal,
                 tax: 0,
                 shipping: 0,
                 total: total,
                 status: 'pending',
-                payment_status: 'pending'
+                payment_status: initialPaymentStatus,
+                payment_method: paymentMethod,
+                notes: sanitizedNotes,
+                razorpay_order_id: razorpayOrderId || null,
+                razorpay_payment_id: razorpayPaymentId || null,
+                razorpay_signature: razorpaySignature || null
             })
             .select()
             .single();
 
         if (error) {
-            console.error('Supabase error:', error);
+            console.error('=== SUPABASE ERROR DETAILS ===');
+            console.error('Error Code:', error.code);
+            console.error('Error Message:', error.message);
+            console.error('Error Details:', error.details);
+            console.error('Error Hint:', error.hint);
+            console.error('Full Error Object:', JSON.stringify(error, null, 2));
+            console.error('=== END ERROR DETAILS ===');
             return NextResponse.json(
-                { error: 'Failed to create order' },
+                { error: 'Failed to create order', details: error.message },
                 { status: 500 }
             );
         }

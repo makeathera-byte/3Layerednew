@@ -32,8 +32,14 @@ export async function POST(request: NextRequest) {
             razorpaySignature
         } = body;
 
+        // Debug logging
+        console.log('=== ORDER CREATION REQUEST ===');
+        console.log('Body:', JSON.stringify(body, null, 2));
+        console.log('==============================');
+
         // Validate and sanitize inputs
         if (!customerName || !customerEmail || !items || !Array.isArray(items) || items.length === 0) {
+            console.log('❌ Basic validation failed:', { customerName, customerEmail, itemsIsArray: Array.isArray(items), itemsLength: items?.length });
             return NextResponse.json(
                 { error: 'Missing required fields' },
                 { status: 400 }
@@ -42,6 +48,7 @@ export async function POST(request: NextRequest) {
 
         // Validate email format
         if (!validateEmail(customerEmail)) {
+            console.log('❌ Email validation failed:', customerEmail);
             return NextResponse.json(
                 { error: 'Invalid email address' },
                 { status: 400 }
@@ -50,8 +57,11 @@ export async function POST(request: NextRequest) {
 
         // Validate phone if provided
         if (customerPhone) {
-            const phoneDigits = customerPhone.replace(/\D/g, '');
+            // Remove +91 prefix if present, then strip all non-digits
+            let phoneDigits = customerPhone.replace(/^\+91/, '').replace(/\D/g, '');
+            console.log('📞 Phone validation:', { customerPhone, phoneDigits, isValid: validatePhone(phoneDigits) });
             if (!validatePhone(phoneDigits)) {
+                console.log('❌ Phone validation failed');
                 return NextResponse.json(
                     { error: 'Invalid phone number. Must be 10 digits starting with 6-9' },
                     { status: 400 }
@@ -60,7 +70,9 @@ export async function POST(request: NextRequest) {
         }
 
         // Validate amounts
+        console.log('💰 Amount validation:', { total, subtotal, totalValid: validateOrderAmount(total), subtotalValid: validateOrderAmount(subtotal) });
         if (!validateOrderAmount(total) || !validateOrderAmount(subtotal)) {
+            console.log('❌ Amount validation failed');
             return NextResponse.json(
                 { error: 'Invalid order amount' },
                 { status: 400 }
@@ -69,7 +81,13 @@ export async function POST(request: NextRequest) {
 
         // Validate and sanitize address
         const sanitizedAddress = sanitizeAddress(customerAddress);
+        console.log('📍 Address validation:', {
+            original: customerAddress,
+            sanitized: sanitizedAddress,
+            pincodeValid: sanitizedAddress ? validatePincode(sanitizedAddress.pincode) : false
+        });
         if (!sanitizedAddress || !validatePincode(sanitizedAddress.pincode)) {
+            console.log('❌ Address or pincode validation failed');
             return NextResponse.json(
                 { error: 'Invalid address or pincode' },
                 { status: 400 }
@@ -87,7 +105,7 @@ export async function POST(request: NextRequest) {
 
         // Determine initial payment status based on payment method
         const initialPaymentStatus = paymentMethod === 'online'
-            ? (razorpayPaymentId ? 'completed' : 'pending')
+            ? (razorpayPaymentId ? 'paid' : 'pending')
             : 'pending';
 
         // Insert order into database with sanitized data

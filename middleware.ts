@@ -21,7 +21,7 @@ export function middleware(request: NextRequest) {
         "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
         "img-src 'self' data: https: blob:; " +
         "font-src 'self' https://fonts.gstatic.com; " +
-        "connect-src 'self' https://*.supabase.co https://api.razorpay.com; " +
+        "connect-src 'self' https://*.supabase.co https://api.razorpay.com https://lumberjack.razorpay.com; " +
         "frame-src https://api.razorpay.com; " +
         "object-src 'none'; " +
         "base-uri 'self'; " +

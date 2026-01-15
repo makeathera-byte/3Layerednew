@@ -26,8 +26,8 @@
             "variant": "led"
         },
         "price": {
-            "amount": 1,
-            "compareAtPrice": 1999,
+            "amount": 1099,
+            "compareAtPrice": 1293,
             "currency": "INR",
             "displayFormat": "₹{amount}"
         },

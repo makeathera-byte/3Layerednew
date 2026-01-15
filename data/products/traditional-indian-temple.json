@@ -26,7 +26,7 @@
             "variant": "vastu"
         },
         "price": {
-            "amount": 1,
+            "amount": 1699,
             "compareAtPrice": 2469,
             "currency": "INR",
             "displayFormat": "₹{amount}"

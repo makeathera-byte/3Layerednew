@@ -141,7 +141,7 @@ export default function AdminPanel() {
 
     const fetchOrders = async () => {
         try {
-            const response = await fetch(`/api/orders?password=jaygehlot20053layeredadmin//200590()`);
+            const response = await fetch(`/api/orders?password=${encodeURIComponent('jaygehlot20053layeredadmin//200590()')}`);
             const data = await response.json();
             if (data.orders) {
                 setOrders(data.orders);
@@ -153,7 +153,7 @@ export default function AdminPanel() {
 
     const fetchCustomRequests = async () => {
         try {
-            const response = await fetch(`/api/custom-requests?password=jaygehlot20053layeredadmin//200590()`);
+            const response = await fetch(`/api/custom-requests?password=${encodeURIComponent('jaygehlot20053layeredadmin//200590()')}`);
             const data = await response.json();
             if (data.requests) {
                 setCustomRequests(data.requests);
@@ -165,7 +165,7 @@ export default function AdminPanel() {
 
     const fetchContactSubmissions = async () => {
         try {
-            const response = await fetch(`/api/contact?password=jaygehlot20053layeredadmin//200590()`);
+            const response = await fetch(`/api/contact?password=${encodeURIComponent('jaygehlot20053layeredadmin//200590()')}`);
             const data = await response.json();
             if (data.submissions) {
                 setContactSubmissions(data.submissions);
@@ -177,7 +177,7 @@ export default function AdminPanel() {
 
     const fetchBookedCalls = async () => {
         try {
-            const response = await fetch(`/api/booked-calls?password=jaygehlot20053layeredadmin//200590()`);
+            const response = await fetch(`/api/booked-calls?password=${encodeURIComponent('jaygehlot20053layeredadmin//200590()')}`);
             const data = await response.json();
             if (data.bookings) {
                 setBookedCalls(data.bookings);
@@ -249,7 +249,7 @@ export default function AdminPanel() {
         if (!confirm('Are you sure you want to delete this order?')) return;
 
         try {
-            const response = await fetch(`/api/orders?orderId=${orderId}&password=jaygehlot20053layeredadmin//200590()`, {
+            const response = await fetch(`/api/orders?orderId=${orderId}&password=${encodeURIComponent('jaygehlot20053layeredadmin//200590()')}`, {
                 method: 'DELETE'
             });
             if (response.ok) {
@@ -264,7 +264,7 @@ export default function AdminPanel() {
         if (!confirm('Are you sure you want to delete this custom request?')) return;
 
         try {
-            const response = await fetch(`/api/custom-requests?requestId=${requestId}&password=jaygehlot20053layeredadmin//200590()`, {
+            const response = await fetch(`/api/custom-requests?requestId=${requestId}&password=${encodeURIComponent('jaygehlot20053layeredadmin//200590()')}`, {
                 method: 'DELETE'
             });
             if (response.ok) {
@@ -279,7 +279,7 @@ export default function AdminPanel() {
         if (!confirm('Are you sure you want to delete this contact submission?')) return;
 
         try {
-            const response = await fetch(`/api/contact?submissionId=${submissionId}&password=jaygehlot20053layeredadmin//200590()`, {
+            const response = await fetch(`/api/contact?submissionId=${submissionId}&password=${encodeURIComponent('jaygehlot20053layeredadmin//200590()')}`, {
                 method: 'DELETE'
             });
             if (response.ok) {
@@ -313,7 +313,7 @@ export default function AdminPanel() {
         if (!confirm('Are you sure you want to delete this booked call?')) return;
 
         try {
-            const response = await fetch(`/api/booked-calls?bookingId=${bookingId}&password=jaygehlot20053layeredadmin//200590()`, {
+            const response = await fetch(`/api/booked-calls?bookingId=${bookingId}&password=${encodeURIComponent('jaygehlot20053layeredadmin//200590()')}`, {
                 method: 'DELETE'
             });
             if (response.ok) {

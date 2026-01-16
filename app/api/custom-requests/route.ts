@@ -9,7 +9,7 @@ const supabase = createClient(
 export async function POST(request: NextRequest) {
     try {
         const body = await request.json();
-        const { name, email, phone, projectDescription, budgetRange, timeline } = body;
+        const { name, email, phone, projectDescription, budgetRange, timeline, address, city, state, pincode, country } = body;
 
         // Validate required fields
         if (!name || !email || !projectDescription) {
@@ -29,6 +29,11 @@ export async function POST(request: NextRequest) {
                 project_description: projectDescription,
                 budget_range: budgetRange,
                 timeline,
+                address,
+                city,
+                state,
+                pincode,
+                country,
                 status: 'new'
             })
             .select()
@@ -131,6 +136,52 @@ export async function PATCH(request: NextRequest) {
 
     } catch (error) {
         console.error('Update custom request error:', error);
+        return NextResponse.json(
+            { error: 'Internal server error' },
+            { status: 500 }
+        );
+    }
+}
+
+export async function DELETE(request: NextRequest) {
+    try {
+        const { searchParams } = new URL(request.url);
+        const requestId = searchParams.get('requestId');
+        const adminPassword = searchParams.get('password');
+
+        // Verify admin password
+        if (adminPassword !== process.env.ADMIN_PASSWORD) {
+            return NextResponse.json(
+                { error: 'Unauthorized' },
+                { status: 401 }
+            );
+        }
+
+        if (!requestId) {
+            return NextResponse.json(
+                { error: 'Request ID is required' },
+                { status: 400 }
+            );
+        }
+
+        // Delete custom request
+        const { error } = await supabase
+            .from('custom_requests')
+            .delete()
+            .eq('id', requestId);
+
+        if (error) {
+            console.error('Supabase error:', error);
+            return NextResponse.json(
+                { error: 'Failed to delete custom request' },
+                { status: 500 }
+            );
+        }
+
+        return NextResponse.json({ success: true }, { status: 200 });
+
+    } catch (error) {
+        console.error('Delete custom request error:', error);
         return NextResponse.json(
             { error: 'Internal server error' },
             { status: 500 }

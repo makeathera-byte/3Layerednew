@@ -107,7 +107,7 @@ export default function AboutPage() {
                             <div className="order-2 lg:order-1">
                                 <div className="aspect-[4/5] bg-gray-200 relative overflow-hidden">
                                     <Image
-                                        src="https://oweufwhxnpjhdzpdqmsy.supabase.co/storage/v1/object/public/ceo/jay%20founder.JPG"
+                                        src="https://jwgtjfmwlnttjdvycuqj.supabase.co/storage/v1/object/public/displlay/about%20page/Founder/IMG_0127.JPG"
                                         alt="Jay Gehlot - Founder of 3 Layered"
                                         fill
                                         className="object-cover"

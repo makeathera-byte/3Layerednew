@@ -23,25 +23,42 @@ export default function ContactPage() {
         });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // In production, send form data to your backend
-        console.log('Contact Form Data:', formData);
-
-        setSubmitted(true);
-
-        // Reset form after 5 seconds
-        setTimeout(() => {
-            setSubmitted(false);
-            setFormData({
-                name: '',
-                email: '',
-                phone: '',
-                subject: '',
-                message: '',
+        try {
+            // Submit form data to backend API
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
             });
-        }, 5000);
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                // Check if it's a duplicate email error from the response
+                const errorMsg = data.error || '';
+                if (errorMsg.toLowerCase().includes('duplicate') ||
+                    errorMsg.toLowerCase().includes('unique') ||
+                    errorMsg.toLowerCase().includes('already exists')) {
+                    alert('We have received your message already. We will respond to you in 24 hours.');
+                    return;
+                }
+                throw new Error(data.error || 'Failed to submit contact form');
+            }
+
+            console.log('Contact submission successful:', data);
+
+            setSubmitted(true);
+
+            // Success page will stay until user manually navigates away
+        } catch (error) {
+            console.error('Error submitting contact form:', error);
+            alert('There was an error submitting your message. Please try again or call us directly.');
+        }
     };
 
     if (submitted) {

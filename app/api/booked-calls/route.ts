@@ -9,26 +9,24 @@ const supabase = createClient(
 export async function POST(request: NextRequest) {
     try {
         const body = await request.json();
-        const { name, email, phone, subject, message } = body;
+        const { name, email, phone } = body;
 
         // Validate required fields
-        if (!name || !email || !message) {
+        if (!name || !email || !phone) {
             return NextResponse.json(
                 { error: 'Missing required fields' },
                 { status: 400 }
             );
         }
 
-        // Insert contact submission into database
+        // Insert booked call into database
         const { data, error } = await supabase
-            .from('contact_submissions')
+            .from('booked_calls')
             .insert({
                 name,
                 email,
                 phone,
-                subject,
-                message,
-                status: 'unread'
+                status: 'new'
             })
             .select()
             .single();
@@ -39,24 +37,24 @@ export async function POST(request: NextRequest) {
             // Check if it's a duplicate key error
             if (error.code === '23505' || error.message?.includes('duplicate') || error.message?.includes('unique')) {
                 return NextResponse.json(
-                    { error: 'A message with this email already exists. Please wait for our team to respond.' },
+                    { error: 'A booking with this email already exists. Please wait for our team to contact you.' },
                     { status: 409 }
                 );
             }
 
             return NextResponse.json(
-                { error: 'Failed to submit contact form' },
+                { error: 'Failed to book call' },
                 { status: 500 }
             );
         }
 
         return NextResponse.json({
             success: true,
-            submission: data
+            booking: data
         }, { status: 201 });
 
     } catch (error) {
-        console.error('Contact form error:', error);
+        console.error('Book call error:', error);
         return NextResponse.json(
             { error: 'Internal server error' },
             { status: 500 }
@@ -77,24 +75,24 @@ export async function GET(request: NextRequest) {
             );
         }
 
-        // Fetch all contact submissions
+        // Fetch all booked calls
         const { data, error } = await supabase
-            .from('contact_submissions')
+            .from('booked_calls')
             .select('*')
             .order('created_at', { ascending: false });
 
         if (error) {
             console.error('Supabase error:', error);
             return NextResponse.json(
-                { error: 'Failed to fetch contact submissions' },
+                { error: 'Failed to fetch booked calls' },
                 { status: 500 }
             );
         }
 
-        return NextResponse.json({ submissions: data }, { status: 200 });
+        return NextResponse.json({ bookings: data }, { status: 200 });
 
     } catch (error) {
-        console.error('Fetch contact submissions error:', error);
+        console.error('Fetch booked calls error:', error);
         return NextResponse.json(
             { error: 'Internal server error' },
             { status: 500 }
@@ -105,7 +103,7 @@ export async function GET(request: NextRequest) {
 export async function PATCH(request: NextRequest) {
     try {
         const body = await request.json();
-        const { submissionId, status, adminNotes, adminPassword } = body;
+        const { bookingId, status, adminNotes, adminPassword } = body;
 
         // Verify admin password
         if (adminPassword !== process.env.ADMIN_PASSWORD) {
@@ -115,35 +113,30 @@ export async function PATCH(request: NextRequest) {
             );
         }
 
-        // Update contact submission
+        // Update booked call
         const updateData: any = {};
-        if (status) {
-            updateData.status = status;
-            if (status === 'read' && !updateData.read_at) {
-                updateData.read_at = new Date().toISOString();
-            }
-        }
+        if (status) updateData.status = status;
         if (adminNotes !== undefined) updateData.admin_notes = adminNotes;
 
         const { data, error } = await supabase
-            .from('contact_submissions')
+            .from('booked_calls')
             .update(updateData)
-            .eq('id', submissionId)
+            .eq('id', bookingId)
             .select()
             .single();
 
         if (error) {
             console.error('Supabase error:', error);
             return NextResponse.json(
-                { error: 'Failed to update contact submission' },
+                { error: 'Failed to update booked call' },
                 { status: 500 }
             );
         }
 
-        return NextResponse.json({ submission: data }, { status: 200 });
+        return NextResponse.json({ booking: data }, { status: 200 });
 
     } catch (error) {
-        console.error('Update contact submission error:', error);
+        console.error('Update booked call error:', error);
         return NextResponse.json(
             { error: 'Internal server error' },
             { status: 500 }
@@ -154,7 +147,7 @@ export async function PATCH(request: NextRequest) {
 export async function DELETE(request: NextRequest) {
     try {
         const { searchParams } = new URL(request.url);
-        const submissionId = searchParams.get('submissionId');
+        const bookingId = searchParams.get('bookingId');
         const adminPassword = searchParams.get('password');
 
         // Verify admin password
@@ -165,23 +158,23 @@ export async function DELETE(request: NextRequest) {
             );
         }
 
-        if (!submissionId) {
+        if (!bookingId) {
             return NextResponse.json(
-                { error: 'Submission ID is required' },
+                { error: 'Booking ID is required' },
                 { status: 400 }
             );
         }
 
-        // Delete contact submission
+        // Delete booked call
         const { error } = await supabase
-            .from('contact_submissions')
+            .from('booked_calls')
             .delete()
-            .eq('id', submissionId);
+            .eq('id', bookingId);
 
         if (error) {
             console.error('Supabase error:', error);
             return NextResponse.json(
-                { error: 'Failed to delete contact submission' },
+                { error: 'Failed to delete booked call' },
                 { status: 500 }
             );
         }
@@ -189,7 +182,7 @@ export async function DELETE(request: NextRequest) {
         return NextResponse.json({ success: true }, { status: 200 });
 
     } catch (error) {
-        console.error('Delete contact submission error:', error);
+        console.error('Delete booked call error:', error);
         return NextResponse.json(
             { error: 'Internal server error' },
             { status: 500 }

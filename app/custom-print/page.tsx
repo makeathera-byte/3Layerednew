@@ -18,6 +18,8 @@ export default function CustomPrintPage() {
     const [isDraggingImages, setIsDraggingImages] = useState(false);
     const [isDraggingModels, setIsDraggingModels] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+    const [showBookCallModal, setShowBookCallModal] = useState(false);
+    const [bookCallSubmitted, setBookCallSubmitted] = useState(false);
 
     const imageInputRef = useRef<HTMLInputElement>(null);
     const modelInputRef = useRef<HTMLInputElement>(null);
@@ -32,6 +34,12 @@ export default function CustomPrintPage() {
         state: '',
         pincode: '',
         country: 'India',
+    });
+
+    const [bookCallData, setBookCallData] = useState({
+        name: '',
+        email: '',
+        phone: ''
     });
 
     // Handle file selection
@@ -98,33 +106,93 @@ export default function CustomPrintPage() {
         });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // In production, you would upload files and send form data to your backend
-        console.log('Form Data:', formData);
-        console.log('Reference Images:', referenceImages);
-        console.log('Model Files:', modelFiles);
-
-        setSubmitted(true);
-
-        // Reset form after 5 seconds
-        setTimeout(() => {
-            setSubmitted(false);
-            setFormData({
-                description: '',
-                name: '',
-                email: '',
-                phone: '',
-                address: '',
-                city: '',
-                state: '',
-                pincode: '',
-                country: 'India',
+        try {
+            // Submit custom print request to backend API
+            // Note: File uploads would need additional multipart/form-data handling
+            // For now, we'll submit the text data
+            const response = await fetch('/api/custom-requests', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone,
+                    projectDescription: formData.description,
+                    address: formData.address,
+                    city: formData.city,
+                    state: formData.state,
+                    pincode: formData.pincode,
+                    country: formData.country,
+                    // Note: File handling would require file upload logic
+                    // For now, admin will contact customer for files
+                }),
             });
-            setReferenceImages([]);
-            setModelFiles([]);
-        }, 5000);
+
+            if (!response.ok) {
+                throw new Error('Failed to submit custom print request');
+            }
+
+            const data = await response.json();
+            console.log('Custom print request successful:', data);
+
+            setSubmitted(true);
+
+            // Success page will stay until user manually navigates away
+        } catch (error) {
+            console.error('Error submitting custom print request:', error);
+            alert('There was an error submitting your request. Please try again or call us at +91 99827 81000.');
+        }
+    };
+
+    const handleBookCall = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        try {
+            const response = await fetch('/api/booked-calls', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(bookCallData),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                // Check if it's a duplicate email error from the response
+                const errorMsg = data.error || '';
+                if (errorMsg.toLowerCase().includes('duplicate') ||
+                    errorMsg.toLowerCase().includes('unique') ||
+                    errorMsg.toLowerCase().includes('already exists')) {
+                    alert('We have received your request already. We will contact you in 24 hours.');
+                    return;
+                }
+                throw new Error(data.error || 'Failed to book call');
+            }
+
+            console.log('Book call successful:', data);
+
+            setBookCallSubmitted(true);
+
+            // Reset form
+            setTimeout(() => {
+                setBookCallSubmitted(false);
+                setShowBookCallModal(false);
+                setBookCallData({
+                    name: '',
+                    email: '',
+                    phone: ''
+                });
+            }, 3000);
+        } catch (error) {
+            console.error('Error booking call:', error);
+            alert('There was an error booking your call. Please try again or call us directly at +91 99827 81000.');
+        }
     };
 
     const formatFileSize = (bytes: number) => {
@@ -200,13 +268,13 @@ export default function CustomPrintPage() {
                                     </p>
                                 </div>
                                 <div className="flex-shrink-0">
-                                    <a
-                                        href="tel:+919982781000"
+                                    <button
+                                        onClick={() => setShowBookCallModal(true)}
                                         className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 text-lg font-medium hover:bg-gray-100 transition-colors duration-200 whitespace-nowrap group"
                                     >
                                         <Phone className="w-5 h-5 group-hover:rotate-12 transition-transform" />
                                         <span>Book a Call</span>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -576,6 +644,94 @@ export default function CustomPrintPage() {
                     </form>
                 </div>
             </main>
+
+            {/* Book a Call Modal */}
+            {showBookCallModal && (
+                <div className="fixed inset-0 bg-white/30 backdrop-blur-md z-50 flex items-center justify-center p-4">
+                    <div className="bg-white max-w-md w-full p-8 relative">
+                        <button
+                            onClick={() => setShowBookCallModal(false)}
+                            className="absolute top-4 right-4 text-gray-400 hover:text-black transition-colors"
+                        >
+                            <X className="w-6 h-6" />
+                        </button>
+
+                        {bookCallSubmitted ? (
+                            <div className="text-center py-8">
+                                <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
+                                    <CheckCircle2 className="w-8 h-8 text-green-600" />
+                                </div>
+                                <h2 className="font-serif text-3xl font-bold mb-3">Request Received!</h2>
+                                <p className="text-gray-600 mb-4">
+                                    Thank you for booking a call. Our team will contact you shortly to schedule a convenient time.
+                                </p>
+                            </div>
+                        ) : (
+                            <>
+                                <h2 className="font-serif text-3xl font-bold mb-2">Book a Call</h2>
+                                <p className="text-gray-600 mb-6">
+                                    Fill in your details and our team will reach out to discuss your project.
+                                </p>
+
+                                <form onSubmit={handleBookCall} className="space-y-4">
+                                    <div>
+                                        <label htmlFor="bookCallName" className="block text-sm font-medium mb-2">
+                                            Your Name *
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="bookCallName"
+                                            required
+                                            value={bookCallData.name}
+                                            onChange={(e) => setBookCallData({ ...bookCallData, name: e.target.value })}
+                                            className="w-full border-2 border-gray-200 px-4 py-3 focus:border-black focus:outline-none transition-colors"
+                                            placeholder="John Doe"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label htmlFor="bookCallEmail" className="block text-sm font-medium mb-2">
+                                            Email Address *
+                                        </label>
+                                        <input
+                                            type="email"
+                                            id="bookCallEmail"
+                                            required
+                                            value={bookCallData.email}
+                                            onChange={(e) => setBookCallData({ ...bookCallData, email: e.target.value })}
+                                            className="w-full border-2 border-gray-200 px-4 py-3 focus:border-black focus:outline-none transition-colors"
+                                            placeholder="john@example.com"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label htmlFor="bookCallPhone" className="block text-sm font-medium mb-2">
+                                            Phone Number *
+                                        </label>
+                                        <input
+                                            type="tel"
+                                            id="bookCallPhone"
+                                            required
+                                            value={bookCallData.phone}
+                                            onChange={(e) => setBookCallData({ ...bookCallData, phone: e.target.value })}
+                                            className="w-full border-2 border-gray-200 px-4 py-3 focus:border-black focus:outline-none transition-colors"
+                                            placeholder="+91 1234567890"
+                                        />
+                                    </div>
+
+                                    <button
+                                        type="submit"
+                                        className="w-full bg-black text-white py-4 px-6 text-lg font-medium hover:bg-gray-900 transition-colors duration-200 flex items-center justify-center gap-3 group"
+                                    >
+                                        <span>Submit Request</span>
+                                        <Phone className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+                                    </button>
+                                </form>
+                            </>
+                        )}
+                    </div>
+                </div>
+            )}
         </SlideProvider>
     );
 }

@@ -8,7 +8,7 @@ export function middleware(request: NextRequest) {
     response.headers.set('X-DNS-Prefetch-Control', 'on');
     response.headers.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
     response.headers.set('X-Content-Type-Options', 'nosniff');
-    response.headers.set('X-Frame-Options', 'DENY');
+    // X-Frame-Options removed to allow Instagram embeds - using CSP frame-ancestors instead
     response.headers.set('X-XSS-Protection', '1; mode=block');
     response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
     response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
@@ -17,12 +17,13 @@ export function middleware(request: NextRequest) {
     response.headers.set(
         'Content-Security-Policy',
         "default-src 'self'; " +
-        "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://checkout.razorpay.com https://maps.googleapis.com; " +
+        "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://checkout.razorpay.com https://maps.googleapis.com https://www.instagram.com; " +
         "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
         "img-src 'self' data: https: blob:; " +
         "font-src 'self' https://fonts.gstatic.com; " +
-        "connect-src 'self' https://*.supabase.co https://api.razorpay.com https://lumberjack.razorpay.com; " +
-        "frame-src https://api.razorpay.com; " +
+        "connect-src 'self' https://*.supabase.co https://api.razorpay.com https://lumberjack.razorpay.com https://www.instagram.com; " +
+        "frame-src https://api.razorpay.com https://www.instagram.com; " +
+        "frame-ancestors 'self'; " +
         "object-src 'none'; " +
         "base-uri 'self'; " +
         "form-action 'self';"

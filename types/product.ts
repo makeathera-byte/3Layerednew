@@ -349,6 +349,11 @@ export interface ProductCategory {
   imageUrl: string;
   productIds: string[];
 
+  // SEO metadata fields
+  metaTitle?: string; // SEO-optimized title for category page
+  metaDescription?: string; // SEO-optimized meta description
+  metaKeywords?: string[]; // Target keywords for category
+
   // Admin-controllable fields
   displayOnHomepage: boolean; // Toggle visibility on homepage
   displayOrder: number; // Control order of appearance

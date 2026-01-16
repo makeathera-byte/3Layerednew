@@ -6,7 +6,7 @@ const BRANDS = [
     "ideal Brandzz",
     "Bella Homes",
     "Smile gifts",
-    "Mittal Precision steal Auto com pvt ltd",
+    "Mittal Precision Steel Autocom Pvt Ltd",
 ];
 
 export function BrandMarquee() {

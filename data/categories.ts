@@ -27,11 +27,23 @@ export const categories: ProductCategory[] = [
             'mini-ganesha-mandir',
             'traditional-indian-temple'
         ],
+        metaTitle: '3D Printed Miniature Temples | Sacred Geometry & Museum-Quality Replicas',
+        metaDescription: 'Precision-engineered replicas of world heritage temples. Each miniature captures sacred geometry and architectural mastery in museum-quality detail. Asian pagodas, ancient temple carvings, and architectural heritage.',
+        metaKeywords: [
+            'miniature temple 3D printing',
+            'sacred geometry replicas',
+            'Asian pagoda models',
+            'museum-quality temple replicas',
+            'architectural heritage 3D printing',
+            '3D printed Hindu temples',
+            'miniature temple models',
+            'precision temple replicas'
+        ],
         displayOnHomepage: true,
         displayOrder: 1,
         status: 'active',
         createdAt: '2026-01-10T00:00:00Z',
-        updatedAt: '2026-01-14T21:00:00Z'
+        updatedAt: '2026-01-17T01:57:00Z'
     },
     {
         id: 'architect-models',
@@ -41,11 +53,23 @@ export const categories: ProductCategory[] = [
         extendedDescription: 'Where tradition meets innovation. Each model blends the timeless beauty of Asian architecture with contemporary design sensibilities, creating pieces that honor the past while embracing the future.',
         imageUrl: '/architectures.png',
         productIds: [],
+        metaTitle: 'Architectural Model Makers Maharashtra | Contemporary Asian Monument Replicas',
+        metaDescription: 'Contemporary interpretations of Asian architectural heritage. Miniature fort models, temple replicas, and monuments with modern aesthetics. Professional architectural model makers in Maharashtra.',
+        metaKeywords: [
+            'architectural model makers Maharashtra',
+            'miniature fort models',
+            'Asian monument replicas',
+            'contemporary temple models',
+            '3D printed architecture',
+            'scale model architecture',
+            'miniature palace replicas',
+            'historical architecture models'
+        ],
         displayOnHomepage: true,
         displayOrder: 2,
         status: 'active',
         createdAt: '2026-01-14T00:00:00Z',
-        updatedAt: '2026-01-14T00:00:00Z'
+        updatedAt: '2026-01-17T01:57:00Z'
     }
 ];
 

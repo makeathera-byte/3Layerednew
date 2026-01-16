@@ -5,8 +5,8 @@ import { MapPin, Clock } from "lucide-react";
 export function MapSection() {
     // Google Maps Embed API configuration
     const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-    const plusCode = "MQ62+V6 Pimpri-Chinchwad, Maharashtra";
-    const encodedLocation = encodeURIComponent(plusCode);
+    const address = "Sukwani Artize, BRT Link Rd, Ravet, Pimpri-Chinchwad, Maharashtra 412101, India";
+    const encodedLocation = encodeURIComponent(address);
 
     // Construct the Google Maps Embed URL
     const mapUrl = `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodedLocation}&zoom=15`;
@@ -20,6 +20,9 @@ export function MapSection() {
                         <h2 className="font-serif text-4xl md:text-5xl font-bold mb-8">
                             Visit Our Workshop
                         </h2>
+                        <p className="text-gray-600 mb-6 text-lg">
+                            Professional 3D printing services and architectural model makers in Pimpri-Chinchwad, Maharashtra
+                        </p>
 
                         <div className="space-y-6">
                             <div className="flex items-start gap-4">
@@ -27,9 +30,10 @@ export function MapSection() {
                                 <div>
                                     <h3 className="font-bold mb-1">Location</h3>
                                     <p className="text-gray-600">
-                                        MQ62+V6<br />
-                                        Pimpri-Chinchwad<br />
-                                        Maharashtra, India
+                                        Sukwani Artize<br />
+                                        BRT Link Rd, Ravet<br />
+                                        Pimpri-Chinchwad, Maharashtra 412101<br />
+                                        India
                                     </p>
                                 </div>
                             </div>

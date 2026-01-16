@@ -22,9 +22,23 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "3 Layered - Premium 3D Printing Services",
-  description: "Transform your ideas into reality with precision 3D printing. Custom prototypes, functional components, and manufacturing excellence.",
-  keywords: ["3D printing", "custom manufacturing", "prototypes", "precision printing"],
+  title: "3 Layered - Premium 3D Printed Miniature Temples & Architectural Models | Pimpri-Chinchwad",
+  description: "Museum-quality 3D printed miniature temples and architectural models. Sacred geometry, precision-engineered replicas of Asian architectural heritage. Custom 3D printing services in Pimpri-Chinchwad, Maharashtra.",
+  keywords: [
+    "3D printing services Pimpri-Chinchwad",
+    "miniature temple models",
+    "architectural model makers Maharashtra",
+    "sacred geometry replicas",
+    "Asian architectural heritage",
+    "museum-quality 3D printing",
+    "precision-engineered replicas",
+    "custom 3D printing quote",
+    "3D printed temples",
+    "Asian pagoda models",
+    "miniature fort replicas",
+    "architectural heritage 3D printing"
+  ],
+  // TODO: Add Open Graph tags and JSON-LD structured data for LocalBusiness
 };
 
 export default function RootLayout({

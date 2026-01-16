@@ -324,7 +324,7 @@ export default function AboutPage() {
                                 Browse Products
                             </Link>
                             <Link
-                                href="/contact"
+                                href="/custom-print"
                                 className="inline-block border-2 border-white text-white px-8 py-4 text-lg font-light hover:bg-white hover:text-black transition-colors"
                             >
                                 Start Custom Project

@@ -61,15 +61,15 @@ export function CartDrawer() {
                         {cart.items.length === 0 ? (
                             <div className="flex flex-col items-center justify-center h-full text-center">
                                 <ShoppingBag className="w-16 h-16 text-gray-300 mb-4" />
-                                <p className="text-lg text-gray-600 mb-2">Your cart is empty</p>
+                                <p className="text-lg text-gray-600 mb-2">Start Your Architectural Heritage Collection Today</p>
                                 <p className="text-sm text-gray-500 mb-6">
-                                    Add some beautiful pieces to get started
+                                    Explore our museum-quality miniature temples and precision-engineered architectural models
                                 </p>
                                 <button
                                     onClick={closeCart}
                                     className="border-2 border-black px-6 py-3 hover:bg-black hover:text-white transition-colors duration-200"
                                 >
-                                    Continue Shopping
+                                    Browse Temple Collections
                                 </button>
                             </div>
                         ) : (

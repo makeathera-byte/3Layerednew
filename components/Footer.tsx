@@ -12,7 +12,7 @@ export function Footer() {
                     <div>
                         <h3 className="font-serif text-3xl font-bold mb-4">3 LAYERED</h3>
                         <p className="text-gray-400 mb-4 leading-relaxed">
-                            Premium 3D printing services delivering precision and innovation in every layer.
+                            Premium 3D printing services in Pimpri-Chinchwad delivering precision-engineered miniature temples and architectural models with museum-quality detail.
                         </p>
                         <p className="text-sm text-gray-500">
                             Excellence in every layer, precision in every detail.
@@ -56,8 +56,8 @@ export function Footer() {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/products/category/prototypes" className="text-gray-400 hover:text-white transition-colors">
-                                    Prototypes
+                                <Link href="/products/category/architect-models" className="text-gray-400 hover:text-white transition-colors">
+                                    Architect Models
                                 </Link>
                             </li>
                             <li>
@@ -87,7 +87,9 @@ export function Footer() {
                             <li className="flex items-start gap-3">
                                 <MapPin className="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" />
                                 <span className="text-gray-400">
-                                    Pune, Maharashtra<br />India
+                                    Sukwani Artize, BRT Link Rd<br />
+                                    Ravet, Pimpri-Chinchwad<br />
+                                    Maharashtra 412101, India
                                 </span>
                             </li>
                             <li className="flex items-start gap-3">

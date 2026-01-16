@@ -80,6 +80,7 @@ function ReelCard({ reel, index }: { reel: typeof REELS[0], index: number }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block w-full h-full"
+                aria-label={`View Instagram reel showcasing 3D printed miniature temples and architectural models by 3 Layered`}
             >
                 <iframe
                     ref={iframeRef}
@@ -88,6 +89,8 @@ function ReelCard({ reel, index }: { reel: typeof REELS[0], index: number }) {
                     frameBorder="0"
                     scrolling="no"
                     allow="autoplay; encrypted-media"
+                    title={`3 Layered Instagram Reel ${index + 1} - 3D Printing Showcase`}
+                    aria-label="Instagram video player showing 3D printed temple and architectural model creation"
                 />
             </a>
         </motion.div>

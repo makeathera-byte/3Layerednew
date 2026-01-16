@@ -89,6 +89,7 @@ export function Navbar() {
 
                 {/* Logo space reserved - actual logo rendered by LogoController */}
                 <div className="absolute left-1/2 -translate-x-1/2 opacity-0 pointer-events-none">
+                    {/* TODO: Replace with actual logo image with alt="3 Layered Premium 3D Printing Logo - Miniature Temples & Architectural Models" */}
                     Logo placeholder
                 </div>
 

@@ -4,7 +4,6 @@ import { ProductCategories } from "@/components/ProductCategories";
 import { CustomPrintCTA } from "@/components/CustomPrintCTA";
 import { BrandMarquee } from "@/components/BrandMarquee";
 import { InstagramReels } from "@/components/InstagramReels";
-import { MapSection } from "@/components/MapSection";
 import { SlideProvider } from "@/contexts/SlideContext";
 
 export default function Home() {
@@ -17,7 +16,6 @@ export default function Home() {
         <CustomPrintCTA />
         <BrandMarquee />
         <InstagramReels />
-        <MapSection />
       </main>
     </SlideProvider>
   );

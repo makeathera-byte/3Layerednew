@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { Navbar } from '@/components/Navbar';
 import { SlideProvider } from '@/contexts/SlideContext';
-import { MapSection } from '@/components/MapSection';
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle2, Instagram } from 'lucide-react';
 
 export default function ContactPage() {
@@ -321,9 +320,6 @@ export default function ContactPage() {
                             </div>
                         </div>
                     </div>
-
-                    {/* Map Section */}
-                    <MapSection />
                 </div>
             </main>
         </SlideProvider>
